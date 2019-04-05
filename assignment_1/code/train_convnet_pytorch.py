@@ -1,5 +1,6 @@
 """
-This module implements training and evaluation of a Convolutional Neural Network in PyTorch.
+This module implements training and evaluation of a Convolutional Neural Network 
+in PyTorch.
 You should fill in code into indicated sections.
 """
 from __future__ import absolute_import
@@ -41,14 +42,12 @@ def accuracy(predictions, targets):
   TODO:
   Implement accuracy computation.
   """
-
-  ########################
-  # PUT YOUR CODE HERE  #
-  #######################
-  raise NotImplementedError
-  ########################
-  # END OF YOUR CODE    #
-  #######################
+    
+  #compares predictions to one-hot encodaed labels.
+  acc = np.multiply(predictions, targets)
+  
+  #calculates the mean accuracy over all predictions:
+  accuracy = acc.sum()/len(acc)
 
   return accuracy
 
@@ -57,7 +56,8 @@ def train():
   Performs training and evaluation of ConvNet model. 
 
   TODO:
-  Implement training and evaluation of ConvNet model. Evaluate your model on the whole test set each eval_freq iterations.
+  Implement training and evaluation of ConvNet model. Evaluate your model on 
+  the whole test set each eval_freq iterations.
   """
 
   ### DO NOT CHANGE SEEDS!
