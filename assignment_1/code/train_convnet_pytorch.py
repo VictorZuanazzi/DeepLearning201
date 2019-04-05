@@ -78,43 +78,77 @@ def train():
   n_classes = 10
   n_channels = 3
   
+  #number of iterations to train the data in the whole dataset:
+  n_iter = np.cel(len(data["train"].labels)/batch_size)
+  
   #load model
   cnn_model = ConvNet(n_channels, n_classes)
   
   #Loss function
-  loss = torch.nn.CrossEntropyLoss()
+  loss_XE = torch.nn.CrossEntropyLoss()
+  
+  #keep track of how loss and accuracy evolves over time.
+  l = np.zeros(max_steps) #loss on the batch
+  acc = np.zeros(max_steps) #accuracy on the batch
+  loss_all = np.zeros(ceil(max_steps/eval_freq)) #loss on the whole data
+  acc_all = np.zeros(ceil(max_steps/eval_freq)) #accuracy on the whole data
   
   #Optimizer
   optmizer = optim.Adam(cnn_model.parameters(), lr=lr)
   
+  #let's put some gpus to work!
   cnn_model.to(device)
-  #Train shit
-  for step in range(max_steps):
-      
-      #fetch next batch of data
-      X, y = data['train'].next_batch(batch_size)
-      X = torch.from_numpy(X).type(dtype).to(device)
-      y = torch.from_numpy(y).type(dtype).to(device)
-      
-      #reset gradient to zero before gradient descent.
-      optmizer.zero_grad()
-      
-      #calculate loss
-      probs = cnn_model.forward(X)
-      l = loss(probs, y.argmax(dim=1))
-      
-      #backward propagation
-      loss.backward()
-      optmizer.step()
-      
-      #calculate accuracy
-      acc = accuracy(probs, y)
   
-  raise NotImplementedError
-  ########################
-  # END OF YOUR CODE    #
-  #######################
-
+  #index to keep track of the evaluations.
+  eval_i = 0
+  
+  #Train shit
+  for s in range(max_steps):
+      
+    #go through the entire dataset
+    for n in range(n_iter):
+          #fetch next batch of data
+          X, y = data['train'].next_batch(batch_size)
+          
+          #use torch tensor + gpu 
+          X = torch.from_numpy(X).type(dtype).to(device)
+          y = torch.from_numpy(y).type(dtype).to(device)
+          
+          #reset gradient to zero before gradient descent.
+          optmizer.zero_grad()
+          
+          #calculate loss
+          probs = cnn_model.forward(X)
+          loss = loss_XE(probs, y.argmax(dim=1)) 
+          
+          #backward propagation
+          loss.backward()
+          optmizer.step()
+    
+    #stores the loss and accuracy of the last batch for later analysis.
+    l[s] = loss
+    acc[s] = accuracy(probs, y)
+  
+    if s % eval_freq == 0:
+        #calculate accuracy for the whole data set
+        
+        #fetch all the data
+        X = data['train']._images
+        y = data['train']._labels
+      
+        #use torch tensor + gpu 
+        X = torch.from_numpy(X).type(dtype).to(device)
+        y = torch.from_numpy(y).type(dtype).to(device)
+        
+        #actually calculates loss and accuracy
+        probs = cnn_model.forward(X)
+        loss_all[eval_i] = loss_XE(probs, y.argmax(dim=1)) 
+        acc_all[eval_i] = accuracy(probs, y)
+        
+        #increments eval counter
+        eval_i +=1
+        
+        
 def print_flags():
   """
   Prints all entries in FLAGS variable.
