@@ -169,15 +169,19 @@ def train():
         print(f"step {s} out of {max_steps}")
         print(f"    loss: {loss_eval[eval_i]}, accuracy: {acc_eval[eval_i]}")
         
+        #save the results
+        np.save("loss_eval", loss_eval)
+        np.save("accuracy_eval", acc_eval)
+        
         #increments eval counter
         eval_i +=1
     
-  #Save the results for later analysis
-  print("saving results in folder.")
-  np.save("loss_eval", loss_eval)
+  #Save intermediary results for later analysis
+  print("saving results in folder...")
   np.save("loss_train", loss_train)
-  np.save("accuracy_eval", acc_eval)
   np.save("accuracy_train", acc_train)
+  np.save("loss_eval", loss_eval)
+  np.save("accuracy_eval", acc_eval)
         
 def print_flags():
   """
