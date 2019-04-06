@@ -198,7 +198,7 @@ class ConvNet(nn.Module):
     x = self.pool6(x)
     
     #fully connected layer
-    out = torch.nn.functional.softmax(self.fc(x.view(x.shape[0], -1))) #self.fc(x.view(x.shape[0], -1)) #
+    out = torch.nn.functional.softmax(self.fc(x.view(x.shape[0], -1)))
     
 
     return out
