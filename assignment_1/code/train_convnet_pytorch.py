@@ -12,14 +12,14 @@ import numpy as np
 import os
 from convnet_pytorch import ConvNet
 import cifar10_utils
-import torch.optim as optim
 import torch
+import torch.optim as optim
 
 # Default constants
 LEARNING_RATE_DEFAULT = 1e-4
 BATCH_SIZE_DEFAULT = 32
-MAX_STEPS_DEFAULT = 10#5000
-EVAL_FREQ_DEFAULT = 5#500
+MAX_STEPS_DEFAULT = 5000
+EVAL_FREQ_DEFAULT = 500
 OPTIMIZER_DEFAULT = 'ADAM'
 
 # Directory in which cifar data is saved
@@ -53,6 +53,7 @@ def accuracy(predictions, targets):
     
       return accuracy.detach().data.cpu().item() #returns the number instead of the tensor.
 
+
 def train():
   """
   Performs training and evaluation of ConvNet model. 
@@ -74,7 +75,7 @@ def train():
   data_dir = FLAGS.data_dir
   
   #fetch data
-  data = cifar10_utils.get_cifar10(FLAGS.data_dir)
+  data = cifar10_utils.get_cifar10(data_dir)
   n_classes = 10
   n_channels = 3
   
@@ -88,10 +89,10 @@ def train():
   loss_XE = torch.nn.CrossEntropyLoss()
   
   #keep track of how loss and accuracy evolves over time.
-  l = np.zeros(max_steps) #loss on the batch
-  acc = np.zeros(max_steps) #accuracy on the batch
-  loss_all = np.zeros(int(np.ceil(max_steps/eval_freq))) #loss on the whole data
-  acc_all = np.zeros(int(np.ceil(max_steps/eval_freq))) #accuracy on the whole data
+  loss_train = np.zeros(max_steps) #loss on the batch
+  acc_train = np.zeros(max_steps) #accuracy on the batch
+  loss_eval = np.zeros(int(np.ceil(max_steps/eval_freq))) #loss on the whole data
+  acc_eval = np.zeros(int(np.ceil(max_steps/eval_freq))) #accuracy on the whole data
   
   #Optimizer
   optmizer = optim.Adam(cnn_model.parameters(), lr=lr)
@@ -104,12 +105,6 @@ def train():
   
   #Train shit
   for s in range(max_steps):
-    print(f"step {s} out of {max_steps}")
-#    print(f"Memory Status")
-#    print(f"Memory cached: {torch.cuda.memory_cached()}")
-#    print(f"Memory allocated: {torch.cuda.memory_allocated()}")
-#    print(f"Max Memory cached: {torch.cuda.max_memory_cached()}")
-#    print(f"Max Memory allocated: {torch.cuda.max_memory_allocated()}")
       
     #go through the entire dataset
     for n in range(n_iter):
@@ -137,8 +132,8 @@ def train():
       y.detach()
     
     #stores the loss and accuracy of the last batch for later analysis.
-    l[s] = loss
-    acc[s] = accuracy(probs, y)
+    loss_train[s] = loss
+    acc_train[s] = accuracy(probs, y)
     
     probs.detach()
     
@@ -151,18 +146,14 @@ def train():
             #fetch all the data
             X, y = data['test'].next_batch(batch_size)
           
-            #use torch tensor + gpu 
-#            X = torch.from_numpy(X).type(dtype).to(device)
-#            y = torch.from_numpy(y).type(dtype).to(device)
-            
-            #releases the gradient to save memory
+            #use torch tensor + gpu, no gradient needed.
             X = torch.tensor(X, requires_grad=False).type(dtype).to(device)
             y = torch.tensor(y, requires_grad=False).type(dtype).to(device) 
             
             #actually calculates loss and accuracy for the batch
             probs = cnn_model.forward(X)
-            loss_all[eval_i] += loss_XE(probs, y.argmax(dim=1)).detach().data.cpu().item()
-            acc_all[eval_i] += accuracy(probs, y)
+            loss_eval[eval_i] += loss_XE(probs, y.argmax(dim=1)).detach().data.cpu().item()
+            acc_eval[eval_i] += accuracy(probs, y)
             
             probs.detach()
             
@@ -171,12 +162,22 @@ def train():
             y.detach()
         
         #average the losses and accuracies across batches
-        loss_all[eval_i] /= num_evals
-        acc_all[eval_i] /= num_evals
+        loss_eval[eval_i] /= num_evals
+        acc_eval[eval_i] /= num_evals
+        
+        #print performance
+        print(f"step {s} out of {max_steps}")
+        print(f"    loss: {loss_eval[eval_i]}, accuracy: {acc_eval[eval_i]}")
         
         #increments eval counter
         eval_i +=1
-        
+    
+  #Save the results for later analysis
+  print("saving results in folder.")
+  np.save("loss_eval", loss_eval)
+  np.save("loss_train", loss_train)
+  np.save("accuracy_eval", acc_eval)
+  np.save("accuracy_train", acc_train)
         
 def print_flags():
   """
