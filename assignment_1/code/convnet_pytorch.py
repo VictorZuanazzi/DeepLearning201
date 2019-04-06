@@ -26,6 +26,10 @@ class ConvNet(nn.Module):
       n_classes: number of classes of the classification problem
     """
     
+    #stores the input and output sizes
+    self.n_channels = n_channels
+    self.n_classes = n_classes
+    
     #set number of filters for each conv layer
     n_filters = {
             "conv1": 64,  "maxpool1": 64,
@@ -76,7 +80,7 @@ class ConvNet(nn.Module):
     self.norm2 = torch.nn.BatchNorm2d(n_filters["conv2"])
     
     #maxpool2
-    self.pool1 = torch.nn.MaxPool2d(kernel_size = k,
+    self.pool2 = torch.nn.MaxPool2d(kernel_size = k,
                                    stride = stride["maxpool"],
                                    padding = p)
     #conv3
@@ -136,8 +140,9 @@ class ConvNet(nn.Module):
     
     #avgpool
     self.pool6 = torch.nn.AvgPool2d(kernel_size = k_avg,
-                                   stride = stride["avg"],
+                                   stride = stride["avgpool"],
                                    padding = p_avg)
+    
     #linear layer (fully connected layer)
     self.fc = torch.nn.Linear(n_filters["conv5"], n_classes)
 
@@ -193,7 +198,7 @@ class ConvNet(nn.Module):
     x = self.pool6(x)
     
     #fully connected layer
-    out = torch.nn.functional.softmax(self.fc(x))
+    out = torch.nn.functional.softmax(self.fc(x.view(x.shape[0], -1))) #self.fc(x.view(x.shape[0], -1)) #
     
 
     return out
