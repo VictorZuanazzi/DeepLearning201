@@ -18,8 +18,8 @@ import torch
 # Default constants
 LEARNING_RATE_DEFAULT = 1e-4
 BATCH_SIZE_DEFAULT = 32
-MAX_STEPS_DEFAULT = 5000
-EVAL_FREQ_DEFAULT = 500
+MAX_STEPS_DEFAULT = 50#5000
+EVAL_FREQ_DEFAULT = 5#500
 OPTIMIZER_DEFAULT = 'ADAM'
 
 # Directory in which cifar data is saved
@@ -39,8 +39,8 @@ def accuracy(predictions, targets):
   of the network.
   
   Args:
-    predictions: 2D float array of size [batch_size, n_classes]
-    labels: 2D int array of size [batch_size, n_classes]
+    predictions: 2D float torch tensor of size [batch_size, n_classes]
+    labels: 2D int torch tensor of size [batch_size, n_classes]
             with one-hot encoding. Ground truth labels for
             each sample in the batch
   Returns:
@@ -49,9 +49,9 @@ def accuracy(predictions, targets):
   """
   
   #calculates the mean accuracy over all predictions:
-  accuracy = (predictions.argmax(axis=1) == targets.argmax(axis=1)).mean()
+  accuracy = (predictions.argmax(dim=1) == targets.argmax(dim=1)).type(dtype).mean()
 
-  return accuracy
+  return accuracy.item() #returns the number instead of the tensor.
 
 def train():
   """
@@ -79,7 +79,7 @@ def train():
   n_channels = 3
   
   #number of iterations to train the data in the whole dataset:
-  n_iter = np.cel(len(data["train"].labels)/batch_size)
+  n_iter = int(np.ceil(len(data["train"].labels)/batch_size))
   
   #load model
   cnn_model = ConvNet(n_channels, n_classes)
@@ -90,8 +90,8 @@ def train():
   #keep track of how loss and accuracy evolves over time.
   l = np.zeros(max_steps) #loss on the batch
   acc = np.zeros(max_steps) #accuracy on the batch
-  loss_all = np.zeros(ceil(max_steps/eval_freq)) #loss on the whole data
-  acc_all = np.zeros(ceil(max_steps/eval_freq)) #accuracy on the whole data
+  loss_all = np.zeros(int(np.ceil(max_steps/eval_freq))) #loss on the whole data
+  acc_all = np.zeros(int(np.ceil(max_steps/eval_freq))) #accuracy on the whole data
   
   #Optimizer
   optmizer = optim.Adam(cnn_model.parameters(), lr=lr)
@@ -162,6 +162,9 @@ def main():
   """
   # Print all Flags to confirm parameter settings
   print_flags()
+  
+  #print the device being used.
+  print(device)
 
   if not os.path.exists(FLAGS.data_dir):
     os.makedirs(FLAGS.data_dir)
