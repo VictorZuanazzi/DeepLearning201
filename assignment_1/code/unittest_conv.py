@@ -6,7 +6,7 @@ Created on Fri Apr  5 15:22:26 2019
 """
 #unit test library
 import unittest
-
+import torch
 #helpful libraries
 import numpy as np
 from sklearn.preprocessing import normalize
@@ -17,35 +17,40 @@ from train_convnet_pytorch import accuracy
 N_CLASSES = 5
 BATCH_SIZE = 10
 
+def roll(x, shift):  
+    """cicular shift all number shift positions to the right
+    pytorch has no implementation of np.roll"""
+    return torch.cat((x[:,-shift:], x[:,:-shift]), dim = 1)
+
 class testTrainConvnet(unittest.TestCase):
 
     def test_accuracyValue(self):
         """Test bug free value for random predictions and accuracies."""
         
-        #create random predictions approximating a softmax
-        predictions = np.random.uniform(size = (BATCH_SIZE,N_CLASSES))**2
-        predictions = normalize(predictions, axis=1, norm='l1')
-        
         #onehot enconde the predictions (necessary for sklearn..accuracy_score)
-        predictions = (predictions == predictions.max(axis=1)[:,None]).astype(int)
+        predictions = (torch.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)])
 
         #create random labels
-        targets = (np.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)]).astype(int)
+        targets = (torch.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)])
         
         #trusted accuracy function
-        acc = accuracy_score(targets, predictions, normalize = True)
+        acc = accuracy_score(targets.numpy(), predictions.numpy(), normalize = True)
         
-        self.assertEqual(acc, accuracy(predictions, targets))
+        #truncates pytorch response to 5 digits 
+        n_digits = 5
+        acc_r = torch.round((torch.tensor(accuracy(predictions, targets))) * 10**n_digits) / (10**n_digits)
+        
+        self.assertEqual(acc, acc_r)
     
     def test_allMissClassified(self):
         """Test edge case where accuracy = 0."""
         
         #create random labels
-        targets = np.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)]
+        targets = (torch.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)])
         
         #predicitions are targets shifited to the right so no classifications
         #match
-        predictions = np.roll(targets, shift=1, axis=1)
+        predictions = roll(targets, shift=1)
         
         self.assertEqual(0.0, accuracy(predictions, targets))
 #        
@@ -53,7 +58,7 @@ class testTrainConvnet(unittest.TestCase):
         """Test edge case where accuracy = 100%."""
         
         #create random labels
-        targets = np.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)]
+        targets = (torch.eye(N_CLASSES)[np.random.choice(N_CLASSES, BATCH_SIZE)])
         
         #predictions and targets are the same
         predictions = targets
