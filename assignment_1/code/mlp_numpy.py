@@ -6,6 +6,8 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import numpy as np
+
 from modules import * 
 
 class MLP(object):
@@ -28,19 +30,37 @@ class MLP(object):
       n_classes: number of classes of the classification problem.
                  This number is required in order to specify the
                  output dimensions of the MLP
-    
-    TODO:
-    Implement initialization of the network.
     """
-
-    ########################
-    # PUT YOUR CODE HERE  #
-    #######################
-    raise NotImplementedError
-    ########################
-    # END OF YOUR CODE    #
-    #######################
-
+       
+    self.num_hlayers = len(n_hidden)
+    self.num_layers = self.num_hlayers + 1
+    
+    #The linear layers are stored in a list
+    self.layer = []
+    
+    #The activation layers are stored also in a list
+    #The activation and the linear layers are in different lists to make 
+    #them explicit in the foward pass.
+    self.activation = []
+    
+    #the 0th layer receives is n_i x n_h(1)
+    self.layer.append(LinearModule(size=(n_inputs, n_hidden[0])))
+    self.activation.append(ReLUModule())
+    
+    #initializes the hidden layers
+    for i in range(self.num_hlayers -1):
+        self.layer.append(LinearModule(size=(n_hidden[i], n_hidden[i+1])))
+        self.activation.append(ReLUModule())
+        
+    #the last layer must output the number of classes
+    self.layer.append(LinearModule(size=(n_hidden[-1], n_classes)))
+    self.activation.append(SoftMaxModule())
+    
+    if self.num_layers != len(self.layer):
+        print("You've got a bug here! The sizes dont match.")
+        print(f"num_layers = {self.num_layers} != len(layer) = {len(self.layer)}")
+    
+    
   def forward(self, x):
     """
     Performs forward pass of the input. Here an input tensor x is transformed through 
@@ -50,20 +70,17 @@ class MLP(object):
       x: input to the network
     Returns:
       out: outputs of the network
-    
-    TODO:
-    Implement forward pass of the network.
     """
+    
+    #forward pass
+    for i in range(self.num_layers):
+        #linear layer
+        x = self.layer[i].forward(x)
+        
+        #activation
+        x = self.activation[i].forward(x)
 
-    ########################
-    # PUT YOUR CODE HERE  #
-    #######################
-    raise NotImplementedError
-    ########################
-    # END OF YOUR CODE    #
-    #######################
-
-    return out
+    return x
 
   def backward(self, dout):
     """
@@ -76,12 +93,9 @@ class MLP(object):
     Implement backward pass of the network.
     """
     
-    ########################
-    # PUT YOUR CODE HERE  #
-    #######################
-    raise NotImplementedError
-    ########################
-    # END OF YOUR CODE    #
-    #######################
+    #go through all layers backwards
+    for i in range(self.num_layers -1, -1, -1):
+        dout = self.activation[i].bakward(dout)
+        dout = self.layer[i].bakward(dout)
 
     return
