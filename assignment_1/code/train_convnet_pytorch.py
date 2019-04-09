@@ -66,6 +66,7 @@ def train():
   ### DO NOT CHANGE SEEDS!
   # Set the random seeds for reproducibility
   np.random.seed(42)
+  torch.manual_seed(42)
   
   #all external parameters in a readable format.
   lr = FLAGS.learning_rate
@@ -80,7 +81,10 @@ def train():
   n_channels = 3
   
   #number of iterations to train the data in the whole dataset:
-  n_iter = int(np.ceil(data["train"]._num_examples/batch_size))
+  n_iter = 1 # int(np.ceil(data["train"]._num_examples/batch_size))
+  
+  #number of evaluations
+  num_evals = int(np.ceil(data['test']._num_examples/batch_size))
   
   #load model
   cnn_model = ConvNet(n_channels, n_classes)
@@ -89,10 +93,10 @@ def train():
   loss_XE = torch.nn.CrossEntropyLoss()
   
   #keep track of how loss and accuracy evolves over time.
-  loss_train = np.zeros(max_steps) #loss on the batch
-  acc_train = np.zeros(max_steps) #accuracy on the batch
-  loss_eval = np.zeros(int(np.ceil(max_steps/eval_freq))) #loss on the whole data
-  acc_eval = np.zeros(int(np.ceil(max_steps/eval_freq))) #accuracy on the whole data
+  loss_train = np.zeros(max_steps+1) #loss on training data
+  acc_train = np.zeros(max_steps+1) #accuracy on training data
+  loss_eval = np.zeros(max_steps+1) #loss on test data
+  acc_eval = np.zeros(max_steps+1) #accuracy on test data
   
   #Optimizer
   optmizer = optim.Adam(cnn_model.parameters(), lr=lr)
@@ -105,9 +109,10 @@ def train():
   
   #Train shit
   for s in range(max_steps):
-      
-    #go through the entire dataset
+    
+    
     for n in range(n_iter):
+        
       #fetch next batch of data
       X, y = data['train'].next_batch(batch_size)
       
@@ -119,28 +124,19 @@ def train():
       optmizer.zero_grad()
       
       #calculate loss
-      probs = cnn_model.forward(X)
+      probs = cnn_model(X) #automatically calls .forward()
       loss = loss_XE(probs, y.argmax(dim=1)) 
       
       #backward propagation
       loss.backward()
       optmizer.step()
-      
-      #free GPU memory
-      loss.detach().data.cpu().item()
-      X.detach()
-      y.detach()
     
-    #stores the loss and accuracy of the last batch for later analysis.
-    loss_train[s] = loss
-    acc_train[s] = accuracy(probs, y)
+    
     
     probs.detach()
     
-    if s % eval_freq == 0:
+    if (s % eval_freq == 0) | (s == (max_steps-1)):
         #calculate accuracy for the whole data set
-        
-        num_evals = int(np.ceil(data['test']._num_examples/batch_size))
         
         for t in range(num_evals):
             #fetch all the data
@@ -152,7 +148,7 @@ def train():
             
             #actually calculates loss and accuracy for the batch
             probs = cnn_model.forward(X)
-            loss_eval[eval_i] += loss_XE(probs, y.argmax(dim=1)).detach().data.cpu().item()
+            loss_eval[eval_i] += loss_XE(probs, y.argmax(dim=1)).item() # detach().data.cpu().item()
             acc_eval[eval_i] += accuracy(probs, y)
             
             probs.detach()
@@ -161,20 +157,25 @@ def train():
             X.detach()
             y.detach()
         
-        #average the losses and accuracies across batches
+        #average the losses and accuracies across test batches
         loss_eval[eval_i] /= num_evals
         acc_eval[eval_i] /= num_evals
         
+        
+            
         #print performance
         print(f"step {s} out of {max_steps}")
         print(f"    loss: {loss_eval[eval_i]}, accuracy: {acc_eval[eval_i]}")
         
         #save the results
-        np.save("loss_eval", loss_eval)
-        np.save("accuracy_eval", acc_eval)
+#        np.save("loss_eval", loss_eval)
+#        np.save("accuracy_eval", acc_eval)
         
         #increments eval counter
         eval_i +=1
+  #stores the loss and accuracy of the trainind data for later analysis.
+  loss_train[eval_i] += loss.item()/num_evals #
+  acc_train[eval_i] += accuracy(probs, y)/num_evals
     
   #Save intermediary results for later analysis
   print("saving results in folder...")
@@ -182,6 +183,10 @@ def train():
   np.save("accuracy_train", acc_train)
   np.save("loss_eval", loss_eval)
   np.save("accuracy_eval", acc_eval)
+  
+  print("savign model")
+  torch.save(cnn_model.state_dict(), cnn_model.__class__.__name__ + ".pt")
+
         
 def print_flags():
   """
