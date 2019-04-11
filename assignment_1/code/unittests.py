@@ -89,15 +89,16 @@ class TestLayers(unittest.TestCase):
     rel_error_max = 1e-5
 
     for test_num in range(10):
-      N = np.random.choice(range(1, 20))
-      D = np.random.choice(range(1, 100))
-      C = np.random.choice(range(1, 10))
-      x = np.random.randn(N, D)
-      dout = np.random.randn(N, C)
+     
+      N = np.random.choice(range(1, 20)) #batch size   
+      D = np.random.choice(range(1, 100)) #num in_features
+      C = np.random.choice(range(1, 10)) #num classes = out_features
+      x = np.random.randn(N, D) #mini-batch
+      dout = np.random.randn(N, C) #cross-entropy loss?
 
       layer = LinearModule(D, C)
       
-      out = layer.forward(x)
+      out = layer.forward(x) 
       dx = layer.backward(dout)
       dw = layer.grads['weight']
       dx_num = eval_numerical_gradient_array(lambda xx: layer.forward(xx), x, dout)
