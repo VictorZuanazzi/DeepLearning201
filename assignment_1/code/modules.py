@@ -30,8 +30,8 @@ class LinearModule(object):
     self.params["bias"] = np.zeros((out_features,1))
     
     #initialize gradients with zeros.
-    self.grads["weight"]  = np.zeros((in_features, out_features))
-    self.grads["bias"] = np.zeros((1, out_features))
+    self.grads["weight"]  = np.zeros((out_features, in_features))#np.zeros((in_features, out_features))
+    self.grads["bias"] = np.zeros((out_features, 1))#np.zeros((1, out_features))
 
   def forward(self, x):
     """
