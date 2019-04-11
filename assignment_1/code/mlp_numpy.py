@@ -44,16 +44,16 @@ class MLP(object):
     self.activation = []
     
     #the 0th layer receives is n_i x n_h(1)
-    self.layer.append(LinearModule(size=(n_inputs, n_hidden[0])))
+    self.layer.append(LinearModule(n_inputs, n_hidden[0]))
     self.activation.append(ReLUModule())
     
     #initializes the hidden layers
     for i in range(self.num_hlayers -1):
-        self.layer.append(LinearModule(size=(n_hidden[i], n_hidden[i+1])))
+        self.layer.append(LinearModule(n_hidden[i], n_hidden[i+1]))
         self.activation.append(ReLUModule())
         
     #the last layer must output the number of classes
-    self.layer.append(LinearModule(size=(n_hidden[-1], n_classes)))
+    self.layer.append(LinearModule(n_hidden[-1], n_classes))
     self.activation.append(SoftMaxModule())
     
     if self.num_layers != len(self.layer):
@@ -95,7 +95,7 @@ class MLP(object):
     
     #go through all layers backwards
     for i in range(self.num_layers -1, -1, -1):
-        dout = self.activation[i].bakward(dout)
-        dout = self.layer[i].bakward(dout)
+        dout = self.activation[i].backward(dout)
+        dout = self.layer[i].backward(dout)
 
     return
