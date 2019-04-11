@@ -12,6 +12,8 @@ import os
 from mlp_pytorch import MLP
 import cifar10_utils
 
+import torch
+
 # Default constants
 DNN_HIDDEN_UNITS_DEFAULT = '100'
 LEARNING_RATE_DEFAULT = 2e-3
@@ -24,14 +26,20 @@ DATA_DIR_DEFAULT = './cifar10/cifar-10-batches-py'
 
 FLAGS = None
 
+#set datatype to torch tensor
+dtype = torch.FloatTensor
+
+#use GPUs if available
+device = torch.device('cpu') #  torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
 def accuracy(predictions, targets):
   """
   Computes the prediction accuracy, i.e. the average of correct predictions
   of the network.
   
   Args:
-    predictions: 2D float array of size [batch_size, n_classes]
-    labels: 2D int array of size [batch_size, n_classes]
+    predictions: 2D float torch array of size [batch_size, n_classes]
+    labels: 2D int torch array of size [batch_size, n_classes]
             with one-hot encoding. Ground truth labels for
             each sample in the batch
   Returns:
@@ -41,16 +49,11 @@ def accuracy(predictions, targets):
   TODO:
   Implement accuracy computation.
   """
+  #calculates the mean accuracy over all predictions:
+  accuracy = (predictions.argmax(dim=1) == targets.argmax(dim=1)).type(dtype).mean()
 
-  ########################
-  # PUT YOUR CODE HERE  #
-  #######################
-  raise NotImplementedError
-  ########################
-  # END OF YOUR CODE    #
-  #######################
+  return accuracy.item() #returns the number instead of the tensor.
 
-  return accuracy
 
 def train():
   """
@@ -63,6 +66,7 @@ def train():
   ### DO NOT CHANGE SEEDS!
   # Set the random seeds for reproducibility
   np.random.seed(42)
+  torch.manual_seed(42)
 
   ## Prepare all functions
   # Get number of units in each hidden layer specified in the string such as 100,100
