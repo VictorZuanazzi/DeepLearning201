@@ -24,21 +24,21 @@ class LinearModule(object):
     #mean = 0 and std = 0.0001.
     self.params["weight"] = np.random.normal(loc = 0.0, 
                                              scale = 0.001, 
-                                             size = (in_features, out_features))
+                                             size = (out_features, in_features))
     
     #Initialize biases self.params['bias'] with 0. 
-    self.params["bias"] = np.zeros(out_features)
+    self.params["bias"] = np.zeros((out_features,1))
     
     #initialize gradients with zeros.
     self.grads["weight"]  = np.zeros((in_features, out_features))
-    self.grads["bias"] = np.zeros(out_features)
+    self.grads["bias"] = np.zeros((1, out_features))
 
   def forward(self, x):
     """
     Forward pass.
     
     Args:
-      x: input to the module
+      x: input to the module, shape(batch_size, features)
     Returns:
       out: output of the module
     
@@ -47,11 +47,11 @@ class LinearModule(object):
     """
     
     #forward pass of the module. 
-    out = np.matmul(x, self.params["weight"]) + self.params["bias"]
+    out = np.matmul(self.params["weight"], x.T) + self.params["bias"]
     
     #stores x for later backard pass
     self.x = x
-    return out
+    return out.T
 
   def backward(self, dout):
     """
@@ -62,18 +62,15 @@ class LinearModule(object):
     Returns:
       dx: gradients with respect to the input of the module 
     """
-
-    
     #linear backprop
-    dx = np.matmul(self.params["weight"], dout)
+    dx = np.matmul(dout, self.params["weight"])
     
     #dL/db 
-    self.grads["bias"] = dout # np.sum(dout)
-    
+    grad_b_shape = self.grads["bias"].shape
+    self.grads["bias"] = np.reshape(dout.sum(axis=0), grad_b_shape)
+
     #dL/dW
-    x_shape = (self.params["weight"].shape[0],1)
-    dout_shape = (1, self.params["weight"].shape[1])
-    self.grads["weight"] = np.matmul(self.x.shape(x_shape), dout.shape(dout_shape))
+    self.grads["weight"] = np.matmul(dout.T, self.x)
     
     return dx
 
@@ -111,12 +108,10 @@ class ReLUModule(object):
     Returns:
       dx: gradients with respect to the input of the module
     
-    TODO:
-    Implement backward pass of the module.
     """
     
     #element wise multiplication
-    dx =  dout * self.poss  
+    dx =  dout * self.pos 
 
     return dx
 
@@ -132,22 +127,19 @@ class SoftMaxModule(object):
     Returns:
       out: output of the module
     
-    TODO:
-    Implement forward pass of the module. 
-    To stabilize computation you should use the so-called Max Trick 
-    - https://timvieira.github.io/blog/post/2014/02/11/exp-normalize-trick/
-    
     Hint: You can store intermediate variables inside the object. They can be used in backward pass computation.                                                           #
     """
     
     #max trick for computation stability
-    max_x = np.max(x)
+    max_x = x.max(axis=1)
+    max_x = max_x.reshape((max_x.shape[0], 1))
     
     #numerator part of the softmax
     numerator = np.exp(x - max_x)
     
     #denominator sum of the softmax
-    denominator = numerator.sum()
+    denominator = numerator.sum(axis=1)
+    denominator = denominator.reshape((denominator.shape[0], 1))
     
     #softmax
     #saves output for a cheaper backwards pass
@@ -164,16 +156,24 @@ class SoftMaxModule(object):
     Returns:
       dx: gradients with respect to the input of the module
     
-    TODO:
-    Implement backward pass of the module.
     """
     
-    #how does that work again?
-    diag_out = np.eye(self.out.shape(0))*self.out
+    #crazy shit over here!
     
-    dxdx_t = diag_out- np.einsum('ij, ik, -> ijk', self.out, self.out)
+    #explicit dimensions
+    batch_size = self.out.shape[0] #mini batch size
+    dim = self.out.shape[1] #feature dimension
+
+    #creates a tensor with self.out elements in the diagonal
+    diag_xN = np.zeros((batch_size, dim, dim))
+    ii = np.arange(dim)
+    diag_xN[:, ii, ii] = self.out
     
-    #einsum magic
+    #einstein sum convention to the rescue! :sunglasses:
+    #first we calculate the dx/d\tilde{x} 
+    dxdx_t = diag_xN - np.einsum('ij, ik -> ijk', self.out, self.out)
+    
+    
     dx = np.einsum('ij, ijk -> ik', dout, dxdx_t)
 
     return dx
@@ -191,21 +191,10 @@ class CrossEntropyModule(object):
       y: labels of the input
     Returns:
       out: cross entropy loss
-    
-    TODO:
-    Implement forward pass of the module. 
     """
     
     #cross entropy from the text book:
-    out = y * -1*np.log(x)
-
-    ########################
-    # PUT YOUR CODE HERE  #
-    #######################
-    raise NotImplementedError
-    ########################
-    # END OF YOUR CODE    #
-    #######################
+    out = np.sum(y * (-1)*np.log(x), axis=1).mean()
 
     return out
 
@@ -218,17 +207,8 @@ class CrossEntropyModule(object):
       y: labels of the input
     Returns:
       dx: gradient of the loss with the respect to the input x.
-    
-    TODO:
-    Implement backward pass of the module.
     """
 
-    ########################
-    # PUT YOUR CODE HERE  #
-    #######################
-    raise NotImplementedError
-    ########################
-    # END OF YOUR CODE    #
-    #######################
+    dx = -np.divide(y,x)/len(y)
 
     return dx
