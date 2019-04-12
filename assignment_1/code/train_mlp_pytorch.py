@@ -22,7 +22,7 @@ LEARNING_RATE_DEFAULT = 2e-4 #2e-3
 MAX_STEPS_DEFAULT = 3000 #1500
 BATCH_SIZE_DEFAULT = 1000 #200
 EVAL_FREQ_DEFAULT = 100
-AUTO_OPT_DEFAUT = True
+AUTO_OPT_DEFAUT = False
 
 # Directory in which cifar data is saved
 DATA_DIR_DEFAULT = './cifar10/cifar-10-batches-py'
@@ -221,7 +221,7 @@ def optimize_MLP():
     
     #number of trials
     epochs = 5
-    #lisa trains about 4 nets per hour 
+    #lisa trains about 10 nets per hour 
     num_nets = 10
     nets = [net_params() for net in range(num_nets)]
     
