@@ -33,7 +33,7 @@ FLAGS = None
 dtype = torch.FloatTensor
 
 #use GPUs if available
-device = torch.device('cpu') #  torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+device =  torch.device('cpu') #  torch.device('cuda' if torch.cuda.is_available() else 'cpu') #
 
 def accuracy(predictions, targets):
   """
@@ -173,9 +173,7 @@ def train():
 ##              if (np.mean(loss_train[-10:-5]) - np.mean(loss_train[-5:])) < 1e-7:
 ##                  print("Early Stop")
 ##                  break  
-  return acc_test
-      
-      
+     
   #finished training:
   path = "./torch results/"
   print("saving results in folder...")
@@ -187,6 +185,7 @@ def train():
   print("saving model in folder")
   np.save(path+"MLP_torch_model", MLP_model)
   return acc_test
+
 
 def print_flags():
   """
@@ -221,16 +220,18 @@ def main():
 def optimize_MLP():
     
     #number of trials
-    epochs = 1#5
-    #lisa trains about 10 nets per hour 
-    num_nets = 1# 10
+    epochs = 5
+    #lisa trains about 4 nets per hour 
+    num_nets = 10
     nets = [net_params() for net in range(num_nets)]
     
     #shwallow archtecture
-    nets[0].dnn_hidden_units_choice = ['1000', '500', '300']
+    nets[0].dnn_hidden_units_choice = ['5000', '2500', '1000']
     
     #deep archtecture
-    nets[-1].dnn_hidden_units_choice = ['50,10,10','50,20,10', '40,30,20,10']
+    nets[-1].dnn_hidden_units_choice = ['1000,10,10,10,10',
+                                        '500,500,500,500,500',
+                                        '800,400,200,100,50']                                          
     
     #there isn't a best net yet
     best_net = -1
@@ -241,6 +242,7 @@ def optimize_MLP():
             
             #avoid retraining the best individual
             if n == best_net:
+                accs.append(net.accuracy)
                 continue         
             
             print(f"ind {n} epoc {epoch}")
