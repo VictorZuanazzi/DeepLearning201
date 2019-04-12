@@ -1,0 +1,34 @@
+learning_rate : 0.0001
+max_steps : 5000
+batch_size : 32
+eval_freq : 500
+data_dir : ./cifar10/cifar-10-batches-py
+Device:  cuda
+Step 1 of project Take Over the World:
+Distinguish cats from dogs.
+step 0 out of 5000
+    loss: 2.2888851257177967, accuracy: 0.14516773162939298
+step 500 out of 5000
+    loss: 1.113448355144586, accuracy: 0.6088258785942492
+step 1000 out of 5000
+    loss: 1.0092266824679634, accuracy: 0.6457667731629393
+step 1500 out of 5000
+    loss: 0.9178312728389765, accuracy: 0.6765175718849841
+step 2000 out of 5000
+    loss: 0.8334551895388399, accuracy: 0.7086661341853036
+step 2500 out of 5000
+    loss: 0.7572647753995828, accuracy: 0.7403154952076677
+step 3000 out of 5000
+    loss: 0.7578486941112116, accuracy: 0.7375199680511182
+step 3500 out of 5000
+    loss: 0.7183427373631693, accuracy: 0.7589856230031949
+step 4000 out of 5000
+    loss: 0.6703813427839035, accuracy: 0.7700678913738019
+step 4500 out of 5000
+    loss: 0.6734675026168457, accuracy: 0.7693690095846646
+step 4999 out of 5000
+    loss: 0.7003908515833437, accuracy: 0.7638777955271565
+saving results in folder...
+savign model
+Training finished successfully. 
+Note to self, cats are pure evil.

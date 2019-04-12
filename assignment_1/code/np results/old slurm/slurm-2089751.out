@@ -1,0 +1,37 @@
+learning_rate : 0.0001
+max_steps : 5000
+batch_size : 32
+eval_freq : 500
+data_dir : ./cifar10/cifar-10-batches-py
+Device:  cuda
+Step 1 of project Take Over the World:
+Distinguish cats from dogs.
+step 0 out of 5000
+    loss: 2.288885123432635, accuracy: 0.14516773162939298
+step 500 out of 5000
+    loss: 1.1161350527891336, accuracy: 0.6070287539936102
+step 1000 out of 5000
+    loss: 0.9888543746532342, accuracy: 0.6540535143769968
+step 1500 out of 5000
+    loss: 0.9203403017962702, accuracy: 0.678314696485623
+step 2000 out of 5000
+    loss: 0.8190140027207689, accuracy: 0.7201477635782748
+step 2500 out of 5000
+    loss: 0.7505119555293561, accuracy: 0.7406150159744409
+step 3000 out of 5000
+    loss: 0.7418171870061003, accuracy: 0.7436102236421726
+step 3500 out of 5000
+    loss: 0.7019074559211731, accuracy: 0.7602835463258786
+step 4000 out of 5000
+    loss: 0.6691916219342631, accuracy: 0.7707667731629393
+step 4500 out of 5000
+    loss: 0.6652142879681084, accuracy: 0.7694688498402555
+Traceback (most recent call last):
+  File "train_convnet_pytorch.py", line 230, in <module>
+    main()
+  File "train_convnet_pytorch.py", line 211, in main
+    train()
+  File "train_convnet_pytorch.py", line 153, in train
+    loss_eval[eval_i] += loss_XE(probs, y.argmax(dim=1)).item() # detach().data.cpu().item()
+IndexError: index 10 is out of bounds for axis 0 with size 10
+srun: error: r31n6: task 0: Exited with exit code 1
