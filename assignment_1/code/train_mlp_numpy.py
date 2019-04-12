@@ -15,6 +15,7 @@ import cifar10_utils
 
 from EA_opt import net_params
 
+
 # Default constants
 DNN_HIDDEN_UNITS_DEFAULT = '100'
 LEARNING_RATE_DEFAULT = 2e-3
@@ -167,9 +168,7 @@ def train():
   np.save(path + "np_accuracy_train", acc_train)
   np.save(path + "np_loss_test", loss_test)
   np.save(path + "np_accuracy_test", acc_test)
-  
-  print("saving model in folder")
-  np.save("MLP_np_model", MLP_model)
+
   return acc_test
   
 
@@ -211,10 +210,10 @@ def optimize_MLP():
     nets = [net_params() for net in range(num_nets)]
     
     #shwallow archtecture
-    nets[0].dnn_hidden_units_choice = ['100', '200', '300']
+    nets[0].dnn_hidden_units_choice = ['1000', '500', '300']
     
     #deep archtecture
-    nets[-1].dnn_hidden_units_choice = ['50,10,10','50,20,10', '10,10,10,10,10']
+    nets[-1].dnn_hidden_units_choice = ['50,10,10','50,20,10', '40,30,20,10']
     
     #store the accuracy
     acc = []
@@ -270,6 +269,10 @@ def optimize_MLP():
     print(f"    learning reate: {nets[best_net].lr}")
     print(f"    max_steps:  {nets[best_net].max_steps}")
     print(f"    batch size: {nets[best_net].batch_size}")    
+    
+    path = "./np results/"
+    print("saving best net in folder")
+    np.save(path + "net_params", nets[best_net])
     
 if __name__ == '__main__':
   # Command line arguments
