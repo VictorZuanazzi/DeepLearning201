@@ -12,14 +12,21 @@ class net_params():
         
         if init:
             #initlialize individual with learnable mutation parameters
-            self.dnn_hidden_units_choice = ['100', '200', '300', '100,10', '50,10', '50,50']
+            self.dnn_hidden_units_choice = ['5000', '1000', '1000,1000', 
+                                            '1000,500', '1000,100'
+                                            '1000,500,250,100', 
+                                            '1000,250,100,100'
+                                            '500,500,250,250,100', 
+                                            '500,500,500,500,500',
+                                            '100,100,100,100,100']
+            #[5 layers 500]
             self.hidden_units = np.random.choice(self.dnn_hidden_units_choice)
             self.hu_p = np.random.uniform(0.1, 1)
-            self.lr = np.random.uniform(2e-5, 2e-3)
-            self.lr_sigma = np.random.uniform(1e-6,1e-3)
-            self.max_steps = np.random.randint(1000, 5000)
+            self.lr = np.random.uniform(2e-6, 2e-4) #learning rate
+            self.lr_sigma = np.random.uniform(1e-7,1e-5)
+            self.max_steps = np.random.randint(1500, 5000)  #max steps
             self.ms_sigma = np.random.randint(100, 1000)
-            self.batch_size = np.random.randint(100, 1000)
+            self.batch_size = np.random.randint(100, 1000) #batch size
             self.bs_sigma = np.random.randint(10, 100)
         
     def set_params(self, hidden_units, lr, max_steps, batch_size): 
@@ -46,6 +53,7 @@ class net_params():
         self.lr_sigma += np.random.normal(scale=self.s_sigma)
         self.lr_sigma = np.maximum(self.lr_sigma, self.epsilon)
         self.lr += np.random.normal(scale=self.lr_sigma)
+        self.lr = np.maximum(self.lr, 1e-6)
         
         #max steps
         self.ms_sigma += np.random.normal(scale=self.s_sigma*100) 
