@@ -12,7 +12,7 @@ class net_params():
         
         if init:
             #initlialize individual with learnable mutation parameters
-            self.dnn_hidden_units_choice = ['100', '200', '300' '100,10', '50,10', '50,50']
+            self.dnn_hidden_units_choice = ['100', '200', '300', '100,10', '50,10', '50,50']
             self.hidden_units = np.random.choice(self.dnn_hidden_units_choice)
             self.hu_p = np.random.uniform(0.1, 1)
             self.lr = np.random.uniform(2e-5, 2e-3)
