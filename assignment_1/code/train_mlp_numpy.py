@@ -205,15 +205,17 @@ def optimize_MLP():
     
     #number of trials
     epochs = 5
-    #lisa trains about 10 nets per hour 
-    num_nets = 10
+    #lisa trains about 5 nets per hour 
+    num_nets = 5
     nets = [net_params() for net in range(num_nets)]
     
     #shwallow archtecture
-    nets[0].dnn_hidden_units_choice = ['1000', '500', '300']
+    nets[0].dnn_hidden_units_choice = ['5000', '2500', '1000']
     
     #deep archtecture
-    nets[-1].dnn_hidden_units_choice = ['50,10,10','50,20,10', '40,30,20,10']
+    nets[-1].dnn_hidden_units_choice = ['1000,10,10,10,10',
+                                        '500,500,500,500,500',
+                                        '800,400,200,100,50']
     
     #store the accuracy
     acc = []
