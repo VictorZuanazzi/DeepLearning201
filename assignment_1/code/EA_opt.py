@@ -4,13 +4,15 @@ Created on Thu Apr 11 22:32:07 2019
 
 @author: Victor Zuanazzi
 """
+import numpy as np
+
 class net_params():
     def __init__(self, init = True):
         self.accuracy = 0
         
         if init:
             #initlialize individual with learnable mutation parameters
-            self.dnn_hidden_units_choice = ['100', '200', '300' '100,10', '50,10', '10,10']
+            self.dnn_hidden_units_choice = ['100', '200', '300' '100,10', '50,10', '50,50']
             self.hidden_units = np.random.choice(self.dnn_hidden_units_choice)
             self.hu_p = np.random.uniform(0.1, 1)
             self.lr = np.random.uniform(2e-5, 2e-3)
@@ -76,65 +78,3 @@ class net_params():
         self.bs_sigma = np.random.uniform(self.bs_sigma, partner.bs_sigma)
         self.batch_size = int(np.random.uniform(self.batch_size, partner.batch_size))
 
-def optimize_MLP():
-    
-    #number of trials
-    epochs = 3
-    num_nets = 3
-    nets = [net_params() for net in range(num_nets)]
-    
-    #shwallow archtecture
-    nets[0].dnn_hidden_units_choice = ['100', '200', '300']
-    
-    #deep archtecture
-    nets[-1].dnn_hidden_units_choice = ['10,10,10','50,20,10', '10,10,10,10,10']
-    
-    #store the accuracy
-    acc = []
-    
-    for epoch in range(epochs):
-        accs = []
-        for n, net in enumerate(nets):
-            print(f"ind {n} epoc {epoch}")
-            
-            #pass the parameters to the flags
-            FLAGS.dnn_hidden_units = net.hidden_units
-            FLAGS.learning_rate = net.lr
-            FLAGS.max_steps = net.max_steps
-            FLAGS.batch_size = net.batch_size
-        
-            print_flags()
-            net.accuracy = train()[-1]
-            
-            accs.append(net.accuracy)
-        
-        best_net = np.argmax(accs)
-        print(f"accuracies: accs")
-        
-        for n, net in enumerate(nets):
-            if n == best_net:
-                #the best one remains untouched
-                continue
-            #sex time!
-            if np.random.uniform() < .5:
-                net.sex(nets[best_net])
-            else:
-                net.sex(np.random.choice(nets))
-            
-            #mutatation
-            net.mutate()
-        
-    
-    FLAGS.dnn_hidden_units = nets[best_net].hidden_units
-    FLAGS.learning_rate = nets[best_net].lr
-    FLAGS.max_steps = nets[best_net].max_steps
-    FLAGS.batch_size = net.batch_size
-    nets[best_net].batch_size
-    
-    print("best net")
-    print("accuracies: ", nets[best_net].accuracy)
-    print(f"best setting: ")
-    print(f"    dnn_hidden_units_s:  {nets[best_net].hidden_units}")
-    print(f"    learning reate: {nets[best_net].lr}")
-    print(f"    max_steps:  {nets[best_net].max_steps}")
-    print(f"    batch size: {nets[best_net].batch_size}")    
