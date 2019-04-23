@@ -17,10 +17,10 @@ import torch
 from EA_opt import net_params
 
 # Default constants
-DNN_HIDDEN_UNITS_DEFAULT =  '200' #'100'
-LEARNING_RATE_DEFAULT = 2e-4 #2e-3
-MAX_STEPS_DEFAULT = 3000 #1500
-BATCH_SIZE_DEFAULT = 1000 #200
+DNN_HIDDEN_UNITS_DEFAULT =  '1000,500,250,100' #'100'
+LEARNING_RATE_DEFAULT = 0.000168436712547 #2e-3
+MAX_STEPS_DEFAULT = 4681 #1500
+BATCH_SIZE_DEFAULT = 1609 #200
 EVAL_FREQ_DEFAULT = 100
 AUTO_OPT_DEFAUT = False
 
@@ -48,9 +48,7 @@ def accuracy(predictions, targets):
   Returns:
     accuracy: scalar float, the accuracy of predictions,
               i.e. the average correct predictions over the whole batch
-  
-  TODO:
-  Implement accuracy computation.
+
   """
   #calculates the mean accuracy over all predictions:
   accuracy = (predictions.argmax(dim=1) == targets.argmax(dim=1)).type(dtype).mean()
@@ -221,7 +219,7 @@ def optimize_MLP():
     
     #number of trials
     epochs = 5
-    #lisa trains about 10 nets per hour 
+    #lisa trains about 5 nets per hour 
     num_nets = 10
     nets = [net_params() for net in range(num_nets)]
     

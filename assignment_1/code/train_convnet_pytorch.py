@@ -130,7 +130,10 @@ def train():
       #backward propagation
       loss.backward()
       optmizer.step()
-    
+      
+      #stores the loss and accuracy of the trainind data for later analysis.
+      loss_train[eval_i] += loss.item()/num_evals #
+      acc_train[eval_i] += accuracy(probs, y)/num_evals
     
     
     probs.detach()
@@ -166,6 +169,7 @@ def train():
         #print performance
         print(f"step {s} out of {max_steps}")
         print(f"    loss: {loss_eval[eval_i]}, accuracy: {acc_eval[eval_i]}")
+        print(f"    loss: {loss_train[eval_i]}, accuracy: {acc_train[eval_i]}")
         
         #save the results
 #        np.save("loss_eval", loss_eval)
@@ -173,9 +177,7 @@ def train():
         
         #increments eval counter
         eval_i +=1
-  #stores the loss and accuracy of the trainind data for later analysis.
-  loss_train[eval_i] += loss.item()/num_evals #
-  acc_train[eval_i] += accuracy(probs, y)/num_evals
+  
     
   #Save intermediary results for later analysis
   print("saving results in folder...")

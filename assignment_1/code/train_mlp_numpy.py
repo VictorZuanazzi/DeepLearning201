@@ -141,7 +141,6 @@ def train():
     
 
       if (step%eval_freq == 0) | (step == max_steps -1):
-          print(f"learning rate: {lr}")
           print(f"step:{step}")
           
           #keep metrics on training set:
@@ -206,7 +205,7 @@ def optimize_MLP():
     #number of trials
     epochs = 5
     #lisa trains about 5 nets per hour 
-    num_nets = 5
+    num_nets = 10
     nets = [net_params() for net in range(num_nets)]
     
     #shwallow archtecture
