@@ -1,0 +1,2735 @@
+dnn_hidden_units : 200
+learning_rate : 0.0002
+max_steps : 3000
+batch_size : 1000
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+Step 1 of project Take Over the World (retrial) : distinguish between cats and dogs
+
+ind 0 epoc 0
+dnn_hidden_units : 500,500,250,250,100
+learning_rate : 9.471297992347634e-05
+max_steps : 2278
+batch_size : 788
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09898477047681808, loss = 2.385277032852173
+test performance: acc = 0.1589999943971634, loss = 2.2750027179718018
+step:100
+train performance: acc = 0.4796954393386841, loss = 1.4914400577545166
+test performance: acc = 0.4684999883174896, loss = 1.5217424631118774
+step:200
+train performance: acc = 0.5444162487983704, loss = 1.2696917057037354
+test performance: acc = 0.49889999628067017, loss = 1.426146149635315
+step:300
+train performance: acc = 0.5748730897903442, loss = 1.2913738489151
+test performance: acc = 0.5099999904632568, loss = 1.406022310256958
+step:400
+train performance: acc = 0.6129441857337952, loss = 1.110100269317627
+test performance: acc = 0.5230000019073486, loss = 1.3940242528915405
+step:500
+train performance: acc = 0.6522842645645142, loss = 1.0237172842025757
+test performance: acc = 0.5310999751091003, loss = 1.3801623582839966
+step:600
+train performance: acc = 0.7246192693710327, loss = 0.7604907155036926
+test performance: acc = 0.527899980545044, loss = 1.424009919166565
+step:700
+train performance: acc = 0.7614213228225708, loss = 0.7014617323875427
+test performance: acc = 0.5296000242233276, loss = 1.4546759128570557
+step:800
+train performance: acc = 0.7918781638145447, loss = 0.6161994934082031
+test performance: acc = 0.526199996471405, loss = 1.5328490734100342
+step:900
+train performance: acc = 0.8147208094596863, loss = 0.5682162046432495
+test performance: acc = 0.5235000252723694, loss = 1.5979280471801758
+step:1000
+train performance: acc = 0.8159898519515991, loss = 0.5745307803153992
+test performance: acc = 0.5253000259399414, loss = 1.6667883396148682
+step:1100
+train performance: acc = 0.8781725764274597, loss = 0.39770880341529846
+test performance: acc = 0.513700008392334, loss = 1.7799674272537231
+step:1200
+train performance: acc = 0.913705587387085, loss = 0.2948324382305145
+test performance: acc = 0.521399974822998, loss = 1.8566237688064575
+step:1300
+train performance: acc = 0.8959391117095947, loss = 0.3335902690887451
+test performance: acc = 0.5199000239372253, loss = 1.982438087463379
+step:1400
+train performance: acc = 0.9441624283790588, loss = 0.19371551275253296
+test performance: acc = 0.5220000147819519, loss = 2.0573837757110596
+step:1500
+train performance: acc = 0.9479695558547974, loss = 0.18139614164829254
+test performance: acc = 0.5220000147819519, loss = 2.192300796508789
+step:1600
+train performance: acc = 0.9555837512016296, loss = 0.14587052166461945
+test performance: acc = 0.5151000022888184, loss = 2.3725597858428955
+step:1700
+train performance: acc = 0.9682741165161133, loss = 0.12026377022266388
+test performance: acc = 0.5159000158309937, loss = 2.4528539180755615
+step:1800
+train performance: acc = 0.9758883118629456, loss = 0.10044362396001816
+test performance: acc = 0.5181999802589417, loss = 2.608816146850586
+step:1900
+train performance: acc = 0.9923858046531677, loss = 0.05353935435414314
+test performance: acc = 0.5217000246047974, loss = 2.711487054824829
+step:2000
+train performance: acc = 0.9835025668144226, loss = 0.0712713971734047
+test performance: acc = 0.5116999745368958, loss = 2.8444387912750244
+step:2100
+train performance: acc = 0.9822335243225098, loss = 0.06508173793554306
+test performance: acc = 0.5116000175476074, loss = 2.9617557525634766
+step:2200
+train performance: acc = 0.9784263968467712, loss = 0.06994888186454773
+test performance: acc = 0.5159000158309937, loss = 3.0552988052368164
+step:2277
+train performance: acc = 0.9796954393386841, loss = 0.07541636377573013
+test performance: acc = 0.5116999745368958, loss = 3.0824458599090576
+saving results in folder...
+saving model in folder
+
+
+ind 1 epoc 0
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 0.00012683291878097769
+max_steps : 4478
+batch_size : 925
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.10486486554145813, loss = 2.5429623126983643
+test performance: acc = 0.21699999272823334, loss = 2.1740360260009766
+step:100
+train performance: acc = 0.4929729700088501, loss = 1.4475314617156982
+test performance: acc = 0.4756999909877777, loss = 1.4824440479278564
+step:200
+train performance: acc = 0.6064864993095398, loss = 1.1179711818695068
+test performance: acc = 0.5085999965667725, loss = 1.4066877365112305
+step:300
+train performance: acc = 0.6918919086456299, loss = 0.8839122653007507
+test performance: acc = 0.5307000279426575, loss = 1.387567400932312
+step:400
+train performance: acc = 0.7200000286102295, loss = 0.8414939045906067
+test performance: acc = 0.5253000259399414, loss = 1.4415442943572998
+step:500
+train performance: acc = 0.8097297549247742, loss = 0.583896279335022
+test performance: acc = 0.5288000106811523, loss = 1.4741332530975342
+step:600
+train performance: acc = 0.8594594597816467, loss = 0.4604741930961609
+test performance: acc = 0.5339999794960022, loss = 1.5384601354599
+step:700
+train performance: acc = 0.8670270442962646, loss = 0.4222143292427063
+test performance: acc = 0.527899980545044, loss = 1.6485403776168823
+step:800
+train performance: acc = 0.9210810661315918, loss = 0.29320624470710754
+test performance: acc = 0.5339000225067139, loss = 1.7392094135284424
+step:900
+train performance: acc = 0.9491891860961914, loss = 0.21569620072841644
+test performance: acc = 0.5263000130653381, loss = 1.8978546857833862
+step:1000
+train performance: acc = 0.9632432460784912, loss = 0.14838199317455292
+test performance: acc = 0.5266000032424927, loss = 2.033794641494751
+step:1100
+train performance: acc = 0.9708108305931091, loss = 0.11299066990613937
+test performance: acc = 0.5383999943733215, loss = 2.1329221725463867
+step:1200
+train performance: acc = 0.9891892075538635, loss = 0.06790942698717117
+test performance: acc = 0.5263000130653381, loss = 2.2514841556549072
+step:1300
+train performance: acc = 0.9891892075538635, loss = 0.06067536771297455
+test performance: acc = 0.534600019454956, loss = 2.3443493843078613
+step:1400
+train performance: acc = 0.9913513660430908, loss = 0.05543573200702667
+test performance: acc = 0.527999997138977, loss = 2.4875569343566895
+step:1500
+train performance: acc = 0.9924324154853821, loss = 0.03778504580259323
+test performance: acc = 0.538100004196167, loss = 2.5239768028259277
+step:1600
+train performance: acc = 0.9891892075538635, loss = 0.050566982477903366
+test performance: acc = 0.5317000150680542, loss = 2.6553702354431152
+step:1700
+train performance: acc = 0.9827027320861816, loss = 0.07094009220600128
+test performance: acc = 0.5220999717712402, loss = 2.6876561641693115
+step:1800
+train performance: acc = 0.9675675630569458, loss = 0.10342192649841309
+test performance: acc = 0.5169000029563904, loss = 2.8248355388641357
+step:1900
+train performance: acc = 0.9827027320861816, loss = 0.06717882305383682
+test performance: acc = 0.5285000205039978, loss = 2.821629047393799
+step:2000
+train performance: acc = 0.9967567324638367, loss = 0.021590590476989746
+test performance: acc = 0.5299999713897705, loss = 2.857783317565918
+step:2100
+train performance: acc = 0.998918890953064, loss = 0.009394253604114056
+test performance: acc = 0.5364000201225281, loss = 2.955834150314331
+step:2200
+train performance: acc = 0.9978378415107727, loss = 0.007257063873112202
+test performance: acc = 0.5436999797821045, loss = 3.020167112350464
+step:2300
+train performance: acc = 0.9978378415107727, loss = 0.004785893019288778
+test performance: acc = 0.5461999773979187, loss = 3.074113607406616
+step:2400
+train performance: acc = 1.0, loss = 0.002008747076615691
+test performance: acc = 0.5443000197410583, loss = 3.1458258628845215
+step:2500
+train performance: acc = 1.0, loss = 0.0015238694613799453
+test performance: acc = 0.5467000007629395, loss = 3.1943304538726807
+step:2600
+train performance: acc = 1.0, loss = 0.001194706535898149
+test performance: acc = 0.5453000068664551, loss = 3.2379705905914307
+step:2700
+train performance: acc = 1.0, loss = 0.0010843034833669662
+test performance: acc = 0.5454000234603882, loss = 3.26953387260437
+step:2800
+train performance: acc = 1.0, loss = 0.0011143370065838099
+test performance: acc = 0.5461000204086304, loss = 3.305946111679077
+step:2900
+train performance: acc = 1.0, loss = 0.0009930997621268034
+test performance: acc = 0.5450000166893005, loss = 3.3398735523223877
+step:3000
+train performance: acc = 1.0, loss = 0.0008425403502769768
+test performance: acc = 0.5462999939918518, loss = 3.366032838821411
+step:3100
+train performance: acc = 1.0, loss = 0.0007695265230722725
+test performance: acc = 0.5442000031471252, loss = 3.3944690227508545
+step:3200
+train performance: acc = 1.0, loss = 0.0007253281073644757
+test performance: acc = 0.545799970626831, loss = 3.4227359294891357
+step:3300
+train performance: acc = 1.0, loss = 0.0006404551677405834
+test performance: acc = 0.5444999933242798, loss = 3.4492969512939453
+step:3400
+train performance: acc = 1.0, loss = 0.0007254471420310438
+test performance: acc = 0.5440000295639038, loss = 3.47705078125
+step:3500
+train performance: acc = 1.0, loss = 0.0005739892367273569
+test performance: acc = 0.5449000000953674, loss = 3.4984426498413086
+step:3600
+train performance: acc = 1.0, loss = 0.0006020208238624036
+test performance: acc = 0.545199990272522, loss = 3.5284159183502197
+step:3700
+train performance: acc = 1.0, loss = 0.0005429376033134758
+test performance: acc = 0.5444999933242798, loss = 3.55206561088562
+step:3800
+train performance: acc = 1.0, loss = 0.0004320216830819845
+test performance: acc = 0.544700026512146, loss = 3.5772042274475098
+step:3900
+train performance: acc = 1.0, loss = 0.00040718697709962726
+test performance: acc = 0.5450000166893005, loss = 3.6012377738952637
+step:4000
+train performance: acc = 1.0, loss = 0.00040329754119738936
+test performance: acc = 0.5444999933242798, loss = 3.6246652603149414
+step:4100
+train performance: acc = 1.0, loss = 0.00038195739034563303
+test performance: acc = 0.5443999767303467, loss = 3.6476187705993652
+step:4200
+train performance: acc = 1.0, loss = 0.0003715638886205852
+test performance: acc = 0.544700026512146, loss = 3.674063205718994
+step:4300
+train performance: acc = 1.0, loss = 0.0003423087764531374
+test performance: acc = 0.545199990272522, loss = 3.6949923038482666
+step:4400
+train performance: acc = 1.0, loss = 0.0003192180010955781
+test performance: acc = 0.5447999835014343, loss = 3.7179369926452637
+step:4477
+train performance: acc = 1.0, loss = 0.00030056206742301583
+test performance: acc = 0.5442000031471252, loss = 3.736180067062378
+saving results in folder...
+saving model in folder
+
+
+ind 2 epoc 0
+dnn_hidden_units : 1000,500
+learning_rate : 0.0001734981638274044
+max_steps : 4663
+batch_size : 615
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.08943089097738266, loss = 8.713896751403809
+test performance: acc = 0.1745000034570694, loss = 9.774016380310059
+step:100
+train performance: acc = 0.47804877161979675, loss = 1.5281013250350952
+test performance: acc = 0.41929998993873596, loss = 1.782837152481079
+step:200
+train performance: acc = 0.5528455376625061, loss = 1.3296703100204468
+test performance: acc = 0.4595000147819519, loss = 1.6499252319335938
+step:300
+train performance: acc = 0.5804877877235413, loss = 1.1609253883361816
+test performance: acc = 0.4794999957084656, loss = 1.6013851165771484
+step:400
+train performance: acc = 0.6341463327407837, loss = 1.1126691102981567
+test performance: acc = 0.4724000096321106, loss = 1.6309266090393066
+step:500
+train performance: acc = 0.7382113933563232, loss = 0.7806071043014526
+test performance: acc = 0.4875999987125397, loss = 1.660325050354004
+step:600
+train performance: acc = 0.7691056728363037, loss = 0.7487112879753113
+test performance: acc = 0.49570000171661377, loss = 1.6844063997268677
+step:700
+train performance: acc = 0.7967479825019836, loss = 0.6506920456886292
+test performance: acc = 0.49480000138282776, loss = 1.7386945486068726
+step:800
+train performance: acc = 0.7918699383735657, loss = 0.6131066083908081
+test performance: acc = 0.5031999945640564, loss = 1.7627283334732056
+step:900
+train performance: acc = 0.8617886304855347, loss = 0.4246860444545746
+test performance: acc = 0.5127000212669373, loss = 1.8099390268325806
+step:1000
+train performance: acc = 0.8861788511276245, loss = 0.4062497317790985
+test performance: acc = 0.5062000155448914, loss = 1.9171289205551147
+step:1100
+train performance: acc = 0.8845528364181519, loss = 0.4099452495574951
+test performance: acc = 0.503600001335144, loss = 1.9434542655944824
+step:1200
+train performance: acc = 0.9105691313743591, loss = 0.3024626672267914
+test performance: acc = 0.5009999871253967, loss = 2.063762664794922
+step:1300
+train performance: acc = 0.934959352016449, loss = 0.2230575680732727
+test performance: acc = 0.5012000203132629, loss = 2.1440253257751465
+step:1400
+train performance: acc = 0.930081307888031, loss = 0.24362996220588684
+test performance: acc = 0.5094000101089478, loss = 2.159383773803711
+step:1500
+train performance: acc = 0.9544715285301208, loss = 0.15656684339046478
+test performance: acc = 0.5113000273704529, loss = 2.2292962074279785
+step:1600
+train performance: acc = 0.9626016020774841, loss = 0.13055762648582458
+test performance: acc = 0.511900007724762, loss = 2.3031182289123535
+step:1700
+train performance: acc = 0.9365853667259216, loss = 0.1976800262928009
+test performance: acc = 0.5012999773025513, loss = 2.4526984691619873
+step:1800
+train performance: acc = 0.9447154402732849, loss = 0.16100314259529114
+test performance: acc = 0.5123999714851379, loss = 2.49788236618042
+step:1900
+train performance: acc = 0.9463414549827576, loss = 0.1614992916584015
+test performance: acc = 0.4986000061035156, loss = 2.563932418823242
+step:2000
+train performance: acc = 0.9414634108543396, loss = 0.16639995574951172
+test performance: acc = 0.5029000043869019, loss = 2.6413533687591553
+step:2100
+train performance: acc = 0.9382113814353943, loss = 0.18759742379188538
+test performance: acc = 0.5001999735832214, loss = 2.819056987762451
+step:2200
+train performance: acc = 0.9414634108543396, loss = 0.16692417860031128
+test performance: acc = 0.5063999891281128, loss = 2.7505557537078857
+step:2300
+train performance: acc = 0.9447154402732849, loss = 0.14552560448646545
+test performance: acc = 0.5148000121116638, loss = 2.7921299934387207
+step:2400
+train performance: acc = 0.9365853667259216, loss = 0.17495514452457428
+test performance: acc = 0.5066999793052673, loss = 2.9175705909729004
+step:2500
+train performance: acc = 0.9512194991111755, loss = 0.1451924443244934
+test performance: acc = 0.5097000002861023, loss = 2.922234296798706
+step:2600
+train performance: acc = 0.9495934844017029, loss = 0.1402614265680313
+test performance: acc = 0.507099986076355, loss = 3.0306649208068848
+step:2700
+train performance: acc = 0.9691057205200195, loss = 0.10789154469966888
+test performance: acc = 0.5045999884605408, loss = 3.0415871143341064
+step:2800
+train performance: acc = 0.9512194991111755, loss = 0.1520344316959381
+test performance: acc = 0.5077000260353088, loss = 3.1523654460906982
+step:2900
+train performance: acc = 0.9186992049217224, loss = 0.24761418998241425
+test performance: acc = 0.5058000087738037, loss = 3.201573371887207
+step:3000
+train performance: acc = 0.9463414549827576, loss = 0.1759631633758545
+test performance: acc = 0.5004000067710876, loss = 3.2838797569274902
+step:3100
+train performance: acc = 0.9528455138206482, loss = 0.13232660293579102
+test performance: acc = 0.5031999945640564, loss = 3.2992706298828125
+step:3200
+train performance: acc = 0.9430894255638123, loss = 0.13002397119998932
+test performance: acc = 0.5098000168800354, loss = 3.4451866149902344
+step:3300
+train performance: acc = 0.9756097793579102, loss = 0.08686953783035278
+test performance: acc = 0.5105999708175659, loss = 3.406980514526367
+step:3400
+train performance: acc = 0.9756097793579102, loss = 0.06931795179843903
+test performance: acc = 0.5117999911308289, loss = 3.476266860961914
+step:3500
+train performance: acc = 0.9804878234863281, loss = 0.05149805173277855
+test performance: acc = 0.517799973487854, loss = 3.4797682762145996
+step:3600
+train performance: acc = 0.9886178970336914, loss = 0.03457564115524292
+test performance: acc = 0.5234000086784363, loss = 3.5229039192199707
+step:3700
+train performance: acc = 0.9788618087768555, loss = 0.05332079529762268
+test performance: acc = 0.5221999883651733, loss = 3.550159454345703
+step:3800
+train performance: acc = 0.9723577499389648, loss = 0.08229699730873108
+test performance: acc = 0.5087000131607056, loss = 3.7033941745758057
+step:3900
+train performance: acc = 0.934959352016449, loss = 0.17819824814796448
+test performance: acc = 0.5060999989509583, loss = 3.9267241954803467
+step:4000
+train performance: acc = 0.9089431166648865, loss = 0.29093819856643677
+test performance: acc = 0.49559998512268066, loss = 3.8500678539276123
+step:4100
+train performance: acc = 0.9008129835128784, loss = 0.34377461671829224
+test performance: acc = 0.49709999561309814, loss = 3.799503803253174
+step:4200
+train performance: acc = 0.9495934844017029, loss = 0.1594112515449524
+test performance: acc = 0.5149000287055969, loss = 3.7984516620635986
+step:4300
+train performance: acc = 0.9788618087768555, loss = 0.0764658972620964
+test performance: acc = 0.5127000212669373, loss = 3.8606679439544678
+step:4400
+train performance: acc = 0.9837398529052734, loss = 0.06714799255132675
+test performance: acc = 0.5192000269889832, loss = 3.894578218460083
+step:4500
+train performance: acc = 0.9886178970336914, loss = 0.026418490335345268
+test performance: acc = 0.519599974155426, loss = 3.964308977127075
+step:4600
+train performance: acc = 0.9918699264526367, loss = 0.028484303504228592
+test performance: acc = 0.5263000130653381, loss = 3.977456569671631
+step:4662
+train performance: acc = 0.9934959411621094, loss = 0.014064175076782703
+test performance: acc = 0.5275999903678894, loss = 3.982555389404297
+saving results in folder...
+saving model in folder
+
+
+ind 3 epoc 0
+dnn_hidden_units : 500,500,250,250,100
+learning_rate : 1.818825167600588e-05
+max_steps : 3234
+batch_size : 822
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09854014962911606, loss = 2.390815496444702
+test performance: acc = 0.12060000002384186, loss = 2.363858461380005
+step:100
+train performance: acc = 0.4184914827346802, loss = 1.7292693853378296
+test performance: acc = 0.39879998564720154, loss = 1.7223337888717651
+step:200
+train performance: acc = 0.43673965334892273, loss = 1.562276005744934
+test performance: acc = 0.4472000002861023, loss = 1.5897173881530762
+step:300
+train performance: acc = 0.5072992444038391, loss = 1.4708619117736816
+test performance: acc = 0.4652000069618225, loss = 1.5283750295639038
+step:400
+train performance: acc = 0.5377128720283508, loss = 1.3403784036636353
+test performance: acc = 0.4805000126361847, loss = 1.4837583303451538
+step:500
+train performance: acc = 0.5389294624328613, loss = 1.326122760772705
+test performance: acc = 0.48730000853538513, loss = 1.4636725187301636
+step:600
+train performance: acc = 0.5863747000694275, loss = 1.2478742599487305
+test performance: acc = 0.49729999899864197, loss = 1.4342740774154663
+step:700
+train performance: acc = 0.5985401272773743, loss = 1.2299048900604248
+test performance: acc = 0.5001999735832214, loss = 1.419922947883606
+step:800
+train performance: acc = 0.6119221448898315, loss = 1.141139268875122
+test performance: acc = 0.5083000063896179, loss = 1.406806230545044
+step:900
+train performance: acc = 0.6180048584938049, loss = 1.1301467418670654
+test performance: acc = 0.5088000297546387, loss = 1.4027405977249146
+step:1000
+train performance: acc = 0.6508516073226929, loss = 1.0224283933639526
+test performance: acc = 0.5123000144958496, loss = 1.3974519968032837
+step:1100
+train performance: acc = 0.6569343209266663, loss = 1.0353516340255737
+test performance: acc = 0.5188000202178955, loss = 1.3913044929504395
+step:1200
+train performance: acc = 0.6642335653305054, loss = 0.991925835609436
+test performance: acc = 0.5130000114440918, loss = 1.3943006992340088
+step:1300
+train performance: acc = 0.6618005037307739, loss = 0.9910016059875488
+test performance: acc = 0.5199000239372253, loss = 1.393885850906372
+step:1400
+train performance: acc = 0.7116788029670715, loss = 0.9343675971031189
+test performance: acc = 0.5166000127792358, loss = 1.4016813039779663
+step:1500
+train performance: acc = 0.7141119241714478, loss = 0.8576557636260986
+test performance: acc = 0.5239999890327454, loss = 1.4018492698669434
+step:1600
+train performance: acc = 0.7055960893630981, loss = 0.8954322338104248
+test performance: acc = 0.5163000226020813, loss = 1.415781855583191
+step:1700
+train performance: acc = 0.7335766553878784, loss = 0.8269382119178772
+test performance: acc = 0.5224000215530396, loss = 1.4279035329818726
+step:1800
+train performance: acc = 0.7652068138122559, loss = 0.7093797922134399
+test performance: acc = 0.5200999975204468, loss = 1.432260513305664
+step:1900
+train performance: acc = 0.7627737522125244, loss = 0.741307258605957
+test performance: acc = 0.517300009727478, loss = 1.4469547271728516
+step:2000
+train performance: acc = 0.7992700934410095, loss = 0.6649436950683594
+test performance: acc = 0.5170999765396118, loss = 1.4679083824157715
+step:2100
+train performance: acc = 0.7858880758285522, loss = 0.67488694190979
+test performance: acc = 0.5194000005722046, loss = 1.4831194877624512
+step:2200
+train performance: acc = 0.7858880758285522, loss = 0.633159875869751
+test performance: acc = 0.5202999711036682, loss = 1.5007402896881104
+step:2300
+train performance: acc = 0.8053528070449829, loss = 0.6542611718177795
+test performance: acc = 0.5171999931335449, loss = 1.5193557739257812
+step:2400
+train performance: acc = 0.8406326174736023, loss = 0.5633772015571594
+test performance: acc = 0.5149999856948853, loss = 1.548275113105774
+step:2500
+train performance: acc = 0.8175182342529297, loss = 0.5916945934295654
+test performance: acc = 0.5142999887466431, loss = 1.567874789237976
+step:2600
+train performance: acc = 0.8467153310775757, loss = 0.5111809372901917
+test performance: acc = 0.5130000114440918, loss = 1.5839728116989136
+step:2700
+train performance: acc = 0.8661800622940063, loss = 0.48859772086143494
+test performance: acc = 0.5145000219345093, loss = 1.6140377521514893
+step:2800
+train performance: acc = 0.8552311658859253, loss = 0.49894580245018005
+test performance: acc = 0.511900007724762, loss = 1.6339540481567383
+step:2900
+train performance: acc = 0.885644793510437, loss = 0.446138471364975
+test performance: acc = 0.5144000053405762, loss = 1.6672685146331787
+step:3000
+train performance: acc = 0.8819951415061951, loss = 0.4488199055194855
+test performance: acc = 0.5052000284194946, loss = 1.70345139503479
+step:3100
+train performance: acc = 0.8953770995140076, loss = 0.3675124943256378
+test performance: acc = 0.508400022983551, loss = 1.735311508178711
+step:3200
+train performance: acc = 0.9014598727226257, loss = 0.3550274670124054
+test performance: acc = 0.5055000185966492, loss = 1.7687525749206543
+step:3233
+train performance: acc = 0.8990267515182495, loss = 0.3833750784397125
+test performance: acc = 0.510200023651123, loss = 1.7808390855789185
+saving results in folder...
+saving model in folder
+
+
+ind 4 epoc 0
+dnn_hidden_units : 1000,100
+learning_rate : 0.00016361476857575276
+max_steps : 2049
+batch_size : 739
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.10825439542531967, loss = 8.93498706817627
+test performance: acc = 0.1736000031232834, loss = 9.079605102539062
+step:100
+train performance: acc = 0.42083898186683655, loss = 1.6643855571746826
+test performance: acc = 0.3912000060081482, loss = 1.7725270986557007
+step:200
+train performance: acc = 0.45737484097480774, loss = 1.553421974182129
+test performance: acc = 0.42899999022483826, loss = 1.6879384517669678
+step:300
+train performance: acc = 0.5493910908699036, loss = 1.304827094078064
+test performance: acc = 0.4577000141143799, loss = 1.6438730955123901
+step:400
+train performance: acc = 0.5629228949546814, loss = 1.2769804000854492
+test performance: acc = 0.4611999988555908, loss = 1.6208757162094116
+step:500
+train performance: acc = 0.6589986681938171, loss = 0.9551171064376831
+test performance: acc = 0.47780001163482666, loss = 1.6132479906082153
+step:600
+train performance: acc = 0.6251691579818726, loss = 1.0577341318130493
+test performance: acc = 0.47679999470710754, loss = 1.6483732461929321
+step:700
+train performance: acc = 0.6955345273017883, loss = 0.8693291544914246
+test performance: acc = 0.476500004529953, loss = 1.6873290538787842
+step:800
+train performance: acc = 0.7225980758666992, loss = 0.8082840442657471
+test performance: acc = 0.4860000014305115, loss = 1.7092523574829102
+step:900
+train performance: acc = 0.7821380496025085, loss = 0.662674605846405
+test performance: acc = 0.4968999922275543, loss = 1.7650865316390991
+step:1000
+train performance: acc = 0.7564275860786438, loss = 0.6205844879150391
+test performance: acc = 0.4855000078678131, loss = 1.854390263557434
+step:1100
+train performance: acc = 0.8403247594833374, loss = 0.49942517280578613
+test performance: acc = 0.48980000615119934, loss = 1.9219168424606323
+step:1200
+train performance: acc = 0.8064952492713928, loss = 0.5586339831352234
+test performance: acc = 0.48570001125335693, loss = 2.002918004989624
+step:1300
+train performance: acc = 0.8592692613601685, loss = 0.4293794631958008
+test performance: acc = 0.4934999942779541, loss = 2.055976152420044
+step:1400
+train performance: acc = 0.8416779637336731, loss = 0.46282243728637695
+test performance: acc = 0.48730000853538513, loss = 2.094703197479248
+step:1500
+train performance: acc = 0.8971583247184753, loss = 0.31417372822761536
+test performance: acc = 0.4839000105857849, loss = 2.237093687057495
+step:1600
+train performance: acc = 0.8782138228416443, loss = 0.3481001853942871
+test performance: acc = 0.49050000309944153, loss = 2.288264751434326
+step:1700
+train performance: acc = 0.9025710225105286, loss = 0.2858627140522003
+test performance: acc = 0.49059998989105225, loss = 2.3698811531066895
+step:1800
+train performance: acc = 0.9025710225105286, loss = 0.313510537147522
+test performance: acc = 0.49309998750686646, loss = 2.382512092590332
+step:1900
+train performance: acc = 0.9133964776992798, loss = 0.26090171933174133
+test performance: acc = 0.48350000381469727, loss = 2.575497627258301
+step:2000
+train performance: acc = 0.9431664347648621, loss = 0.21010494232177734
+test performance: acc = 0.4909999966621399, loss = 2.577686309814453
+step:2048
+train performance: acc = 0.9580514430999756, loss = 0.15597765147686005
+test performance: acc = 0.486299991607666, loss = 2.6025869846343994
+saving results in folder...
+saving model in folder
+
+
+ind 5 epoc 0
+dnn_hidden_units : 500,500,500,500,500
+learning_rate : 0.00015449419918904766
+max_steps : 4633
+batch_size : 858
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.10256410390138626, loss = 2.3685462474823
+test performance: acc = 0.23469999432563782, loss = 2.1930294036865234
+step:100
+train performance: acc = 0.48135197162628174, loss = 1.4422862529754639
+test performance: acc = 0.4648999869823456, loss = 1.5124406814575195
+step:200
+train performance: acc = 0.557109534740448, loss = 1.2307738065719604
+test performance: acc = 0.5177000164985657, loss = 1.3963613510131836
+step:300
+train performance: acc = 0.6655011773109436, loss = 0.9756999611854553
+test performance: acc = 0.5282999873161316, loss = 1.3828338384628296
+step:400
+train performance: acc = 0.6515151262283325, loss = 0.9767729043960571
+test performance: acc = 0.529699981212616, loss = 1.3941912651062012
+step:500
+train performance: acc = 0.7319347262382507, loss = 0.7754241228103638
+test performance: acc = 0.5266000032424927, loss = 1.5193594694137573
+step:600
+train performance: acc = 0.8228438496589661, loss = 0.5437365770339966
+test performance: acc = 0.519599974155426, loss = 1.6768395900726318
+step:700
+train performance: acc = 0.8508158326148987, loss = 0.4229111969470978
+test performance: acc = 0.5286999940872192, loss = 1.7487666606903076
+step:800
+train performance: acc = 0.8752913475036621, loss = 0.38263633847236633
+test performance: acc = 0.5284000039100647, loss = 1.8908847570419312
+step:900
+train performance: acc = 0.9487179517745972, loss = 0.18944768607616425
+test performance: acc = 0.5267999768257141, loss = 2.1456947326660156
+step:1000
+train performance: acc = 0.9440559148788452, loss = 0.1801418960094452
+test performance: acc = 0.5286999940872192, loss = 2.248871088027954
+step:1100
+train performance: acc = 0.9382284283638, loss = 0.19795335829257965
+test performance: acc = 0.527400016784668, loss = 2.4770734310150146
+step:1200
+train performance: acc = 0.9662004709243774, loss = 0.116177037358284
+test performance: acc = 0.5246000289916992, loss = 2.656674861907959
+step:1300
+train performance: acc = 0.9766899943351746, loss = 0.07986252009868622
+test performance: acc = 0.5271999835968018, loss = 2.8260483741760254
+step:1400
+train performance: acc = 0.9755244851112366, loss = 0.07638076692819595
+test performance: acc = 0.5214999914169312, loss = 2.963735818862915
+step:1500
+train performance: acc = 0.9720279574394226, loss = 0.09212572127580643
+test performance: acc = 0.5278000235557556, loss = 3.030258893966675
+step:1600
+train performance: acc = 0.9650349617004395, loss = 0.08880599588155746
+test performance: acc = 0.5231999754905701, loss = 3.1556148529052734
+step:1700
+train performance: acc = 0.9673659801483154, loss = 0.09506509453058243
+test performance: acc = 0.525600016117096, loss = 3.239729642868042
+step:1800
+train performance: acc = 0.9801864624023438, loss = 0.05741630494594574
+test performance: acc = 0.5187000036239624, loss = 3.3201711177825928
+step:1900
+train performance: acc = 0.9650349617004395, loss = 0.08256593346595764
+test performance: acc = 0.5167999863624573, loss = 3.3952739238739014
+step:2000
+train performance: acc = 0.9801864624023438, loss = 0.05827675759792328
+test performance: acc = 0.5212000012397766, loss = 3.4337754249572754
+step:2100
+train performance: acc = 0.9813519716262817, loss = 0.052158255130052567
+test performance: acc = 0.5268999934196472, loss = 3.5355827808380127
+step:2200
+train performance: acc = 0.9813519716262817, loss = 0.04725982993841171
+test performance: acc = 0.5192000269889832, loss = 3.6724445819854736
+step:2300
+train performance: acc = 0.9766899943351746, loss = 0.061515845358371735
+test performance: acc = 0.5221999883651733, loss = 3.7022440433502197
+step:2400
+train performance: acc = 0.9790209531784058, loss = 0.07343212515115738
+test performance: acc = 0.516700029373169, loss = 3.5167675018310547
+step:2500
+train performance: acc = 0.9941725134849548, loss = 0.017819911241531372
+test performance: acc = 0.5358999967575073, loss = 3.6497278213500977
+step:2600
+train performance: acc = 0.997668981552124, loss = 0.009153338149189949
+test performance: acc = 0.5324000120162964, loss = 3.9303488731384277
+step:2700
+train performance: acc = 0.998834490776062, loss = 0.007984534837305546
+test performance: acc = 0.5371000170707703, loss = 4.025033950805664
+step:2800
+train performance: acc = 0.9790209531784058, loss = 0.06361591815948486
+test performance: acc = 0.5248000025749207, loss = 4.011728286743164
+step:2900
+train performance: acc = 0.9836829900741577, loss = 0.05526413768529892
+test performance: acc = 0.522599995136261, loss = 3.7557919025421143
+step:3000
+train performance: acc = 0.9708624482154846, loss = 0.07517131417989731
+test performance: acc = 0.5224999785423279, loss = 3.8270046710968018
+step:3100
+train performance: acc = 0.9895104765892029, loss = 0.03404466435313225
+test performance: acc = 0.522599995136261, loss = 3.9082484245300293
+step:3200
+train performance: acc = 0.9906759858131409, loss = 0.03060956671833992
+test performance: acc = 0.5210000276565552, loss = 3.9773664474487305
+step:3300
+train performance: acc = 0.9696969985961914, loss = 0.09089116752147675
+test performance: acc = 0.5235999822616577, loss = 4.057214260101318
+step:3400
+train performance: acc = 0.9790209531784058, loss = 0.05396279692649841
+test performance: acc = 0.5321999788284302, loss = 3.903160572052002
+step:3500
+train performance: acc = 0.9836829900741577, loss = 0.05531611666083336
+test performance: acc = 0.5281000137329102, loss = 4.004842281341553
+step:3600
+train performance: acc = 0.996503472328186, loss = 0.017134469002485275
+test performance: acc = 0.5241000056266785, loss = 4.125570774078369
+step:3700
+train performance: acc = 0.9848484992980957, loss = 0.046678703278303146
+test performance: acc = 0.5216000080108643, loss = 4.204028129577637
+step:3800
+train performance: acc = 0.9883449673652649, loss = 0.033717080950737
+test performance: acc = 0.5238000154495239, loss = 4.156287670135498
+step:3900
+train performance: acc = 0.9790209531784058, loss = 0.06126723065972328
+test performance: acc = 0.5199999809265137, loss = 3.99916672706604
+step:4000
+train performance: acc = 0.9871794581413269, loss = 0.03547508269548416
+test performance: acc = 0.5217999815940857, loss = 4.197635650634766
+step:4100
+train performance: acc = 0.9918414950370789, loss = 0.03497536852955818
+test performance: acc = 0.5238000154495239, loss = 4.313755035400391
+step:4200
+train performance: acc = 0.9906759858131409, loss = 0.03988802060484886
+test performance: acc = 0.5166000127792358, loss = 4.3270721435546875
+step:4300
+train performance: acc = 0.9860140085220337, loss = 0.038263726979494095
+test performance: acc = 0.5198000073432922, loss = 4.345903396606445
+step:4400
+train performance: acc = 0.9860140085220337, loss = 0.04304571822285652
+test performance: acc = 0.5257999897003174, loss = 4.240922451019287
+step:4500
+train performance: acc = 0.9860140085220337, loss = 0.050570543855428696
+test performance: acc = 0.5131999850273132, loss = 4.4151177406311035
+step:4600
+train performance: acc = 0.997668981552124, loss = 0.008362782187759876
+test performance: acc = 0.5224999785423279, loss = 4.339835166931152
+step:4632
+train performance: acc = 0.996503472328186, loss = 0.011543594300746918
+test performance: acc = 0.5314000248908997, loss = 4.413132190704346
+saving results in folder...
+saving model in folder
+
+
+ind 6 epoc 0
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 0.00014353999445589478
+max_steps : 1689
+batch_size : 997
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.10531594604253769, loss = 2.539740800857544
+test performance: acc = 0.22439999878406525, loss = 2.1732370853424072
+step:100
+train performance: acc = 0.5346038341522217, loss = 1.320223331451416
+test performance: acc = 0.4832000136375427, loss = 1.4764269590377808
+step:200
+train performance: acc = 0.6489468216896057, loss = 1.0145090818405151
+test performance: acc = 0.5073999762535095, loss = 1.4042223691940308
+step:300
+train performance: acc = 0.7201604843139648, loss = 0.8674551844596863
+test performance: acc = 0.5273000001907349, loss = 1.3920503854751587
+step:400
+train performance: acc = 0.7833500504493713, loss = 0.6758241057395935
+test performance: acc = 0.5267999768257141, loss = 1.4459679126739502
+step:500
+train performance: acc = 0.8595787286758423, loss = 0.4842164218425751
+test performance: acc = 0.5333999991416931, loss = 1.490770697593689
+step:600
+train performance: acc = 0.8886659741401672, loss = 0.38221997022628784
+test performance: acc = 0.5296000242233276, loss = 1.6047693490982056
+step:700
+train performance: acc = 0.9137412309646606, loss = 0.30357789993286133
+test performance: acc = 0.5238999724388123, loss = 1.772506833076477
+step:800
+train performance: acc = 0.9478435516357422, loss = 0.20834514498710632
+test performance: acc = 0.5335999727249146, loss = 1.845584511756897
+step:900
+train performance: acc = 0.9759277701377869, loss = 0.12353584170341492
+test performance: acc = 0.5260000228881836, loss = 2.02953839302063
+step:1000
+train performance: acc = 0.952858567237854, loss = 0.15696029365062714
+test performance: acc = 0.5297999978065491, loss = 2.1148009300231934
+step:1100
+train performance: acc = 0.9899699091911316, loss = 0.06248606741428375
+test performance: acc = 0.527400016784668, loss = 2.2453062534332275
+step:1200
+train performance: acc = 0.9949849843978882, loss = 0.04710892587900162
+test performance: acc = 0.5241000056266785, loss = 2.3973331451416016
+step:1300
+train performance: acc = 0.9949849843978882, loss = 0.03870205208659172
+test performance: acc = 0.535099983215332, loss = 2.473231792449951
+step:1400
+train performance: acc = 0.9959879517555237, loss = 0.025630662217736244
+test performance: acc = 0.5288000106811523, loss = 2.6385438442230225
+step:1500
+train performance: acc = 0.9929789304733276, loss = 0.044511694461107254
+test performance: acc = 0.5239999890327454, loss = 2.71095609664917
+step:1600
+train performance: acc = 0.9518555402755737, loss = 0.14426575601100922
+test performance: acc = 0.5116999745368958, loss = 2.72064208984375
+step:1688
+train performance: acc = 0.9759277701377869, loss = 0.09529639780521393
+test performance: acc = 0.5196999907493591, loss = 2.7533061504364014
+saving results in folder...
+saving model in folder
+
+
+ind 7 epoc 0
+dnn_hidden_units : 1000,250,100,100
+learning_rate : 3.1632461843425704e-05
+max_steps : 1832
+batch_size : 164
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.13414634764194489, loss = 2.5848121643066406
+test performance: acc = 0.12250000238418579, loss = 2.4972171783447266
+step:100
+train performance: acc = 0.3658536672592163, loss = 1.7294172048568726
+test performance: acc = 0.39089998602867126, loss = 1.7234517335891724
+step:200
+train performance: acc = 0.4085365831851959, loss = 1.7700072526931763
+test performance: acc = 0.42800000309944153, loss = 1.6254863739013672
+step:300
+train performance: acc = 0.47560974955558777, loss = 1.528171420097351
+test performance: acc = 0.4456000030040741, loss = 1.5637917518615723
+step:400
+train performance: acc = 0.542682945728302, loss = 1.384400486946106
+test performance: acc = 0.45989999175071716, loss = 1.5250599384307861
+step:500
+train performance: acc = 0.4695121943950653, loss = 1.437172532081604
+test performance: acc = 0.47540000081062317, loss = 1.5031468868255615
+step:600
+train performance: acc = 0.47560974955558777, loss = 1.421938419342041
+test performance: acc = 0.4740999937057495, loss = 1.4952689409255981
+step:700
+train performance: acc = 0.6158536672592163, loss = 1.1284459829330444
+test performance: acc = 0.4885999858379364, loss = 1.4533748626708984
+step:800
+train performance: acc = 0.5, loss = 1.2996057271957397
+test performance: acc = 0.49000000953674316, loss = 1.4492056369781494
+step:900
+train performance: acc = 0.5, loss = 1.3392374515533447
+test performance: acc = 0.4959999918937683, loss = 1.433361291885376
+step:1000
+train performance: acc = 0.542682945728302, loss = 1.344594120979309
+test performance: acc = 0.5034000277519226, loss = 1.4294861555099487
+step:1100
+train performance: acc = 0.6036585569381714, loss = 1.2238719463348389
+test performance: acc = 0.505299985408783, loss = 1.4165239334106445
+step:1200
+train performance: acc = 0.5487805008888245, loss = 1.2011961936950684
+test performance: acc = 0.512499988079071, loss = 1.406159520149231
+step:1300
+train performance: acc = 0.6158536672592163, loss = 1.2263027429580688
+test performance: acc = 0.5041999816894531, loss = 1.416598916053772
+step:1400
+train performance: acc = 0.5914633870124817, loss = 1.1949816942214966
+test performance: acc = 0.49320000410079956, loss = 1.4370267391204834
+step:1500
+train performance: acc = 0.5670731663703918, loss = 1.2264841794967651
+test performance: acc = 0.5156000256538391, loss = 1.3992315530776978
+step:1600
+train performance: acc = 0.6646341681480408, loss = 1.1368825435638428
+test performance: acc = 0.5130000114440918, loss = 1.3964976072311401
+step:1700
+train performance: acc = 0.5975610017776489, loss = 1.1275677680969238
+test performance: acc = 0.517799973487854, loss = 1.4041869640350342
+step:1800
+train performance: acc = 0.6402438879013062, loss = 1.1515278816223145
+test performance: acc = 0.5157999992370605, loss = 1.3933719396591187
+step:1831
+train performance: acc = 0.707317054271698, loss = 0.8372234106063843
+test performance: acc = 0.5185999870300293, loss = 1.4025213718414307
+saving results in folder...
+saving model in folder
+
+
+ind 8 epoc 0
+dnn_hidden_units : 5000
+learning_rate : 7.862027490025659e-05
+max_steps : 4419
+batch_size : 116
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.06034482643008232, loss = 23.422693252563477
+test performance: acc = 0.18129999935626984, loss = 22.531103134155273
+step:100
+train performance: acc = 0.3017241358757019, loss = 17.555606842041016
+test performance: acc = 0.30820000171661377, loss = 16.79977035522461
+step:200
+train performance: acc = 0.3448275923728943, loss = 15.258209228515625
+test performance: acc = 0.36550000309944153, loss = 13.125570297241211
+step:300
+train performance: acc = 0.42241379618644714, loss = 9.894952774047852
+test performance: acc = 0.3885999917984009, loss = 11.259041786193848
+step:400
+train performance: acc = 0.3448275923728943, loss = 12.739904403686523
+test performance: acc = 0.40290001034736633, loss = 10.620643615722656
+step:500
+train performance: acc = 0.43103447556495667, loss = 9.86477279663086
+test performance: acc = 0.3959999978542328, loss = 11.387055397033691
+step:600
+train performance: acc = 0.4568965435028076, loss = 9.364861488342285
+test performance: acc = 0.4124000072479248, loss = 9.710023880004883
+step:700
+train performance: acc = 0.43103447556495667, loss = 8.519259452819824
+test performance: acc = 0.38499999046325684, loss = 10.917562484741211
+step:800
+train performance: acc = 0.5086206793785095, loss = 7.5017476081848145
+test performance: acc = 0.40310001373291016, loss = 9.596357345581055
+step:900
+train performance: acc = 0.4913793206214905, loss = 7.455920696258545
+test performance: acc = 0.40880000591278076, loss = 9.346656799316406
+step:1000
+train performance: acc = 0.4482758641242981, loss = 7.675957202911377
+test performance: acc = 0.43939998745918274, loss = 8.383631706237793
+step:1100
+train performance: acc = 0.5258620977401733, loss = 6.349569320678711
+test performance: acc = 0.4318000078201294, loss = 7.616689205169678
+step:1200
+train performance: acc = 0.48275861144065857, loss = 5.26670503616333
+test performance: acc = 0.4004000127315521, loss = 8.183195114135742
+step:1300
+train performance: acc = 0.5344827771186829, loss = 5.430540561676025
+test performance: acc = 0.4260999858379364, loss = 8.153576850891113
+step:1400
+train performance: acc = 0.5862069129943848, loss = 3.547123908996582
+test performance: acc = 0.4156000018119812, loss = 8.565483093261719
+step:1500
+train performance: acc = 0.5603448152542114, loss = 5.035584449768066
+test performance: acc = 0.4246000051498413, loss = 7.807080268859863
+step:1600
+train performance: acc = 0.5948275923728943, loss = 4.592435836791992
+test performance: acc = 0.44110000133514404, loss = 7.337279796600342
+step:1700
+train performance: acc = 0.5948275923728943, loss = 2.911968946456909
+test performance: acc = 0.44200000166893005, loss = 6.988288402557373
+step:1800
+train performance: acc = 0.6637930870056152, loss = 2.133413076400757
+test performance: acc = 0.4577000141143799, loss = 6.194069862365723
+step:1900
+train performance: acc = 0.5862069129943848, loss = 3.426884174346924
+test performance: acc = 0.4456999897956848, loss = 6.456263542175293
+step:2000
+train performance: acc = 0.5086206793785095, loss = 5.6698527336120605
+test performance: acc = 0.4397999942302704, loss = 6.654731273651123
+step:2100
+train performance: acc = 0.6206896305084229, loss = 3.746284246444702
+test performance: acc = 0.45829999446868896, loss = 6.681760311126709
+step:2200
+train performance: acc = 0.6982758641242981, loss = 2.7357993125915527
+test performance: acc = 0.430400013923645, loss = 6.138221263885498
+step:2300
+train performance: acc = 0.47413793206214905, loss = 5.495686054229736
+test performance: acc = 0.44179999828338623, loss = 6.295382499694824
+step:2400
+train performance: acc = 0.7068965435028076, loss = 1.883025050163269
+test performance: acc = 0.4487000107765198, loss = 6.039400100708008
+step:2500
+train performance: acc = 0.6034482717514038, loss = 3.6255767345428467
+test performance: acc = 0.4668999910354614, loss = 5.663729667663574
+step:2600
+train performance: acc = 0.7068965435028076, loss = 2.223365306854248
+test performance: acc = 0.4602999985218048, loss = 5.733297348022461
+step:2700
+train performance: acc = 0.6551724076271057, loss = 2.284642457962036
+test performance: acc = 0.4526999890804291, loss = 5.6839470863342285
+step:2800
+train performance: acc = 0.5948275923728943, loss = 3.4189367294311523
+test performance: acc = 0.4767000079154968, loss = 5.340755462646484
+step:2900
+train performance: acc = 0.5948275923728943, loss = 2.8032476902008057
+test performance: acc = 0.4569000005722046, loss = 5.4218878746032715
+step:3000
+train performance: acc = 0.5862069129943848, loss = 3.0675227642059326
+test performance: acc = 0.4505000114440918, loss = 5.895802021026611
+step:3100
+train performance: acc = 0.5948275923728943, loss = 2.398256778717041
+test performance: acc = 0.46480000019073486, loss = 5.478058815002441
+step:3200
+train performance: acc = 0.6465517282485962, loss = 1.9544250965118408
+test performance: acc = 0.4618000090122223, loss = 5.11048698425293
+step:3300
+train performance: acc = 0.6379310488700867, loss = 2.5296597480773926
+test performance: acc = 0.47040000557899475, loss = 5.22055196762085
+step:3400
+train performance: acc = 0.6034482717514038, loss = 2.453120231628418
+test performance: acc = 0.4683000147342682, loss = 4.616562366485596
+step:3500
+train performance: acc = 0.6896551847457886, loss = 1.529441475868225
+test performance: acc = 0.4681999981403351, loss = 4.573244094848633
+step:3600
+train performance: acc = 0.767241358757019, loss = 1.524715542793274
+test performance: acc = 0.47119998931884766, loss = 4.853767395019531
+step:3700
+train performance: acc = 0.6982758641242981, loss = 1.9683730602264404
+test performance: acc = 0.47780001163482666, loss = 4.708550930023193
+step:3800
+train performance: acc = 0.7068965435028076, loss = 1.4000986814498901
+test performance: acc = 0.44290000200271606, loss = 5.220005989074707
+step:3900
+train performance: acc = 0.7068965435028076, loss = 1.3007745742797852
+test performance: acc = 0.4643999934196472, loss = 4.569157123565674
+step:4000
+train performance: acc = 0.7241379022598267, loss = 1.652302622795105
+test performance: acc = 0.4749999940395355, loss = 4.344995975494385
+step:4100
+train performance: acc = 0.6896551847457886, loss = 1.519135594367981
+test performance: acc = 0.476500004529953, loss = 4.499260902404785
+step:4200
+train performance: acc = 0.6724137663841248, loss = 1.7845332622528076
+test performance: acc = 0.482699990272522, loss = 4.273173809051514
+step:4300
+train performance: acc = 0.6034482717514038, loss = 2.368138313293457
+test performance: acc = 0.4357999861240387, loss = 5.563603401184082
+step:4400
+train performance: acc = 0.767241358757019, loss = 1.365231990814209
+test performance: acc = 0.47189998626708984, loss = 4.7164435386657715
+step:4418
+train performance: acc = 0.6551724076271057, loss = 2.06693696975708
+test performance: acc = 0.4805999994277954, loss = 4.236056804656982
+saving results in folder...
+saving model in folder
+
+
+ind 9 epoc 0
+dnn_hidden_units : 500,500,250,250,100
+learning_rate : 0.00014349377141506785
+max_steps : 2389
+batch_size : 370
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.08918918669223785, loss = 2.395843029022217
+test performance: acc = 0.17509999871253967, loss = 2.261298656463623
+step:100
+train performance: acc = 0.408108115196228, loss = 1.6390621662139893
+test performance: acc = 0.447299987077713, loss = 1.5777132511138916
+step:200
+train performance: acc = 0.4972972869873047, loss = 1.4834346771240234
+test performance: acc = 0.4812999963760376, loss = 1.4983980655670166
+step:300
+train performance: acc = 0.5594594478607178, loss = 1.3040660619735718
+test performance: acc = 0.4984999895095825, loss = 1.4339373111724854
+step:400
+train performance: acc = 0.5729729533195496, loss = 1.2877775430679321
+test performance: acc = 0.5060999989509583, loss = 1.3889530897140503
+step:500
+train performance: acc = 0.5864864587783813, loss = 1.1240583658218384
+test performance: acc = 0.5102999806404114, loss = 1.383994221687317
+step:600
+train performance: acc = 0.6486486196517944, loss = 1.0258979797363281
+test performance: acc = 0.5169000029563904, loss = 1.3904048204421997
+step:700
+train performance: acc = 0.6540540456771851, loss = 1.0002166032791138
+test performance: acc = 0.5295000076293945, loss = 1.4039387702941895
+step:800
+train performance: acc = 0.6432432532310486, loss = 1.0402355194091797
+test performance: acc = 0.5164999961853027, loss = 1.4014902114868164
+step:900
+train performance: acc = 0.6756756901741028, loss = 0.9298892617225647
+test performance: acc = 0.5242000222206116, loss = 1.3996201753616333
+step:1000
+train performance: acc = 0.7243243455886841, loss = 0.9058578014373779
+test performance: acc = 0.5318999886512756, loss = 1.4264838695526123
+step:1100
+train performance: acc = 0.745945930480957, loss = 0.7569594383239746
+test performance: acc = 0.5317000150680542, loss = 1.454605221748352
+step:1200
+train performance: acc = 0.754054069519043, loss = 0.7356231808662415
+test performance: acc = 0.5296000242233276, loss = 1.4763175249099731
+step:1300
+train performance: acc = 0.7162162065505981, loss = 0.82863450050354
+test performance: acc = 0.5253999829292297, loss = 1.5413031578063965
+step:1400
+train performance: acc = 0.7945945858955383, loss = 0.5927570462226868
+test performance: acc = 0.5303000211715698, loss = 1.5801138877868652
+step:1500
+train performance: acc = 0.8108108043670654, loss = 0.5168555378913879
+test performance: acc = 0.5357000231742859, loss = 1.589320421218872
+step:1600
+train performance: acc = 0.8216215968132019, loss = 0.5474450588226318
+test performance: acc = 0.5321999788284302, loss = 1.6764718294143677
+step:1700
+train performance: acc = 0.8216215968132019, loss = 0.4986012279987335
+test performance: acc = 0.5353000164031982, loss = 1.7216383218765259
+step:1800
+train performance: acc = 0.8405405282974243, loss = 0.4898112416267395
+test performance: acc = 0.5285000205039978, loss = 1.884663462638855
+step:1900
+train performance: acc = 0.8864864706993103, loss = 0.32479751110076904
+test performance: acc = 0.5335999727249146, loss = 1.845901370048523
+step:2000
+train performance: acc = 0.8891891837120056, loss = 0.3434875011444092
+test performance: acc = 0.5232999920845032, loss = 1.9030030965805054
+step:2100
+train performance: acc = 0.8783783912658691, loss = 0.373691201210022
+test performance: acc = 0.5315999984741211, loss = 2.0467000007629395
+step:2200
+train performance: acc = 0.9189189076423645, loss = 0.250201016664505
+test performance: acc = 0.529699981212616, loss = 2.133856773376465
+step:2300
+train performance: acc = 0.9216216206550598, loss = 0.23696255683898926
+test performance: acc = 0.5234000086784363, loss = 2.1856229305267334
+step:2388
+train performance: acc = 0.929729700088501, loss = 0.22690218687057495
+test performance: acc = 0.5231999754905701, loss = 2.2799487113952637
+saving results in folder...
+saving model in folder
+
+
+accuracies: [0.5116999745368958, 0.5442000031471252, 0.5275999903678894, 0.510200023651123, 0.486299991607666, 0.5314000248908997, 0.5196999907493591, 0.5185999870300293, 0.4805999994277954, 0.5231999754905701]
+ind 0 epoc 1
+dnn_hidden_units : 1000,100
+learning_rate : 0.000131384135241
+max_steps : 1563
+batch_size : 1384
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.1148843914270401, loss = 8.880581855773926
+test performance: acc = 0.16290000081062317, loss = 8.398609161376953
+step:100
+train performance: acc = 0.45809248089790344, loss = 1.5604424476623535
+test performance: acc = 0.4117000102996826, loss = 1.714259386062622
+step:200
+train performance: acc = 0.5758670568466187, loss = 1.21014404296875
+test performance: acc = 0.45500001311302185, loss = 1.6525906324386597
+step:300
+train performance: acc = 0.6784682273864746, loss = 0.9959409832954407
+test performance: acc = 0.46860000491142273, loss = 1.6501749753952026
+step:400
+train performance: acc = 0.7579479813575745, loss = 0.7620018720626831
+test performance: acc = 0.482699990272522, loss = 1.6582294702529907
+step:500
+train performance: acc = 0.75, loss = 0.7307277321815491
+test performance: acc = 0.49219998717308044, loss = 1.6934963464736938
+step:600
+train performance: acc = 0.8316473960876465, loss = 0.5580508708953857
+test performance: acc = 0.486299991607666, loss = 1.7900925874710083
+step:700
+train performance: acc = 0.8641618490219116, loss = 0.44591137766838074
+test performance: acc = 0.4966000020503998, loss = 1.834863305091858
+step:800
+train performance: acc = 0.9118497371673584, loss = 0.3265029489994049
+test performance: acc = 0.490200012922287, loss = 1.9504482746124268
+step:900
+train performance: acc = 0.9335260391235352, loss = 0.2795731723308563
+test performance: acc = 0.49410000443458557, loss = 1.9864164590835571
+step:1000
+train performance: acc = 0.9284682273864746, loss = 0.2648225724697113
+test performance: acc = 0.4997999966144562, loss = 2.0780136585235596
+step:1100
+train performance: acc = 0.9450867176055908, loss = 0.2105618715286255
+test performance: acc = 0.4950999915599823, loss = 2.1755223274230957
+step:1200
+train performance: acc = 0.9703757166862488, loss = 0.14928235113620758
+test performance: acc = 0.49549999833106995, loss = 2.2444159984588623
+step:1300
+train performance: acc = 0.9783236980438232, loss = 0.12380043417215347
+test performance: acc = 0.4991999864578247, loss = 2.3343238830566406
+step:1400
+train performance: acc = 0.9877167344093323, loss = 0.10004335641860962
+test performance: acc = 0.5013999938964844, loss = 2.4509334564208984
+step:1500
+train performance: acc = 0.9877167344093323, loss = 0.08864018321037292
+test performance: acc = 0.5016999840736389, loss = 2.486672878265381
+step:1562
+train performance: acc = 0.9927745461463928, loss = 0.05875272676348686
+test performance: acc = 0.503600001335144, loss = 2.5679333209991455
+saving results in folder...
+saving model in folder
+
+
+ind 2 epoc 1
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 0.000168436712547
+max_steps : 4681
+batch_size : 1609
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09695462882518768, loss = 2.562145233154297
+test performance: acc = 0.22750000655651093, loss = 2.185185432434082
+step:100
+train performance: acc = 0.5817278027534485, loss = 1.2065670490264893
+test performance: acc = 0.5008999705314636, loss = 1.4352165460586548
+step:200
+train performance: acc = 0.6799254417419434, loss = 0.9485566020011902
+test performance: acc = 0.5189999938011169, loss = 1.4092774391174316
+step:300
+train performance: acc = 0.7737725377082825, loss = 0.6986486315727234
+test performance: acc = 0.5289999842643738, loss = 1.4738394021987915
+step:400
+train performance: acc = 0.8483530282974243, loss = 0.5010445713996887
+test performance: acc = 0.5274999737739563, loss = 1.5935989618301392
+step:500
+train performance: acc = 0.9378495812416077, loss = 0.26468124985694885
+test performance: acc = 0.5210999846458435, loss = 1.7531380653381348
+step:600
+train performance: acc = 0.9676817655563354, loss = 0.15566647052764893
+test performance: acc = 0.5286999940872192, loss = 1.956601619720459
+step:700
+train performance: acc = 0.9844623804092407, loss = 0.10457547008991241
+test performance: acc = 0.5307000279426575, loss = 2.136483907699585
+step:800
+train performance: acc = 0.9875699281692505, loss = 0.06384187191724777
+test performance: acc = 0.5358999967575073, loss = 2.347287893295288
+step:900
+train performance: acc = 0.9950279593467712, loss = 0.03552717715501785
+test performance: acc = 0.5274999737739563, loss = 2.5044519901275635
+step:1000
+train performance: acc = 0.999378502368927, loss = 0.015187756158411503
+test performance: acc = 0.5333999991416931, loss = 2.654949903488159
+step:1100
+train performance: acc = 0.997514009475708, loss = 0.020805509760975838
+test performance: acc = 0.536300003528595, loss = 2.761568546295166
+step:1200
+train performance: acc = 1.0, loss = 0.005502902902662754
+test performance: acc = 0.5376999974250793, loss = 2.8980917930603027
+step:1300
+train performance: acc = 1.0, loss = 0.003598144045099616
+test performance: acc = 0.5383999943733215, loss = 3.031306266784668
+step:1400
+train performance: acc = 1.0, loss = 0.0027448495384305716
+test performance: acc = 0.5378999710083008, loss = 3.1111903190612793
+step:1500
+train performance: acc = 1.0, loss = 0.0021353194024413824
+test performance: acc = 0.5378000140190125, loss = 3.199930191040039
+step:1600
+train performance: acc = 1.0, loss = 0.001808101194910705
+test performance: acc = 0.5386000275611877, loss = 3.272756576538086
+step:1700
+train performance: acc = 1.0, loss = 0.0014599498827010393
+test performance: acc = 0.5383999943733215, loss = 3.3370776176452637
+step:1800
+train performance: acc = 1.0, loss = 0.0012325941352173686
+test performance: acc = 0.5379999876022339, loss = 3.4035699367523193
+step:1900
+train performance: acc = 1.0, loss = 0.0011507748859003186
+test performance: acc = 0.5383999943733215, loss = 3.4574713706970215
+step:2000
+train performance: acc = 1.0, loss = 0.0009390257182531059
+test performance: acc = 0.5372999906539917, loss = 3.5129406452178955
+step:2100
+train performance: acc = 1.0, loss = 0.000896089943125844
+test performance: acc = 0.5371999740600586, loss = 3.569037914276123
+step:2200
+train performance: acc = 1.0, loss = 0.0007796711288392544
+test performance: acc = 0.5376999974250793, loss = 3.6188719272613525
+step:2300
+train performance: acc = 1.0, loss = 0.0006323450361378491
+test performance: acc = 0.5371999740600586, loss = 3.6672847270965576
+step:2400
+train performance: acc = 1.0, loss = 0.0006088208756409585
+test performance: acc = 0.5374000072479248, loss = 3.7163760662078857
+step:2500
+train performance: acc = 1.0, loss = 0.00047788419760763645
+test performance: acc = 0.5371000170707703, loss = 3.7647128105163574
+step:2600
+train performance: acc = 1.0, loss = 0.000463625299744308
+test performance: acc = 0.5364000201225281, loss = 3.805924892425537
+step:2700
+train performance: acc = 1.0, loss = 0.0003905725898221135
+test performance: acc = 0.5371000170707703, loss = 3.8461456298828125
+step:2800
+train performance: acc = 1.0, loss = 0.0003670306468848139
+test performance: acc = 0.5364999771118164, loss = 3.893061399459839
+step:2900
+train performance: acc = 1.0, loss = 0.0003302101686131209
+test performance: acc = 0.5375000238418579, loss = 3.9361159801483154
+step:3000
+train performance: acc = 1.0, loss = 0.00030557793797925115
+test performance: acc = 0.536899983882904, loss = 3.9779133796691895
+step:3100
+train performance: acc = 1.0, loss = 0.0002637022116687149
+test performance: acc = 0.5367000102996826, loss = 4.018233299255371
+step:3200
+train performance: acc = 1.0, loss = 0.00023360841441899538
+test performance: acc = 0.536300003528595, loss = 4.058485984802246
+step:3300
+train performance: acc = 1.0, loss = 0.00021718880452681333
+test performance: acc = 0.5360000133514404, loss = 4.098992824554443
+step:3400
+train performance: acc = 1.0, loss = 0.00021671730792149901
+test performance: acc = 0.5375999808311462, loss = 4.135745048522949
+step:3500
+train performance: acc = 1.0, loss = 0.00019975357281509787
+test performance: acc = 0.538100004196167, loss = 4.170131683349609
+step:3600
+train performance: acc = 1.0, loss = 0.00016237505769822747
+test performance: acc = 0.5375000238418579, loss = 4.2086310386657715
+step:3700
+train performance: acc = 1.0, loss = 0.00015284217079170048
+test performance: acc = 0.5367000102996826, loss = 4.249330520629883
+step:3800
+train performance: acc = 1.0, loss = 0.00014345567615237087
+test performance: acc = 0.5371999740600586, loss = 4.280237674713135
+step:3900
+train performance: acc = 1.0, loss = 0.00012457097182050347
+test performance: acc = 0.5374000072479248, loss = 4.318730354309082
+step:4000
+train performance: acc = 1.0, loss = 0.00011470052413642406
+test performance: acc = 0.5376999974250793, loss = 4.353230953216553
+step:4100
+train performance: acc = 1.0, loss = 0.00011217645806027576
+test performance: acc = 0.538100004196167, loss = 4.38688850402832
+step:4200
+train performance: acc = 1.0, loss = 9.772998600965366e-05
+test performance: acc = 0.5370000004768372, loss = 4.422624588012695
+step:4300
+train performance: acc = 1.0, loss = 9.06793720787391e-05
+test performance: acc = 0.5375999808311462, loss = 4.454016208648682
+step:4400
+train performance: acc = 1.0, loss = 9.443776070838794e-05
+test performance: acc = 0.5365999937057495, loss = 4.490867614746094
+step:4500
+train performance: acc = 1.0, loss = 8.148225606419146e-05
+test performance: acc = 0.5371999740600586, loss = 4.523261547088623
+step:4600
+train performance: acc = 1.0, loss = 7.232277130242437e-05
+test performance: acc = 0.5368000268936157, loss = 4.5554728507995605
+step:4680
+train performance: acc = 1.0, loss = 7.561439997516572e-05
+test performance: acc = 0.5368000268936157, loss = 4.581279277801514
+saving results in folder...
+saving model in folder
+
+
+ind 3 epoc 1
+dnn_hidden_units : 100,100,100,100,100
+learning_rate : 1e-06
+max_steps : 2304
+batch_size : 1330
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.11879698932170868, loss = 2.3858449459075928
+test performance: acc = 0.11580000072717667, loss = 2.381803274154663
+step:100
+train performance: acc = 0.11578947305679321, loss = 2.3332061767578125
+test performance: acc = 0.12809999287128448, loss = 2.3278725147247314
+step:200
+train performance: acc = 0.1338345855474472, loss = 2.294663429260254
+test performance: acc = 0.14059999585151672, loss = 2.289262294769287
+step:300
+train performance: acc = 0.15037593245506287, loss = 2.255399227142334
+test performance: acc = 0.15459999442100525, loss = 2.2576942443847656
+step:400
+train performance: acc = 0.15789473056793213, loss = 2.2473371028900146
+test performance: acc = 0.1688999980688095, loss = 2.2298455238342285
+step:500
+train performance: acc = 0.17669172585010529, loss = 2.2000396251678467
+test performance: acc = 0.18019999563694, loss = 2.204094648361206
+step:600
+train performance: acc = 0.2075188010931015, loss = 2.1742234230041504
+test performance: acc = 0.19779999554157257, loss = 2.1800918579101562
+step:700
+train performance: acc = 0.21278195083141327, loss = 2.161907911300659
+test performance: acc = 0.2125999927520752, loss = 2.157130241394043
+step:800
+train performance: acc = 0.2345864623785019, loss = 2.1350700855255127
+test performance: acc = 0.22750000655651093, loss = 2.1349844932556152
+step:900
+train performance: acc = 0.23609022796154022, loss = 2.114360809326172
+test performance: acc = 0.24050000309944153, loss = 2.1131765842437744
+step:1000
+train performance: acc = 0.2631579041481018, loss = 2.084757089614868
+test performance: acc = 0.25450000166893005, loss = 2.091921806335449
+step:1100
+train performance: acc = 0.2789473831653595, loss = 2.071434259414673
+test performance: acc = 0.26589998602867126, loss = 2.0713071823120117
+step:1200
+train performance: acc = 0.28646615147590637, loss = 2.0517892837524414
+test performance: acc = 0.2757999897003174, loss = 2.051340341567993
+step:1300
+train performance: acc = 0.30451127886772156, loss = 2.018279790878296
+test performance: acc = 0.28299999237060547, loss = 2.032167673110962
+step:1400
+train performance: acc = 0.2992481291294098, loss = 2.001629114151001
+test performance: acc = 0.29089999198913574, loss = 2.0138096809387207
+step:1500
+train performance: acc = 0.3263157904148102, loss = 1.9719609022140503
+test performance: acc = 0.29649999737739563, loss = 1.9960649013519287
+step:1600
+train performance: acc = 0.3187969923019409, loss = 1.981579303741455
+test performance: acc = 0.3043999969959259, loss = 1.9790390729904175
+step:1700
+train performance: acc = 0.3015037477016449, loss = 1.9609211683273315
+test performance: acc = 0.3125, loss = 1.9627676010131836
+step:1800
+train performance: acc = 0.32030075788497925, loss = 1.9302359819412231
+test performance: acc = 0.31790000200271606, loss = 1.9471304416656494
+step:1900
+train performance: acc = 0.3015037477016449, loss = 1.928067684173584
+test performance: acc = 0.3230000138282776, loss = 1.9320765733718872
+step:2000
+train performance: acc = 0.35563910007476807, loss = 1.8969660997390747
+test performance: acc = 0.3287000060081482, loss = 1.9177017211914062
+step:2100
+train performance: acc = 0.3548872172832489, loss = 1.8756704330444336
+test performance: acc = 0.33320000767707825, loss = 1.9039310216903687
+step:2200
+train performance: acc = 0.3278195559978485, loss = 1.9052046537399292
+test performance: acc = 0.33820000290870667, loss = 1.8908519744873047
+step:2300
+train performance: acc = 0.3278195559978485, loss = 1.9049720764160156
+test performance: acc = 0.34310001134872437, loss = 1.8783955574035645
+step:2303
+train performance: acc = 0.3210526406764984, loss = 1.8993606567382812
+test performance: acc = 0.34299999475479126, loss = 1.8780349493026733
+saving results in folder...
+saving model in folder
+
+
+ind 4 epoc 1
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 0.00848499906953
+max_steps : 1704
+batch_size : 2437
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09027493000030518, loss = 2.5764214992523193
+test performance: acc = 0.10000000149011612, loss = 1447.6917724609375
+step:100
+train performance: acc = 0.0980713963508606, loss = 2.302672863006592
+test performance: acc = 0.10000000149011612, loss = 2.3025333881378174
+step:200
+train performance: acc = 0.11243332177400589, loss = 2.302609443664551
+test performance: acc = 0.10000000149011612, loss = 2.302635431289673
+step:300
+train performance: acc = 0.09314731508493423, loss = 2.302830457687378
+test performance: acc = 0.10000000149011612, loss = 2.302659749984741
+step:400
+train performance: acc = 0.09232663363218307, loss = 2.302628755569458
+test performance: acc = 0.10000000149011612, loss = 2.3025941848754883
+step:500
+train performance: acc = 0.10299548506736755, loss = 2.3024494647979736
+test performance: acc = 0.10000000149011612, loss = 2.302598714828491
+step:600
+train performance: acc = 0.10463684797286987, loss = 2.3026087284088135
+test performance: acc = 0.10000000149011612, loss = 2.3025007247924805
+step:700
+train performance: acc = 0.09355765581130981, loss = 2.302642822265625
+test performance: acc = 0.10000000149011612, loss = 2.3026418685913086
+step:800
+train performance: acc = 0.10053344070911407, loss = 2.302624464035034
+test performance: acc = 0.10000000149011612, loss = 2.302616834640503
+step:900
+train performance: acc = 0.10053344070911407, loss = 2.302631139755249
+test performance: acc = 0.10000000149011612, loss = 2.3025283813476562
+step:1000
+train performance: acc = 0.0960196927189827, loss = 2.302546739578247
+test performance: acc = 0.10000000149011612, loss = 2.302643299102783
+step:1100
+train performance: acc = 0.11038161814212799, loss = 2.3025784492492676
+test performance: acc = 0.10000000149011612, loss = 2.302603006362915
+step:1200
+train performance: acc = 0.11038161814212799, loss = 2.302448272705078
+test performance: acc = 0.10000000149011612, loss = 2.302615165710449
+step:1300
+train performance: acc = 0.10340582579374313, loss = 2.302604913711548
+test performance: acc = 0.10000000149011612, loss = 2.302621364593506
+step:1400
+train performance: acc = 0.09560935944318771, loss = 2.302579164505005
+test performance: acc = 0.10000000149011612, loss = 2.302544355392456
+step:1500
+train performance: acc = 0.09150595217943192, loss = 2.302737236022949
+test performance: acc = 0.10000000149011612, loss = 2.3026514053344727
+step:1600
+train performance: acc = 0.08617152273654938, loss = 2.302617073059082
+test performance: acc = 0.10000000149011612, loss = 2.3025965690612793
+step:1700
+train performance: acc = 0.09519901871681213, loss = 2.3025012016296387
+test performance: acc = 0.10000000149011612, loss = 2.3025965690612793
+step:1703
+train performance: acc = 0.09478867799043655, loss = 2.3026015758514404
+test performance: acc = 0.10000000149011612, loss = 2.3025858402252197
+saving results in folder...
+
+
+saving model in folder
+ind 5 epoc 1
+dnn_hidden_units : 1000,100
+learning_rate : 0.00015087433475
+max_steps : 3030
+batch_size : 1824
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.11677631735801697, loss = 8.836638450622559
+test performance: acc = 0.16920000314712524, loss = 9.172618865966797
+step:100
+train performance: acc = 0.4802631437778473, loss = 1.4927167892456055
+test performance: acc = 0.42160001397132874, loss = 1.7016035318374634
+step:200
+train performance: acc = 0.6019737124443054, loss = 1.1879405975341797
+test performance: acc = 0.459199994802475, loss = 1.6291797161102295
+step:300
+train performance: acc = 0.6940789222717285, loss = 0.9097340106964111
+test performance: acc = 0.47350001335144043, loss = 1.642490267753601
+step:400
+train performance: acc = 0.7242324352264404, loss = 0.8091459274291992
+test performance: acc = 0.48570001125335693, loss = 1.6677496433258057
+step:500
+train performance: acc = 0.8103070259094238, loss = 0.6050277948379517
+test performance: acc = 0.4867999851703644, loss = 1.7432730197906494
+step:600
+train performance: acc = 0.8826754093170166, loss = 0.4255896508693695
+test performance: acc = 0.4875999987125397, loss = 1.8358086347579956
+step:700
+train performance: acc = 0.890899121761322, loss = 0.40242576599121094
+test performance: acc = 0.4900999963283539, loss = 1.8736486434936523
+step:800
+train performance: acc = 0.9205043911933899, loss = 0.31165528297424316
+test performance: acc = 0.49380001425743103, loss = 1.9843817949295044
+step:900
+train performance: acc = 0.9468201994895935, loss = 0.22296927869319916
+test performance: acc = 0.4884999990463257, loss = 2.100799322128296
+step:1000
+train performance: acc = 0.9649122953414917, loss = 0.17230573296546936
+test performance: acc = 0.499099999666214, loss = 2.18176007270813
+step:1100
+train performance: acc = 0.9758771657943726, loss = 0.13231678307056427
+test performance: acc = 0.4982999861240387, loss = 2.285465717315674
+step:1200
+train performance: acc = 0.9835526347160339, loss = 0.11113952845335007
+test performance: acc = 0.5005999803543091, loss = 2.3720617294311523
+step:1300
+train performance: acc = 0.9857456088066101, loss = 0.08259949833154678
+test performance: acc = 0.4964999854564667, loss = 2.501234769821167
+step:1400
+train performance: acc = 0.9857456088066101, loss = 0.07795237749814987
+test performance: acc = 0.49869999289512634, loss = 2.5474390983581543
+step:1500
+train performance: acc = 0.9950658082962036, loss = 0.04714924097061157
+test performance: acc = 0.5029000043869019, loss = 2.6373443603515625
+step:1600
+train performance: acc = 0.9972587823867798, loss = 0.032812535762786865
+test performance: acc = 0.49950000643730164, loss = 2.7185423374176025
+step:1700
+train performance: acc = 0.9961622953414917, loss = 0.03433317318558693
+test performance: acc = 0.49970000982284546, loss = 2.770094871520996
+step:1800
+train performance: acc = 0.9989035129547119, loss = 0.02047412283718586
+test performance: acc = 0.49959999322891235, loss = 2.8522582054138184
+step:1900
+train performance: acc = 0.8810306787490845, loss = 0.32326191663742065
+test performance: acc = 0.4772000014781952, loss = 3.0423200130462646
+step:2000
+train performance: acc = 0.9813596606254578, loss = 0.07039786130189896
+test performance: acc = 0.49540001153945923, loss = 3.001145601272583
+step:2100
+train performance: acc = 0.9983552694320679, loss = 0.019034558907151222
+test performance: acc = 0.5044000148773193, loss = 3.100860834121704
+step:2200
+train performance: acc = 0.999451756477356, loss = 0.010746682062745094
+test performance: acc = 0.5066999793052673, loss = 3.141890525817871
+step:2300
+train performance: acc = 1.0, loss = 0.006753712426871061
+test performance: acc = 0.507099986076355, loss = 3.1961405277252197
+step:2400
+train performance: acc = 1.0, loss = 0.005893315188586712
+test performance: acc = 0.5092999935150146, loss = 3.2158942222595215
+step:2500
+train performance: acc = 1.0, loss = 0.005380782298743725
+test performance: acc = 0.5074999928474426, loss = 3.259737730026245
+step:2600
+train performance: acc = 1.0, loss = 0.004437021911144257
+test performance: acc = 0.5067999958992004, loss = 3.2778735160827637
+step:2700
+train performance: acc = 1.0, loss = 0.004097004886716604
+test performance: acc = 0.5077999830245972, loss = 3.309293746948242
+step:2800
+train performance: acc = 1.0, loss = 0.0039000811520963907
+test performance: acc = 0.5088000297546387, loss = 3.3390212059020996
+step:2900
+train performance: acc = 1.0, loss = 0.0032054237090051174
+test performance: acc = 0.5078999996185303, loss = 3.3726656436920166
+step:3000
+train performance: acc = 1.0, loss = 0.0030907762702554464
+test performance: acc = 0.5077999830245972, loss = 3.38908052444458
+step:3029
+train performance: acc = 1.0, loss = 0.0029601461719721556
+test performance: acc = 0.5076000094413757, loss = 3.395714044570923
+saving results in folder...
+
+
+saving model in folder
+ind 6 epoc 1
+dnn_hidden_units : 5000
+learning_rate : 0.0125757501296
+max_steps : 4087
+batch_size : 1411
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09780297428369522, loss = 24.300426483154297
+test performance: acc = 0.19020000100135803, loss = 13330.1298828125
+step:100
+train performance: acc = 0.3458540141582489, loss = 765.5458984375
+test performance: acc = 0.334199994802475, loss = 662.3419189453125
+step:200
+train performance: acc = 0.429482638835907, loss = 108.96504974365234
+test performance: acc = 0.3772999942302704, loss = 132.4649200439453
+step:300
+train performance: acc = 0.3734939694404602, loss = 79.3387222290039
+test performance: acc = 0.40369999408721924, loss = 82.31278228759766
+step:400
+train performance: acc = 0.21899361908435822, loss = 30802.794921875
+test performance: acc = 0.19769999384880066, loss = 33937.6875
+step:500
+train performance: acc = 0.3997165262699127, loss = 1253.815673828125
+test performance: acc = 0.40230000019073486, loss = 1171.831787109375
+step:600
+train performance: acc = 0.45924875140190125, loss = 381.4548645019531
+test performance: acc = 0.42640000581741333, loss = 447.0579528808594
+step:700
+train performance: acc = 0.5109851360321045, loss = 243.4812469482422
+test performance: acc = 0.44859999418258667, loss = 333.78759765625
+step:800
+train performance: acc = 0.47625797986984253, loss = 247.553955078125
+test performance: acc = 0.44449999928474426, loss = 243.81500244140625
+step:900
+train performance: acc = 0.572643518447876, loss = 106.81855773925781
+test performance: acc = 0.43160000443458557, loss = 200.78343200683594
+step:1000
+train performance: acc = 0.5776045322418213, loss = 88.25027465820312
+test performance: acc = 0.4397999942302704, loss = 183.0115509033203
+step:1100
+train performance: acc = 0.5024805068969727, loss = 199.00418090820312
+test performance: acc = 0.39259999990463257, loss = 262.46484375
+step:1200
+train performance: acc = 0.5988660454750061, loss = 73.08695220947266
+test performance: acc = 0.4456999897956848, loss = 128.5894317626953
+step:1300
+train performance: acc = 0.5790219902992249, loss = 144.70138549804688
+test performance: acc = 0.38920000195503235, loss = 317.5508117675781
+step:1400
+train performance: acc = 0.24025513231754303, loss = 20782.12109375
+test performance: acc = 0.2206999957561493, loss = 22430.455078125
+step:1500
+train performance: acc = 0.4124734103679657, loss = 6392.4658203125
+test performance: acc = 0.40369999408721924, loss = 6326.11328125
+step:1600
+train performance: acc = 0.49255847930908203, loss = 875.8247680664062
+test performance: acc = 0.421999990940094, loss = 1171.81396484375
+step:1700
+train performance: acc = 0.6194188594818115, loss = 399.7413635253906
+test performance: acc = 0.4562999904155731, loss = 768.0562744140625
+step:1800
+train performance: acc = 0.5960311889648438, loss = 359.14886474609375
+test performance: acc = 0.48089998960494995, loss = 608.5537719726562
+step:1900
+train performance: acc = 0.6279234290122986, loss = 255.64561462402344
+test performance: acc = 0.4697999954223633, loss = 580.7097778320312
+step:2000
+train performance: acc = 0.7391920685768127, loss = 133.80844116210938
+test performance: acc = 0.4884999990463257, loss = 456.61041259765625
+step:2100
+train performance: acc = 0.7200567126274109, loss = 195.0851287841797
+test performance: acc = 0.47699999809265137, loss = 527.8665161132812
+step:2200
+train performance: acc = 0.7193479537963867, loss = 140.1436767578125
+test performance: acc = 0.47450000047683716, loss = 477.0612487792969
+step:2300
+train performance: acc = 0.6909992694854736, loss = 191.4716339111328
+test performance: acc = 0.4544000029563904, loss = 527.7022705078125
+step:2400
+train performance: acc = 0.78951096534729, loss = 85.18875885009766
+test performance: acc = 0.49390000104904175, loss = 439.8880615234375
+step:2500
+train performance: acc = 0.7356484532356262, loss = 144.56829833984375
+test performance: acc = 0.5012999773025513, loss = 500.0419921875
+step:2600
+train performance: acc = 0.6491850018501282, loss = 235.62957763671875
+test performance: acc = 0.45809999108314514, loss = 631.5787963867188
+step:2700
+train performance: acc = 0.8199858069419861, loss = 71.85031127929688
+test performance: acc = 0.4945000112056732, loss = 509.8509521484375
+step:2800
+train performance: acc = 0.7547838687896729, loss = 135.08384704589844
+test performance: acc = 0.46050000190734863, loss = 623.2938232421875
+step:2900
+train performance: acc = 0.7313961982727051, loss = 154.3990478515625
+test performance: acc = 0.4756999909877777, loss = 613.64892578125
+step:3000
+train performance: acc = 0.8043940663337708, loss = 87.22666931152344
+test performance: acc = 0.49059998989105225, loss = 553.5771484375
+step:3100
+train performance: acc = 0.8029766082763672, loss = 110.9229965209961
+test performance: acc = 0.4645000100135803, loss = 728.8331909179688
+step:3200
+train performance: acc = 0.4727143943309784, loss = 1708.2210693359375
+test performance: acc = 0.3589000105857849, loss = 3074.429443359375
+step:3300
+train performance: acc = 0.39900779724121094, loss = 30153.439453125
+test performance: acc = 0.3711000084877014, loss = 25369.53515625
+step:3400
+train performance: acc = 0.6364280581474304, loss = 901.7601928710938
+test performance: acc = 0.4830999970436096, loss = 1881.3211669921875
+step:3500
+train performance: acc = 0.7243090271949768, loss = 384.59783935546875
+test performance: acc = 0.48159998655319214, loss = 1417.9293212890625
+step:3600
+train performance: acc = 0.7703756093978882, loss = 280.2480163574219
+test performance: acc = 0.47620001435279846, loss = 1355.4488525390625
+step:3700
+train performance: acc = 0.8079376220703125, loss = 204.26446533203125
+test performance: acc = 0.4912000000476837, loss = 1266.015625
+step:3800
+train performance: acc = 0.8511694073677063, loss = 135.86080932617188
+test performance: acc = 0.49399998784065247, loss = 1203.1416015625
+step:3900
+train performance: acc = 0.8171509504318237, loss = 222.17518615722656
+test performance: acc = 0.5073999762535095, loss = 1199.8466796875
+step:4000
+train performance: acc = 0.7824237942695618, loss = 284.0200500488281
+test performance: acc = 0.49889999628067017, loss = 1346.487060546875
+step:4086
+train performance: acc = 0.8341601490974426, loss = 177.8983917236328
+test performance: acc = 0.5074999928474426, loss = 1225.9576416015625
+saving results in folder...
+saving model in folder
+
+
+ind 7 epoc 1
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 5.56522929425e-05
+max_steps : 4031
+batch_size : 694
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.10951008647680283, loss = 2.5415842533111572
+test performance: acc = 0.16990000009536743, loss = 2.257577896118164
+step:100
+train performance: acc = 0.5129683017730713, loss = 1.3738709688186646
+test performance: acc = 0.46790000796318054, loss = 1.5242502689361572
+step:200
+train performance: acc = 0.5619596838951111, loss = 1.2898913621902466
+test performance: acc = 0.49230000376701355, loss = 1.4487097263336182
+step:300
+train performance: acc = 0.6440922021865845, loss = 1.0699514150619507
+test performance: acc = 0.5133000016212463, loss = 1.3965802192687988
+step:400
+train performance: acc = 0.6757925152778625, loss = 0.9592998623847961
+test performance: acc = 0.5166000127792358, loss = 1.3853569030761719
+step:500
+train performance: acc = 0.6642651557922363, loss = 0.9543573260307312
+test performance: acc = 0.5259000062942505, loss = 1.388826847076416
+step:600
+train performance: acc = 0.7463976740837097, loss = 0.7754546403884888
+test performance: acc = 0.527999997138977, loss = 1.3955745697021484
+step:700
+train performance: acc = 0.7334293723106384, loss = 0.7876794338226318
+test performance: acc = 0.5273000001907349, loss = 1.4215812683105469
+step:800
+train performance: acc = 0.8213256597518921, loss = 0.5802584886550903
+test performance: acc = 0.529699981212616, loss = 1.4486939907073975
+step:900
+train performance: acc = 0.8314120769500732, loss = 0.54253089427948
+test performance: acc = 0.532800018787384, loss = 1.4900139570236206
+step:1000
+train performance: acc = 0.8472622632980347, loss = 0.492922306060791
+test performance: acc = 0.526199996471405, loss = 1.5260250568389893
+step:1100
+train performance: acc = 0.9236311316490173, loss = 0.34516701102256775
+test performance: acc = 0.524399995803833, loss = 1.5863358974456787
+step:1200
+train performance: acc = 0.9020172953605652, loss = 0.35087716579437256
+test performance: acc = 0.5289999842643738, loss = 1.631697177886963
+step:1300
+train performance: acc = 0.9553313851356506, loss = 0.22811639308929443
+test performance: acc = 0.5252000093460083, loss = 1.7326209545135498
+step:1400
+train performance: acc = 0.9639769196510315, loss = 0.20745576918125153
+test performance: acc = 0.5291000008583069, loss = 1.767669677734375
+step:1500
+train performance: acc = 0.9250720739364624, loss = 0.23670423030853271
+test performance: acc = 0.5212000012397766, loss = 1.8618308305740356
+step:1600
+train performance: acc = 0.9884726405143738, loss = 0.113503098487854
+test performance: acc = 0.5307000279426575, loss = 1.8842954635620117
+step:1700
+train performance: acc = 0.9755043387413025, loss = 0.13335250318050385
+test performance: acc = 0.5254999995231628, loss = 1.989092230796814
+step:1800
+train performance: acc = 0.9841498732566833, loss = 0.0975179448723793
+test performance: acc = 0.5264000296592712, loss = 2.0435352325439453
+step:1900
+train performance: acc = 0.9870316982269287, loss = 0.09718160331249237
+test performance: acc = 0.5285000205039978, loss = 2.113121747970581
+step:2000
+train performance: acc = 0.9971181750297546, loss = 0.056773848831653595
+test performance: acc = 0.5253999829292297, loss = 2.1616854667663574
+step:2100
+train performance: acc = 0.9956772327423096, loss = 0.049288999289274216
+test performance: acc = 0.5188000202178955, loss = 2.2562122344970703
+step:2200
+train performance: acc = 0.9870316982269287, loss = 0.07113756984472275
+test performance: acc = 0.5206999778747559, loss = 2.3501927852630615
+step:2300
+train performance: acc = 0.9913544654846191, loss = 0.05496860668063164
+test performance: acc = 0.5270000100135803, loss = 2.353670597076416
+step:2400
+train performance: acc = 1.0, loss = 0.026914112269878387
+test performance: acc = 0.5249999761581421, loss = 2.4251067638397217
+step:2500
+train performance: acc = 1.0, loss = 0.0211960319429636
+test performance: acc = 0.5266000032424927, loss = 2.4938032627105713
+step:2600
+train performance: acc = 0.9985590577125549, loss = 0.016394292935729027
+test performance: acc = 0.527999997138977, loss = 2.5438365936279297
+step:2700
+train performance: acc = 1.0, loss = 0.019665583968162537
+test performance: acc = 0.5271999835968018, loss = 2.591118097305298
+step:2800
+train performance: acc = 1.0, loss = 0.011290349997580051
+test performance: acc = 0.5314000248908997, loss = 2.645526170730591
+step:2900
+train performance: acc = 0.9942362904548645, loss = 0.02380642667412758
+test performance: acc = 0.5249000191688538, loss = 2.732597589492798
+step:3000
+train performance: acc = 0.9524495601654053, loss = 0.16649675369262695
+test performance: acc = 0.5030999779701233, loss = 2.6944403648376465
+step:3100
+train performance: acc = 0.9827089309692383, loss = 0.07142840325832367
+test performance: acc = 0.5156999826431274, loss = 2.6225385665893555
+step:3200
+train performance: acc = 1.0, loss = 0.01429885532706976
+test performance: acc = 0.5285999774932861, loss = 2.7109739780426025
+step:3300
+train performance: acc = 1.0, loss = 0.009972581639885902
+test performance: acc = 0.5275999903678894, loss = 2.747755765914917
+step:3400
+train performance: acc = 1.0, loss = 0.005949482321739197
+test performance: acc = 0.5293999910354614, loss = 2.826808214187622
+step:3500
+train performance: acc = 1.0, loss = 0.005402522627264261
+test performance: acc = 0.5318999886512756, loss = 2.8710803985595703
+step:3600
+train performance: acc = 1.0, loss = 0.0042699240148067474
+test performance: acc = 0.5303999781608582, loss = 2.9061684608459473
+step:3700
+train performance: acc = 1.0, loss = 0.004069680348038673
+test performance: acc = 0.529699981212616, loss = 2.9489457607269287
+step:3800
+train performance: acc = 1.0, loss = 0.0034856239799410105
+test performance: acc = 0.5274999737739563, loss = 2.989043951034546
+step:3900
+train performance: acc = 1.0, loss = 0.003012510482221842
+test performance: acc = 0.5289999842643738, loss = 3.0149126052856445
+step:4000
+train performance: acc = 1.0, loss = 0.002782247494906187
+test performance: acc = 0.5296000242233276, loss = 3.045366048812866
+step:4030
+train performance: acc = 1.0, loss = 0.0027146199718117714
+test performance: acc = 0.5284000039100647, loss = 3.0557332038879395
+saving results in folder...
+saving model in folder
+
+
+ind 8 epoc 1
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 8.6621530551e-05
+max_steps : 4108
+batch_size : 1404
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09615384787321091, loss = 2.5586962699890137
+test performance: acc = 0.2046000063419342, loss = 2.1797478199005127
+step:100
+train performance: acc = 0.5263532996177673, loss = 1.3412835597991943
+test performance: acc = 0.48840001225471497, loss = 1.4640471935272217
+step:200
+train performance: acc = 0.624643862247467, loss = 1.0865695476531982
+test performance: acc = 0.515500009059906, loss = 1.4082355499267578
+step:300
+train performance: acc = 0.7393162250518799, loss = 0.806965708732605
+test performance: acc = 0.5303000211715698, loss = 1.4012925624847412
+step:400
+train performance: acc = 0.8069800734519958, loss = 0.653160572052002
+test performance: acc = 0.5281999707221985, loss = 1.453537106513977
+step:500
+train performance: acc = 0.8596866130828857, loss = 0.4804297685623169
+test performance: acc = 0.5315999984741211, loss = 1.5351794958114624
+step:600
+train performance: acc = 0.9102563858032227, loss = 0.3475969135761261
+test performance: acc = 0.5335999727249146, loss = 1.603727102279663
+step:700
+train performance: acc = 0.9636752009391785, loss = 0.20933441817760468
+test performance: acc = 0.5307999849319458, loss = 1.7321254014968872
+step:800
+train performance: acc = 0.9658119678497314, loss = 0.18511241674423218
+test performance: acc = 0.5249999761581421, loss = 1.9249773025512695
+step:900
+train performance: acc = 0.9650996923446655, loss = 0.14090675115585327
+test performance: acc = 0.52920001745224, loss = 1.9731365442276
+step:1000
+train performance: acc = 0.9921652674674988, loss = 0.07460881769657135
+test performance: acc = 0.5339999794960022, loss = 2.113905191421509
+step:1100
+train performance: acc = 0.9928774833679199, loss = 0.051546499133110046
+test performance: acc = 0.5333999991416931, loss = 2.23827862739563
+step:1200
+train performance: acc = 0.9971510171890259, loss = 0.030784599483013153
+test performance: acc = 0.5340999960899353, loss = 2.3507769107818604
+step:1300
+train performance: acc = 0.995726466178894, loss = 0.03741016238927841
+test performance: acc = 0.5281000137329102, loss = 2.4154651165008545
+step:1400
+train performance: acc = 1.0, loss = 0.015295046381652355
+test performance: acc = 0.5321000218391418, loss = 2.5428075790405273
+step:1500
+train performance: acc = 0.9992877244949341, loss = 0.016202513128519058
+test performance: acc = 0.53329998254776, loss = 2.6277661323547363
+step:1600
+train performance: acc = 1.0, loss = 0.008243368938565254
+test performance: acc = 0.5324000120162964, loss = 2.735898733139038
+step:1700
+train performance: acc = 1.0, loss = 0.006263392511755228
+test performance: acc = 0.53329998254776, loss = 2.8119120597839355
+step:1800
+train performance: acc = 1.0, loss = 0.005444568581879139
+test performance: acc = 0.531000018119812, loss = 2.8845858573913574
+step:1900
+train performance: acc = 1.0, loss = 0.004062918480485678
+test performance: acc = 0.5317999720573425, loss = 2.950071096420288
+step:2000
+train performance: acc = 1.0, loss = 0.004200509283691645
+test performance: acc = 0.5324000120162964, loss = 3.0073695182800293
+step:2100
+train performance: acc = 1.0, loss = 0.002860364504158497
+test performance: acc = 0.5314000248908997, loss = 3.070889949798584
+step:2200
+train performance: acc = 1.0, loss = 0.002701561665162444
+test performance: acc = 0.5307000279426575, loss = 3.1190686225891113
+step:2300
+train performance: acc = 1.0, loss = 0.0023927518632262945
+test performance: acc = 0.5313000082969666, loss = 3.169583320617676
+step:2400
+train performance: acc = 1.0, loss = 0.0019045083317905664
+test performance: acc = 0.5303000211715698, loss = 3.221912384033203
+step:2500
+train performance: acc = 1.0, loss = 0.0018412696663290262
+test performance: acc = 0.5303999781608582, loss = 3.2701902389526367
+step:2600
+train performance: acc = 1.0, loss = 0.001473788172006607
+test performance: acc = 0.5291000008583069, loss = 3.315230369567871
+step:2700
+train performance: acc = 1.0, loss = 0.0014011585153639317
+test performance: acc = 0.5310999751091003, loss = 3.35726261138916
+step:2800
+train performance: acc = 1.0, loss = 0.0013369855005294085
+test performance: acc = 0.5297999978065491, loss = 3.3995063304901123
+step:2900
+train performance: acc = 1.0, loss = 0.0011352782603353262
+test performance: acc = 0.5293999910354614, loss = 3.4431636333465576
+step:3000
+train performance: acc = 1.0, loss = 0.0009690740262158215
+test performance: acc = 0.5300999879837036, loss = 3.4856836795806885
+step:3100
+train performance: acc = 1.0, loss = 0.0008855949272401631
+test performance: acc = 0.5288000106811523, loss = 3.5245800018310547
+step:3200
+train performance: acc = 1.0, loss = 0.0007662504795007408
+test performance: acc = 0.529699981212616, loss = 3.5685477256774902
+step:3300
+train performance: acc = 1.0, loss = 0.0007450461853295565
+test performance: acc = 0.5292999744415283, loss = 3.6042840480804443
+step:3400
+train performance: acc = 1.0, loss = 0.0007117896457202733
+test performance: acc = 0.5297999978065491, loss = 3.645139455795288
+step:3500
+train performance: acc = 1.0, loss = 0.0005773333250544965
+test performance: acc = 0.5288000106811523, loss = 3.6854987144470215
+step:3600
+train performance: acc = 1.0, loss = 0.0005706307711079717
+test performance: acc = 0.5299000144004822, loss = 3.716435194015503
+step:3700
+train performance: acc = 1.0, loss = 0.0005165759939700365
+test performance: acc = 0.5303000211715698, loss = 3.756312131881714
+step:3800
+train performance: acc = 1.0, loss = 0.000447083730250597
+test performance: acc = 0.5293999910354614, loss = 3.7905397415161133
+step:3900
+train performance: acc = 1.0, loss = 0.00041794267599470913
+test performance: acc = 0.5286999940872192, loss = 3.830496072769165
+step:4000
+train performance: acc = 1.0, loss = 0.00038874149322509766
+test performance: acc = 0.5300999879837036, loss = 3.8669300079345703
+step:4100
+train performance: acc = 1.0, loss = 0.00032386547536589205
+test performance: acc = 0.5295000076293945, loss = 3.8982834815979004
+step:4107
+train performance: acc = 1.0, loss = 0.0003819360281340778
+test performance: acc = 0.5297999978065491, loss = 3.9010918140411377
+saving results in folder...
+saving model in folder
+
+
+ind 9 epoc 1
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 0.000125517966136
+max_steps : 3933
+batch_size : 1201
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.0999167338013649, loss = 2.543761730194092
+test performance: acc = 0.21819999814033508, loss = 2.1669068336486816
+step:100
+train performance: acc = 0.5470441579818726, loss = 1.3049713373184204
+test performance: acc = 0.49059998989105225, loss = 1.451531171798706
+step:200
+train performance: acc = 0.6153205633163452, loss = 1.1098796129226685
+test performance: acc = 0.5083000063896179, loss = 1.3968383073806763
+step:300
+train performance: acc = 0.734387993812561, loss = 0.8262749314308167
+test performance: acc = 0.5248000025749207, loss = 1.4045460224151611
+step:400
+train performance: acc = 0.7726894021034241, loss = 0.7118585705757141
+test performance: acc = 0.5270000100135803, loss = 1.4679746627807617
+step:500
+train performance: acc = 0.8776019811630249, loss = 0.41644570231437683
+test performance: acc = 0.5264000296592712, loss = 1.5735502243041992
+step:600
+train performance: acc = 0.9009159207344055, loss = 0.33986127376556396
+test performance: acc = 0.5259000062942505, loss = 1.6805908679962158
+step:700
+train performance: acc = 0.9666944146156311, loss = 0.19108715653419495
+test performance: acc = 0.5275999903678894, loss = 1.794105887413025
+step:800
+train performance: acc = 0.9575353860855103, loss = 0.17470060288906097
+test performance: acc = 0.5310999751091003, loss = 1.9341119527816772
+step:900
+train performance: acc = 0.9725229144096375, loss = 0.12525691092014313
+test performance: acc = 0.5271000266075134, loss = 2.0808565616607666
+step:1000
+train performance: acc = 0.9950041770935059, loss = 0.06244929879903793
+test performance: acc = 0.5300999879837036, loss = 2.2327258586883545
+step:1100
+train performance: acc = 0.9891756772994995, loss = 0.065688855946064
+test performance: acc = 0.5292999744415283, loss = 2.369079113006592
+step:1200
+train performance: acc = 0.9941715002059937, loss = 0.04057430103421211
+test performance: acc = 0.5329999923706055, loss = 2.460630178451538
+step:1300
+train performance: acc = 0.9991673827171326, loss = 0.020767798647284508
+test performance: acc = 0.5307000279426575, loss = 2.628389358520508
+step:1400
+train performance: acc = 0.9975020885467529, loss = 0.016293197870254517
+test performance: acc = 0.5343000292778015, loss = 2.721369504928589
+step:1500
+train performance: acc = 1.0, loss = 0.010114348493516445
+test performance: acc = 0.5296000242233276, loss = 2.8184666633605957
+step:1600
+train performance: acc = 0.9991673827171326, loss = 0.012018196284770966
+test performance: acc = 0.5266000032424927, loss = 2.935795783996582
+step:1700
+train performance: acc = 1.0, loss = 0.004829442128539085
+test performance: acc = 0.5347999930381775, loss = 2.9874541759490967
+step:1800
+train performance: acc = 1.0, loss = 0.0030563322361558676
+test performance: acc = 0.5371000170707703, loss = 3.071477174758911
+step:1900
+train performance: acc = 1.0, loss = 0.0019899781327694654
+test performance: acc = 0.5361999869346619, loss = 3.1359755992889404
+step:2000
+train performance: acc = 1.0, loss = 0.0021945047192275524
+test performance: acc = 0.5357999801635742, loss = 3.1860060691833496
+step:2100
+train performance: acc = 1.0, loss = 0.0015524666523560882
+test performance: acc = 0.5365999937057495, loss = 3.242615222930908
+step:2200
+train performance: acc = 1.0, loss = 0.0015826669987291098
+test performance: acc = 0.536300003528595, loss = 3.2876226902008057
+step:2300
+train performance: acc = 1.0, loss = 0.001332271145656705
+test performance: acc = 0.5349000096321106, loss = 3.338369607925415
+step:2400
+train performance: acc = 1.0, loss = 0.0011013326002284884
+test performance: acc = 0.5346999764442444, loss = 3.3809516429901123
+step:2500
+train performance: acc = 1.0, loss = 0.0011205185437574983
+test performance: acc = 0.535099983215332, loss = 3.4243688583374023
+step:2600
+train performance: acc = 1.0, loss = 0.000943693274166435
+test performance: acc = 0.5371000170707703, loss = 3.466752290725708
+step:2700
+train performance: acc = 1.0, loss = 0.0009257910423912108
+test performance: acc = 0.534600019454956, loss = 3.5044589042663574
+step:2800
+train performance: acc = 1.0, loss = 0.0007931342697702348
+test performance: acc = 0.5339000225067139, loss = 3.547133207321167
+step:2900
+train performance: acc = 1.0, loss = 0.0007107382989488542
+test performance: acc = 0.5343999862670898, loss = 3.5841121673583984
+step:3000
+train performance: acc = 1.0, loss = 0.000692631583660841
+test performance: acc = 0.5339999794960022, loss = 3.6213881969451904
+step:3100
+train performance: acc = 1.0, loss = 0.0005822133971378207
+test performance: acc = 0.5335000157356262, loss = 3.662167549133301
+step:3200
+train performance: acc = 1.0, loss = 0.0005110951606184244
+test performance: acc = 0.5332000255584717, loss = 3.6934444904327393
+step:3300
+train performance: acc = 1.0, loss = 0.0004643774591386318
+test performance: acc = 0.5322999954223633, loss = 3.7343215942382812
+step:3400
+train performance: acc = 1.0, loss = 0.0005078883259557188
+test performance: acc = 0.5343000292778015, loss = 3.76904559135437
+step:3500
+train performance: acc = 1.0, loss = 0.0004059651109855622
+test performance: acc = 0.5321999788284302, loss = 3.80450701713562
+step:3600
+train performance: acc = 1.0, loss = 0.0003694884362630546
+test performance: acc = 0.5317999720573425, loss = 3.835062026977539
+step:3700
+train performance: acc = 1.0, loss = 0.0003548109089024365
+test performance: acc = 0.5318999886512756, loss = 3.871680498123169
+step:3800
+train performance: acc = 1.0, loss = 0.0003305962309241295
+test performance: acc = 0.5321999788284302, loss = 3.9044578075408936
+step:3900
+train performance: acc = 1.0, loss = 0.00027311057783663273
+test performance: acc = 0.5332000255584717, loss = 3.9356164932250977
+step:3932
+train performance: acc = 1.0, loss = 0.0002849921875167638
+test performance: acc = 0.5321000218391418, loss = 3.9462573528289795
+saving results in folder...
+saving model in folder
+
+
+accuracies: [0.503600001335144, 0.5442000031471252, 0.5368000268936157, 0.34299999475479126, 0.10000000149011612, 0.5076000094413757, 0.5074999928474426, 0.5284000039100647, 0.5297999978065491, 0.5321000218391418]
+
+
+ind 0 epoc 2
+dnn_hidden_units : 1000,100
+learning_rate : 0.000135947871831
+max_steps : 1782
+batch_size : 1813
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.11748483031988144, loss = 8.825079917907715
+test performance: acc = 0.16359999775886536, loss = 8.632460594177246
+step:100
+train performance: acc = 0.4815223515033722, loss = 1.491791844367981
+test performance: acc = 0.4214000105857849, loss = 1.7070688009262085
+step:200
+train performance: acc = 0.6105901598930359, loss = 1.176885724067688
+test performance: acc = 0.4569000005722046, loss = 1.6431095600128174
+step:300
+train performance: acc = 0.7071152925491333, loss = 0.8914952278137207
+test performance: acc = 0.4758000075817108, loss = 1.6357316970825195
+step:400
+train performance: acc = 0.7324876189231873, loss = 0.8078919053077698
+test performance: acc = 0.47780001163482666, loss = 1.6680855751037598
+step:500
+train performance: acc = 0.8097076416015625, loss = 0.617974579334259
+test performance: acc = 0.48260000348091125, loss = 1.7223111391067505
+step:600
+train performance: acc = 0.8819636106491089, loss = 0.42621055245399475
+test performance: acc = 0.49219998717308044, loss = 1.8117341995239258
+step:700
+train performance: acc = 0.876447856426239, loss = 0.41657695174217224
+test performance: acc = 0.49059998989105225, loss = 1.8784635066986084
+step:800
+train performance: acc = 0.9271925091743469, loss = 0.2883308231830597
+test performance: acc = 0.49390000104904175, loss = 1.9864037036895752
+step:900
+train performance: acc = 0.9459459185600281, loss = 0.23334388434886932
+test performance: acc = 0.4936000108718872, loss = 2.0678658485412598
+step:1000
+train performance: acc = 0.9602867960929871, loss = 0.1759178787469864
+test performance: acc = 0.492900013923645, loss = 2.1846463680267334
+step:1100
+train performance: acc = 0.9740760922431946, loss = 0.15324480831623077
+test performance: acc = 0.4943999946117401, loss = 2.2460739612579346
+step:1200
+train performance: acc = 0.9762824177742004, loss = 0.1235467866063118
+test performance: acc = 0.49970000982284546, loss = 2.3265841007232666
+step:1300
+train performance: acc = 0.9939327239990234, loss = 0.06662243604660034
+test performance: acc = 0.4999000132083893, loss = 2.430488348007202
+step:1400
+train performance: acc = 0.9895201325416565, loss = 0.07009504735469818
+test performance: acc = 0.4984000027179718, loss = 2.505603313446045
+step:1500
+train performance: acc = 0.9961389899253845, loss = 0.043053966015577316
+test performance: acc = 0.501800000667572, loss = 2.567730188369751
+step:1600
+train performance: acc = 0.9983452558517456, loss = 0.033673398196697235
+test performance: acc = 0.5031999945640564, loss = 2.638824462890625
+step:1700
+train performance: acc = 0.9988968372344971, loss = 0.03515760600566864
+test performance: acc = 0.4957999885082245, loss = 2.7202634811401367
+step:1781
+train performance: acc = 0.9983452558517456, loss = 0.02271895483136177
+test performance: acc = 0.4975000023841858, loss = 2.781663179397583
+saving results in folder...
+saving model in folder
+
+
+ind 2 epoc 2
+dnn_hidden_units : 1000,100
+learning_rate : 0.000559406264002
+max_steps : 4100
+batch_size : 2238
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.11885612457990646, loss = 8.762858390808105
+test performance: acc = 0.18690000474452972, loss = 24.488950729370117
+step:100
+train performance: acc = 0.29043787717819214, loss = 2.0065243244171143
+test performance: acc = 0.29170000553131104, loss = 2.0327844619750977
+step:200
+train performance: acc = 0.4043789207935333, loss = 1.6666244268417358
+test performance: acc = 0.3840000033378601, loss = 1.851454734802246
+step:300
+train performance: acc = 0.4584450423717499, loss = 1.4910796880722046
+test performance: acc = 0.4115999937057495, loss = 1.7185184955596924
+step:400
+train performance: acc = 0.5424486398696899, loss = 1.2736072540283203
+test performance: acc = 0.4438000023365021, loss = 1.6942845582962036
+step:500
+train performance: acc = 0.5817694664001465, loss = 1.1629185676574707
+test performance: acc = 0.4586000144481659, loss = 1.6754450798034668
+step:600
+train performance: acc = 0.6353887319564819, loss = 1.015282154083252
+test performance: acc = 0.47040000557899475, loss = 1.6969865560531616
+step:700
+train performance: acc = 0.6626452207565308, loss = 0.9080942273139954
+test performance: acc = 0.4832000136375427, loss = 1.7271180152893066
+step:800
+train performance: acc = 0.7546916604042053, loss = 0.7157993912696838
+test performance: acc = 0.48910000920295715, loss = 1.8149974346160889
+step:900
+train performance: acc = 0.7484360933303833, loss = 0.6988767981529236
+test performance: acc = 0.48339998722076416, loss = 1.908557415008545
+step:1000
+train performance: acc = 0.7779267430305481, loss = 0.6313198804855347
+test performance: acc = 0.4745999872684479, loss = 2.0773181915283203
+step:1100
+train performance: acc = 0.8221626281738281, loss = 0.5099152326583862
+test performance: acc = 0.4848000109195709, loss = 2.180234670639038
+step:1200
+train performance: acc = 0.7184986472129822, loss = 0.7790088653564453
+test performance: acc = 0.46709999442100525, loss = 2.208831548690796
+step:1300
+train performance: acc = 0.8708668351173401, loss = 0.37214961647987366
+test performance: acc = 0.49390000104904175, loss = 2.4507381916046143
+step:1400
+train performance: acc = 0.8516532778739929, loss = 0.4052208662033081
+test performance: acc = 0.4964999854564667, loss = 2.5674386024475098
+step:1500
+train performance: acc = 0.8990169763565063, loss = 0.2842967212200165
+test performance: acc = 0.49900001287460327, loss = 2.7102861404418945
+step:1600
+train performance: acc = 0.8391420841217041, loss = 0.4293651282787323
+test performance: acc = 0.47589999437332153, loss = 2.8590922355651855
+step:1700
+train performance: acc = 0.817694365978241, loss = 0.5392665863037109
+test performance: acc = 0.45910000801086426, loss = 2.8249351978302
+step:1800
+train performance: acc = 0.8833780288696289, loss = 0.3166876435279846
+test performance: acc = 0.49140000343322754, loss = 2.886235237121582
+step:1900
+train performance: acc = 0.9285075664520264, loss = 0.20391757786273956
+test performance: acc = 0.4959000051021576, loss = 3.263202667236328
+step:2000
+train performance: acc = 0.9066130518913269, loss = 0.27657487988471985
+test performance: acc = 0.49399998784065247, loss = 3.2628839015960693
+step:2100
+train performance: acc = 0.94280606508255, loss = 0.17152054607868195
+test performance: acc = 0.4934000074863434, loss = 3.4490296840667725
+step:2200
+train performance: acc = 0.9468275308609009, loss = 0.14914298057556152
+test performance: acc = 0.4948999881744385, loss = 3.6267547607421875
+step:2300
+train performance: acc = 0.9128686189651489, loss = 0.2445448487997055
+test performance: acc = 0.48399999737739563, loss = 3.81697154045105
+step:2400
+train performance: acc = 0.9307417273521423, loss = 0.18431013822555542
+test performance: acc = 0.4828000068664551, loss = 3.9318292140960693
+step:2500
+train performance: acc = 0.8221626281738281, loss = 0.5284753441810608
+test performance: acc = 0.4742000102996826, loss = 3.7748210430145264
+step:2600
+train performance: acc = 0.9530830979347229, loss = 0.12560978531837463
+test performance: acc = 0.5041000247001648, loss = 3.91667103767395
+step:2700
+train performance: acc = 0.9615728259086609, loss = 0.1084180399775505
+test performance: acc = 0.5069000124931335, loss = 3.9877967834472656
+step:2800
+train performance: acc = 0.951295793056488, loss = 0.1269705444574356
+test performance: acc = 0.4961000084877014, loss = 4.191134929656982
+step:2900
+train performance: acc = 0.32841822504997253, loss = 1.8555099964141846
+test performance: acc = 0.2678999900817871, loss = 2.2605085372924805
+step:3000
+train performance: acc = 0.5205540657043457, loss = 1.2902231216430664
+test performance: acc = 0.3855000138282776, loss = 1.9323787689208984
+step:3100
+train performance: acc = 0.6407506465911865, loss = 0.9598300457000732
+test performance: acc = 0.45879998803138733, loss = 2.002200126647949
+step:3200
+train performance: acc = 0.7184986472129822, loss = 0.7295511364936829
+test performance: acc = 0.4699000120162964, loss = 2.1834139823913574
+step:3300
+train performance: acc = 0.800714910030365, loss = 0.5379067659378052
+test performance: acc = 0.4799000024795532, loss = 2.4253361225128174
+step:3400
+train performance: acc = 0.8279713988304138, loss = 0.4617139995098114
+test performance: acc = 0.47940000891685486, loss = 2.5970895290374756
+step:3500
+train performance: acc = 0.8686327338218689, loss = 0.36001622676849365
+test performance: acc = 0.49300000071525574, loss = 2.7876486778259277
+step:3600
+train performance: acc = 0.8619303107261658, loss = 0.3663589358329773
+test performance: acc = 0.48750001192092896, loss = 2.867446184158325
+step:3700
+train performance: acc = 0.8856121301651001, loss = 0.3528132736682892
+test performance: acc = 0.491100013256073, loss = 3.141205310821533
+step:3800
+train performance: acc = 0.9200178980827332, loss = 0.23555247485637665
+test performance: acc = 0.4952999949455261, loss = 3.239304304122925
+step:3900
+train performance: acc = 0.8302055597305298, loss = 0.4747026860713959
+test performance: acc = 0.4772999882698059, loss = 3.24731183052063
+step:4000
+train performance: acc = 0.9481679797172546, loss = 0.15381211042404175
+test performance: acc = 0.5095000267028809, loss = 3.5510811805725098
+step:4099
+train performance: acc = 0.9436997175216675, loss = 0.1739671379327774
+test performance: acc = 0.49790000915527344, loss = 3.7082293033599854
+saving results in folder...
+
+
+saving model in folder
+ind 3 epoc 2
+dnn_hidden_units : 1000,1000
+learning_rate : 0.000122029880799
+max_steps : 1859
+batch_size : 2371
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.07844791561365128, loss = 8.301851272583008
+test performance: acc = 0.19939999282360077, loss = 7.927883625030518
+step:100
+train performance: acc = 0.5761282444000244, loss = 1.2527811527252197
+test performance: acc = 0.4505000114440918, loss = 1.760665774345398
+step:200
+train performance: acc = 0.7823703289031982, loss = 0.693130373954773
+test performance: acc = 0.47999998927116394, loss = 1.7007060050964355
+step:300
+train performance: acc = 0.9084774255752563, loss = 0.40142446756362915
+test performance: acc = 0.499099999666214, loss = 1.706718921661377
+step:400
+train performance: acc = 0.9654154181480408, loss = 0.24405042827129364
+test performance: acc = 0.5026999711990356, loss = 1.7621755599975586
+step:500
+train performance: acc = 0.9818642139434814, loss = 0.1647317260503769
+test performance: acc = 0.508400022983551, loss = 1.8269284963607788
+step:600
+train performance: acc = 0.992408275604248, loss = 0.1113448292016983
+test performance: acc = 0.5152999758720398, loss = 1.8936376571655273
+step:700
+train performance: acc = 0.9978911876678467, loss = 0.0629580169916153
+test performance: acc = 0.5170000195503235, loss = 1.9582171440124512
+step:800
+train performance: acc = 0.998734712600708, loss = 0.04584027826786041
+test performance: acc = 0.5181000232696533, loss = 2.021153688430786
+step:900
+train performance: acc = 0.9991564750671387, loss = 0.033685583621263504
+test performance: acc = 0.5184999704360962, loss = 2.08008074760437
+step:1000
+train performance: acc = 1.0, loss = 0.02527841180562973
+test performance: acc = 0.5206999778747559, loss = 2.1330060958862305
+step:1100
+train performance: acc = 1.0, loss = 0.01821853034198284
+test performance: acc = 0.5199999809265137, loss = 2.1880669593811035
+step:1200
+train performance: acc = 1.0, loss = 0.015880553051829338
+test performance: acc = 0.5220000147819519, loss = 2.2293691635131836
+step:1300
+train performance: acc = 1.0, loss = 0.012869429774582386
+test performance: acc = 0.5238999724388123, loss = 2.2748842239379883
+step:1400
+train performance: acc = 1.0, loss = 0.010550102218985558
+test performance: acc = 0.5252000093460083, loss = 2.3111026287078857
+step:1500
+train performance: acc = 1.0, loss = 0.008702332153916359
+test performance: acc = 0.5254999995231628, loss = 2.350167989730835
+step:1600
+train performance: acc = 1.0, loss = 0.007416643667966127
+test performance: acc = 0.5242999792098999, loss = 2.3860559463500977
+step:1700
+train performance: acc = 1.0, loss = 0.006430681329220533
+test performance: acc = 0.5282999873161316, loss = 2.4146628379821777
+step:1800
+train performance: acc = 1.0, loss = 0.005518932361155748
+test performance: acc = 0.527899980545044, loss = 2.450500249862671
+step:1858
+train performance: acc = 1.0, loss = 0.005283176898956299
+test performance: acc = 0.5271999835968018, loss = 2.4691872596740723
+saving results in folder...
+saving model in folder
+
+
+ind 4 epoc 2
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 1e-06
+max_steps : 2743
+batch_size : 2806
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.08980755507946014, loss = 2.57432222366333
+test performance: acc = 0.09929999709129333, loss = 2.5487220287323
+step:100
+train performance: acc = 0.24447612464427948, loss = 2.1066737174987793
+test performance: acc = 0.23070000112056732, loss = 2.1183018684387207
+step:200
+train performance: acc = 0.30791160464286804, loss = 1.9523760080337524
+test performance: acc = 0.29280000925064087, loss = 1.9792886972427368
+step:300
+train performance: acc = 0.3353528082370758, loss = 1.8748459815979004
+test performance: acc = 0.3276999890804291, loss = 1.8933815956115723
+step:400
+train performance: acc = 0.3649322986602783, loss = 1.8150670528411865
+test performance: acc = 0.35440000891685486, loss = 1.830794334411621
+step:500
+train performance: acc = 0.38667142391204834, loss = 1.7576735019683838
+test performance: acc = 0.3711000084877014, loss = 1.78294038772583
+step:600
+train performance: acc = 0.40591588616371155, loss = 1.6992460489273071
+test performance: acc = 0.38429999351501465, loss = 1.7456614971160889
+step:700
+train performance: acc = 0.4158945083618164, loss = 1.6487433910369873
+test performance: acc = 0.3971000015735626, loss = 1.715072512626648
+step:800
+train performance: acc = 0.4098360538482666, loss = 1.655946135520935
+test performance: acc = 0.4077000021934509, loss = 1.6898376941680908
+step:900
+train performance: acc = 0.4376336336135864, loss = 1.6035354137420654
+test performance: acc = 0.41530001163482666, loss = 1.6680759191513062
+step:1000
+train performance: acc = 0.45830363035202026, loss = 1.5881634950637817
+test performance: acc = 0.421999990940094, loss = 1.6495683193206787
+step:1100
+train performance: acc = 0.46970775723457336, loss = 1.5399783849716187
+test performance: acc = 0.4260999858379364, loss = 1.6331456899642944
+step:1200
+train performance: acc = 0.46471846103668213, loss = 1.5491703748703003
+test performance: acc = 0.4327999949455261, loss = 1.61855149269104
+step:1300
+train performance: acc = 0.46614396572113037, loss = 1.5437874794006348
+test performance: acc = 0.4392000138759613, loss = 1.6051876544952393
+step:1400
+train performance: acc = 0.49073413014411926, loss = 1.4817636013031006
+test performance: acc = 0.44369998574256897, loss = 1.5932046175003052
+step:1500
+train performance: acc = 0.4921596646308899, loss = 1.4932879209518433
+test performance: acc = 0.4487000107765198, loss = 1.582106113433838
+step:1600
+train performance: acc = 0.48645758628845215, loss = 1.4751935005187988
+test performance: acc = 0.4512999951839447, loss = 1.571927785873413
+step:1700
+train performance: acc = 0.5, loss = 1.435275673866272
+test performance: acc = 0.4537000060081482, loss = 1.562392234802246
+step:1800
+train performance: acc = 0.5, loss = 1.451785683631897
+test performance: acc = 0.4575999975204468, loss = 1.5534411668777466
+step:1900
+train performance: acc = 0.5188881158828735, loss = 1.3995836973190308
+test performance: acc = 0.46000000834465027, loss = 1.545332431793213
+step:2000
+train performance: acc = 0.52173912525177, loss = 1.3919321298599243
+test performance: acc = 0.4643000066280365, loss = 1.5377482175827026
+step:2100
+train performance: acc = 0.5192444920539856, loss = 1.3786436319351196
+test performance: acc = 0.46650001406669617, loss = 1.5305155515670776
+step:2200
+train performance: acc = 0.5181753635406494, loss = 1.4248942136764526
+test performance: acc = 0.4690999984741211, loss = 1.523984670639038
+step:2300
+train performance: acc = 0.5188881158828735, loss = 1.3959840536117554
+test performance: acc = 0.4708999991416931, loss = 1.517442226409912
+step:2400
+train performance: acc = 0.5356379151344299, loss = 1.365610122680664
+test performance: acc = 0.4726000130176544, loss = 1.5113122463226318
+step:2500
+train performance: acc = 0.5523877143859863, loss = 1.342613935470581
+test performance: acc = 0.47519999742507935, loss = 1.5056909322738647
+step:2600
+train performance: acc = 0.5427654981613159, loss = 1.337957739830017
+test performance: acc = 0.4756999909877777, loss = 1.5001552104949951
+step:2700
+train performance: acc = 0.5481112003326416, loss = 1.3302525281906128
+test performance: acc = 0.477400004863739, loss = 1.4951483011245728
+step:2742
+train performance: acc = 0.5445473790168762, loss = 1.3338714838027954
+test performance: acc = 0.4772000014781952, loss = 1.4930503368377686
+saving results in folder...saving model in folder
+
+
+ind 5 epoc 2
+dnn_hidden_units : 1000,500,250,100
+learning_rate : 0.000139506739118
+max_steps : 3287
+batch_size : 1619
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.09697344154119492, loss = 2.563295841217041
+test performance: acc = 0.2240999937057495, loss = 2.167205572128296
+step:100
+train performance: acc = 0.5694873332977295, loss = 1.2376346588134766
+test performance: acc = 0.5023999810218811, loss = 1.4294888973236084
+step:200
+train performance: acc = 0.6738727688789368, loss = 0.9625924229621887
+test performance: acc = 0.5274999737739563, loss = 1.3940467834472656
+step:300
+train performance: acc = 0.8085237741470337, loss = 0.6398518681526184
+test performance: acc = 0.525600016117096, loss = 1.445612907409668
+step:400
+train performance: acc = 0.882025957107544, loss = 0.4414308965206146
+test performance: acc = 0.5372999906539917, loss = 1.5412952899932861
+step:500
+train performance: acc = 0.9190858602523804, loss = 0.298697829246521
+test performance: acc = 0.529699981212616, loss = 1.7002962827682495
+step:600
+train performance: acc = 0.9610871076583862, loss = 0.17824392020702362
+test performance: acc = 0.5329999923706055, loss = 1.8718723058700562
+step:700
+train performance: acc = 0.9833230376243591, loss = 0.10204704850912094
+test performance: acc = 0.5321000218391418, loss = 2.0549020767211914
+step:800
+train performance: acc = 0.9894996881484985, loss = 0.07568934559822083
+test performance: acc = 0.5351999998092651, loss = 2.217357635498047
+step:900
+train performance: acc = 0.99876469373703, loss = 0.03394264355301857
+test performance: acc = 0.5310999751091003, loss = 2.385254383087158
+step:1000
+train performance: acc = 0.9993823170661926, loss = 0.025053061544895172
+test performance: acc = 0.5320000052452087, loss = 2.5058536529541016
+step:1100
+train performance: acc = 0.9314391613006592, loss = 0.1950867772102356
+test performance: acc = 0.519599974155426, loss = 2.593578338623047
+step:1200
+train performance: acc = 0.9993823170661926, loss = 0.020817819982767105
+test performance: acc = 0.5393000245094299, loss = 2.673567056655884
+step:1300
+train performance: acc = 1.0, loss = 0.006351953372359276
+test performance: acc = 0.5390999913215637, loss = 2.843966484069824
+step:1400
+train performance: acc = 0.9993823170661926, loss = 0.0046471054665744305
+test performance: acc = 0.5406000018119812, loss = 2.9413976669311523
+step:1500
+train performance: acc = 1.0, loss = 0.0029043497052043676
+test performance: acc = 0.5370000004768372, loss = 3.022712230682373
+step:1600
+train performance: acc = 1.0, loss = 0.0025587202981114388
+test performance: acc = 0.5400999784469604, loss = 3.0934858322143555
+step:1700
+train performance: acc = 1.0, loss = 0.002303694374859333
+test performance: acc = 0.5408999919891357, loss = 3.161592960357666
+step:1800
+train performance: acc = 1.0, loss = 0.0016791418893262744
+test performance: acc = 0.5410000085830688, loss = 3.204890251159668
+step:1900
+train performance: acc = 1.0, loss = 0.0015260960208252072
+test performance: acc = 0.5401999950408936, loss = 3.2632603645324707
+step:2000
+train performance: acc = 1.0, loss = 0.0013792492682114244
+test performance: acc = 0.5406000018119812, loss = 3.3156886100769043
+step:2100
+train performance: acc = 1.0, loss = 0.0012104918714612722
+test performance: acc = 0.5396000146865845, loss = 3.3548507690429688
+step:2200
+train performance: acc = 1.0, loss = 0.0009919608710333705
+test performance: acc = 0.5393000245094299, loss = 3.4006104469299316
+step:2300
+train performance: acc = 1.0, loss = 0.0009905464248731732
+test performance: acc = 0.5385000109672546, loss = 3.444376230239868
+step:2400
+train performance: acc = 1.0, loss = 0.000890779250767082
+test performance: acc = 0.5400999784469604, loss = 3.48472261428833
+step:2500
+train performance: acc = 1.0, loss = 0.0007041217759251595
+test performance: acc = 0.5378000140190125, loss = 3.528984785079956
+step:2600
+train performance: acc = 1.0, loss = 0.0007272255606949329
+test performance: acc = 0.5394999980926514, loss = 3.5659008026123047
+step:2700
+train performance: acc = 1.0, loss = 0.0005759126506745815
+test performance: acc = 0.5393000245094299, loss = 3.6050312519073486
+step:2800
+train performance: acc = 1.0, loss = 0.0005390021251514554
+test performance: acc = 0.5382999777793884, loss = 3.6407358646392822
+step:2900
+train performance: acc = 1.0, loss = 0.0005406441050581634
+test performance: acc = 0.5389000177383423, loss = 3.6802687644958496
+step:3000
+train performance: acc = 1.0, loss = 0.00045727388351224363
+test performance: acc = 0.5386000275611877, loss = 3.713229179382324
+step:3100
+train performance: acc = 1.0, loss = 0.0004240521229803562
+test performance: acc = 0.5392000079154968, loss = 3.748746156692505
+step:3200
+train performance: acc = 1.0, loss = 0.00038289494113996625
+test performance: acc = 0.5386999845504761, loss = 3.781619071960449
+step:3286
+train performance: acc = 1.0, loss = 0.0003286624269094318
+test performance: acc = 0.5378999710083008, loss = 3.8113527297973633
+saving results in folder...
+saving model in folder
+
+
+ind 6 epoc 2
+dnn_hidden_units : 5000
+learning_rate : 0.0114332411729
+max_steps : 3883
+batch_size : 2251
+eval_freq : 100
+data_dir : ./cifar10/cifar-10-batches-py
+auto_opt : True
+step:0
+train performance: acc = 0.1012883186340332, loss = 24.011398315429688
+test performance: acc = 0.19439999759197235, loss = 11006.7255859375
+step:100
+train performance: acc = 0.39537984132766724, loss = 315.6463317871094
+test performance: acc = 0.3172000050544739, loss = 408.86102294921875
+step:200
+train performance: acc = 0.4073745012283325, loss = 102.625244140625
+test performance: acc = 0.4124999940395355, loss = 85.38431549072266
+step:300
+train performance: acc = 0.21723678708076477, loss = 12284.4912109375
+test performance: acc = 0.20990000665187836, loss = 15247.201171875
+step:400
+train performance: acc = 0.4309195876121521, loss = 593.388427734375
+test performance: acc = 0.4025000035762787, loss = 717.663330078125
+step:500
+train performance: acc = 0.4442470073699951, loss = 243.5538330078125
+test performance: acc = 0.4016000032424927, loss = 327.96551513671875
+step:600
+train performance: acc = 0.5588627457618713, loss = 92.12371826171875
+test performance: acc = 0.42649999260902405, loss = 178.28529357910156
+step:700
+train performance: acc = 0.6015104651451111, loss = 70.55607604980469
+test performance: acc = 0.45719999074935913, loss = 133.76156616210938
+step:800
+train performance: acc = 0.6099511384963989, loss = 55.565303802490234
+test performance: acc = 0.49939998984336853, loss = 97.1716537475586
+step:900
+train performance: acc = 0.561972439289093, loss = 81.76746368408203
+test performance: acc = 0.46369999647140503, loss = 137.2618865966797
+step:1000
+train performance: acc = 0.5970679521560669, loss = 63.49565505981445
+test performance: acc = 0.4691999852657318, loss = 108.85585021972656
+step:1100
+train performance: acc = 0.6570413112640381, loss = 42.54269790649414
+test performance: acc = 0.4424999952316284, loss = 107.544921875
+step:1200
+train performance: acc = 0.7143491506576538, loss = 25.33509063720703
+test performance: acc = 0.4607999920845032, loss = 85.91238403320312
+step:1300
+train performance: acc = 0.1794757843017578, loss = 55447.21484375
+test performance: acc = 0.19509999454021454, loss = 42914.25
+step:1400
+train performance: acc = 0.4562416672706604, loss = 2591.172607421875
+test performance: acc = 0.41449999809265137, loss = 2670.824462890625
+step:1500
+train performance: acc = 0.5930697321891785, loss = 571.2034301757812
+test performance: acc = 0.45159998536109924, loss = 1026.345947265625
+step:1600
+train performance: acc = 0.6206130385398865, loss = 330.5317687988281
+test performance: acc = 0.45239999890327454, loss = 733.7285766601562
+step:1700
+train performance: acc = 0.6543758511543274, loss = 268.8594665527344
+test performance: acc = 0.4814999997615814, loss = 637.5598754882812
+step:1800
+train performance: acc = 0.6215015649795532, loss = 352.5884094238281
+test performance: acc = 0.4498000144958496, loss = 773.0922241210938
+step:1900
+train performance: acc = 0.7583296298980713, loss = 107.5030746459961
+test performance: acc = 0.4771000146865845, loss = 489.6617126464844
+step:2000
+train performance: acc = 0.6939138174057007, loss = 199.8951416015625
+test performance: acc = 0.49320000410079956, loss = 519.1160888671875
+step:2100
+train performance: acc = 0.7414482235908508, loss = 133.91461181640625
+test performance: acc = 0.4968999922275543, loss = 506.7284851074219
+step:2200
+train performance: acc = 0.7836517095565796, loss = 113.25379180908203
+test performance: acc = 0.47360000014305115, loss = 582.3921508789062
+step:2300
+train performance: acc = 0.8671701550483704, loss = 41.91475296020508
+test performance: acc = 0.49320000410079956, loss = 485.3010559082031
+srun: Job step aborted: Waiting up to 32 seconds for job step to finish.
+slurmstepd: error: *** JOB 2107170 ON r30n6 CANCELLED AT 2019-04-13T08:01:48 DUE TO TIME LIMIT ***
+slurmstepd: error: *** STEP 2107170.0 ON r30n6 CANCELLED AT 2019-04-13T08:01:48 DUE TO TIME LIMIT ***
