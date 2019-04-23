@@ -4,6 +4,9 @@ user: lgpu0448
 user: lgpu0404
 password: Surf#524287!
 
+user: lgpu0343, 
+password: Victor123. 
+
 LISA GPU TUTORIAL: PYTORCH
 ==========================
 
