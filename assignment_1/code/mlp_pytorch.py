@@ -43,11 +43,13 @@ class MLP(nn.Module):
     
     #creates a list with all the layers
     for l in range(len(n_hidden)-1):
+        self.layer.append(nn.BatchNorm1d(n_hidden[l]))
         self.layer.append(nn.Linear(n_hidden[l], n_hidden[l+1]))
         if l < len(n_hidden) - 2:
             #no ReLU is apllied in the last layer
             self.layer.append(nn.ReLU())
-            
+            self.layer.append(nn.Dropout())
+
     #creates model
     self.model = nn.Sequential(*self.layer)
 

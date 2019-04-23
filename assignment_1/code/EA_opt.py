@@ -12,14 +12,17 @@ class net_params():
         
         if init:
             #initlialize individual with learnable mutation parameters
-            self.dnn_hidden_units_choice = ['5000', '1000', '1000,1000', 
-                                            '1000,500', '1000,100',
-                                            '1000,500,250,100', 
-                                            '1000,250,100,100',
-                                            '500,500,250,250,100', 
-                                            '500,500,500,500,500',
-                                            '100,100,100,100,100']
-            #[5 layers 500]
+            self.dnn_hidden_units_choice = ['5000',
+                                            '1000', 
+                                            '1000,500',
+                                            '1000,500,250', 
+                                            '1000,500,250,100',
+                                            '500,500',
+                                            '500,500,250,250', 
+                                            '500,500,250,250,100',
+                                            '500,1000']
+            #archtecture '1000,1000' memorizes the data
+            
             self.hidden_units = np.random.choice(self.dnn_hidden_units_choice)
             self.hu_p = np.random.uniform(0.1, 1)
             self.lr = np.random.uniform(2e-6, 2e-4) #learning rate

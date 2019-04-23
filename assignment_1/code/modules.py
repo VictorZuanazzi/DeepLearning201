@@ -23,7 +23,7 @@ class LinearModule(object):
     #Initialize weights self.params['weight'] using normal distribution with 
     #mean = 0 and std = 0.0001.
     self.params["weight"] = np.random.normal(loc = 0.0, 
-                                             scale = 0.001, 
+                                             scale = 0.0001, 
                                              size = (out_features, in_features))
     
     #Initialize biases self.params['bias'] with 0. 

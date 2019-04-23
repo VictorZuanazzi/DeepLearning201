@@ -146,7 +146,7 @@ class CustomBatchNormManualFunction(torch.autograd.Function):
     out = gamma * in_hat + beta
         
     #store constants
-    ctx.save_for_backward(gamma, mu, center_input, var, denominator, in_hat)
+    ctx.save_for_backward(gamma, denominator, in_hat)
     ctx.epsilon = eps
     
     return out
@@ -173,7 +173,8 @@ class CustomBatchNormManualFunction(torch.autograd.Function):
     batch_size, n_neurons = grad_output.shape
     
     #get useful parameters stored in the forward pass
-    gamma, mu, center_input, var, denominator, in_hat = ctx.saved_tensors
+    #gamma, mu, center_input, var, denominator, in_hat = ctx.saved_tensors
+    gamma, denominator, in_hat = ctx.saved_tensors
     
     #to avoid unnecessary matrix inversions 
     den_inv = 1/denominator
@@ -194,7 +195,7 @@ class CustomBatchNormManualFunction(torch.autograd.Function):
            
         
     #gradient of gamma
-    if ctx.needs_input_grad[0] | ctx.needs_input_grad[1]:
+    if ctx.needs_input_grad[1]:
         grad_gamma = torch.sum(torch.mul(grad_output, in_hat), dim=0)
     else:
         grad_gamma = None
