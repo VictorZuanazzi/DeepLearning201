@@ -17,17 +17,48 @@ from __future__ import absolute_import
 from __future__ import division
 from __future__ import print_function
 
+import torch
 import torch.nn as nn
 
 
 class TextGenerationModel(nn.Module):
 
-    def __init__(self, batch_size, seq_length, vocabulary_size,
-                 lstm_num_hidden=256, lstm_num_layers=2, device='cuda:0'):
+    def __init__(self, batch_size=128, seq_length=30, vocabulary_size=10,
+                 lstm_num_hidden=256, lstm_num_layers=2, device='cpu'):
 
         super(TextGenerationModel, self).__init__()
-        # Initialization here...
+        
+        #load inputs:
+        self.batch_size = batch_size
+        self.seq_length = seq_length
+        self.vocabulary_size = vocabulary_size
+        self.lstm_num_hidden = lstm_num_hidden
+        self.lstm_num_layers = lstm_num_layers
+        self.device = device
+        self.batch_first = True
+        
+        #initialize the LSTM cell
+        self.lstm = nn.LSTM(input_size = self.vocabulary_size,
+                            hidden_size = self.lstm_num_hidden,
+                            num_layers = self.lstm_num_layers,
+                            batch_first = self.batch_first)
+        
+        #initizalize the linear leayer
+        self.linear = nn.Linear(in_features = self.lstm_num_hidden,
+                                out_features = self.vocabulary_size,
+                                bias = True)
 
-    def forward(self, x):
-        # Implementation here...
-        pass
+    def forward(self, x, last_states = None):
+        """x: input, torch.tensor 
+        last_states: (last_hidden, last_cell) tuple(torch.tensor, torch.tensor)"""
+        
+        #LSTM forward
+        all_hidden, (last_hidden, last_cell) = self.lstm(x, last_states)
+        
+        #Linear layer forward
+        out = self.linear(all_hidden)
+        
+        return out, (last_hidden, last_cell)
+        
+        
+        
