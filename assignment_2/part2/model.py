@@ -23,7 +23,7 @@ import torch.nn as nn
 
 class TextGenerationModel(nn.Module):
 
-    def __init__(self, batch_size=128, seq_length=30, vocabulary_size=10,
+    def __init__(self, batch_size=64, seq_length=30, vocabulary_size=10,
                  lstm_num_hidden=256, lstm_num_layers=2, device='cpu'):
 
         super(TextGenerationModel, self).__init__()
