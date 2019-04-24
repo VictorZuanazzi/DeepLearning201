@@ -239,7 +239,7 @@ def train(config):
                                                   device = device, 
                                                   temperature = config.temperature))
     
-    with open(config.output_file, 'w', encoding="utf-8", errors="surrogateescape") as file:
+    with open(config.output_file, 'w', encoding="latin-1", errors="surrogateescape") as file:
         file.writelines(["%s\n" % item  for item in train_text])
 
 
@@ -288,7 +288,7 @@ if __name__ == "__main__":
                         help='Learning rate step')
     parser.add_argument('--dropout_keep_prob', type=float, default=1.0, 
                         help='Dropout keep probability')
-    parser.add_argument('--train_steps', type=int, default= 300,#1e6, 
+    parser.add_argument('--train_steps', type=int, default= 1e6, 
                         help='Number of training steps')
     parser.add_argument('--max_norm', type=float, default=5.0, 
                         help='--')
