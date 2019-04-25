@@ -147,73 +147,76 @@ def train(config):
     train_acc = np.zeros(int(config.train_steps)+1)
     train_text = []
     
-    for step, (batch_inputs, batch_targets) in enumerate(data_loader):
-
-        # Only for time measurement of step through network
-        t1 = time.time()
-
-        #get a batch with sentences.
-        x = torch.stack(batch_inputs, dim=1).to(device)
-        
-        #create one_hot representations of the carachteer
-        x = char2hot(x, dataset.vocab_size)
-        
-        #get labels
-        y_true = torch.stack(batch_targets, dim=1).to(device)
-        
-        #forward pass
-        y_pred, _ = model(x)
-        loss = criterion(y_pred.transpose(2,1), y_true)
-        
-        #backward prop
-        optimizer.zero_grad()
-        loss.backward()
-        optimizer.step()
-        
-        train_acc[step] = accuracy(y_pred, y_true, config)
-        
-        # Just for time measurement
-        t2 = time.time()
-        examples_per_second = config.batch_size/float(t2-t1)
-
-        if step % config.print_every == 0:
+    true_step = 0
+    while true_step < config.train_steps:
+        for step, (batch_inputs, batch_targets) in enumerate(data_loader):
             
-#            print(f"[{datetime.now().strftime("%Y-%m-%d %H:%M")}] Train Step {step}/{config.train_steps}, Batch Size = {config.batch_size}, Examples/Sec = {examples_per_second}, Accuracy = {train_acc[step]}, Loss = {loss}")
-             
-            print(f"Train Step {step}/{config.train_steps}, Examples/Sec = {examples_per_second}, Accuracy = {train_acc[step]}, Loss = {loss}")
-#            print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, "
-#                  "Accuracy = {:.2f}, Loss = {:.3f}".format(
-#                    datetime.now().strftime("%Y-%m-%d %H:%M"), step,
-#                    config.train_steps, config.batch_size, examples_per_second,
-#                    train_acc[step], loss))
+    
+            # Only for time measurement of step through network
+            t1 = time.time()
+    
+            #get a batch with sentences.
+            x = torch.stack(batch_inputs, dim=1).to(device)
             
-            #save model, just in case
-            torch.save(model, config.txt_file + "_model.pt")
-
-        if step % config.sample_every == 0:
-            # Generate some sentences by sampling from the model
-            random_seed = torch.randint(low = 0,
-                                        high = dataset.vocab_size, 
-                                        size = (1, 1), 
-                                        dtype=torch.long, 
-                                        device=device)
+            #create one_hot representations of the carachteer
+            x = char2hot(x, dataset.vocab_size)
             
-            train_text.append("Training "+ str(step))
-            train_text.append(text_generator_9000(model = model, 
-                                                  seed = random_seed, 
-                                                  length = config.seq_length, 
-                                                  dataset = dataset, 
-                                                  device = device, 
-                                                  temperature = config.temperature))
+            #get labels
+            y_true = torch.stack(batch_targets, dim=1).to(device)
             
-            print(f"{step} Text Sample: \n{train_text[-1]}")
+            #forward pass
+            y_pred, _ = model(x)
+            loss = criterion(y_pred.transpose(2,1), y_true)
             
-
-        if step == config.train_steps:
-            # If you receive a PyTorch data-loader error, check this bug report:
-            # https://github.com/pytorch/pytorch/pull/9655
-            print(f"End of training: {step}")
-            break
+            #backward prop
+            optimizer.zero_grad()
+            loss.backward()
+            optimizer.step()
+            
+            train_acc[true_step] = accuracy(y_pred, y_true, config)
+            
+            # Just for time measurement
+            t2 = time.time()
+            examples_per_second = config.batch_size/float(t2-t1)
+    
+            if true_step % config.print_every == 0:
+                
+    #            print(f"[{datetime.now().strftime("%Y-%m-%d %H:%M")}] Train Step {step}/{config.train_steps}, Batch Size = {config.batch_size}, Examples/Sec = {examples_per_second}, Accuracy = {train_acc[step]}, Loss = {loss}")
+                 
+                print(f"Train Step {true_step}/{config.train_steps}, Examples/Sec = {examples_per_second}, Accuracy = {train_acc[true_step]}, Loss = {loss}")
+    #            print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, "
+    #                  "Accuracy = {:.2f}, Loss = {:.3f}".format(
+    #                    datetime.now().strftime("%Y-%m-%d %H:%M"), step,
+    #                    config.train_steps, config.batch_size, examples_per_second,
+    #                    train_acc[step], loss))
+                
+                #save model, just in case
+                torch.save(model, config.txt_file + "_model.pt")
+    
+            if true_step % config.sample_every == 0:
+                # Generate some sentences by sampling from the model
+                random_seed = torch.randint(low = 0,
+                                            high = dataset.vocab_size, 
+                                            size = (1, 1), 
+                                            dtype=torch.long, 
+                                            device=device)
+                
+                train_text.append("Training "+ str(true_step))
+                train_text.append(text_generator_9000(model = model, 
+                                                      seed = random_seed, 
+                                                      length = config.seq_length, 
+                                                      dataset = dataset, 
+                                                      device = device, 
+                                                      temperature = config.temperature))
+                
+                print(f"{true_step} Text Sample: \n{train_text[-1]}")
+                
+            true_step +=1
+            if true_step == config.train_steps:
+                # If you receive a PyTorch data-loader error, check this bug report:
+                # https://github.com/pytorch/pytorch/pull/9655
+                print(f"End of training: {true_step}")
+                break
         
     print('Done training.')
     
