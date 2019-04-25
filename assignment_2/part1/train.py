@@ -26,54 +26,90 @@ import numpy as np
 import torch
 from torch.utils.data import DataLoader
 
-from part1.dataset import PalindromeDataset
-from part1.vanilla_rnn import VanillaRNN
-from part1.lstm import LSTM
+from dataset import PalindromeDataset
+from vanilla_rnn import VanillaRNN
+from lstm import LSTM
 
 # You may want to look into tensorboardX for logging
 # from tensorboardX import SummaryWriter
 
 ################################################################################
 
+def accuracy(predictions, label, config):
+    """computes accuracy as the average of the accuracies for all steps."""
+    return torch.sum(predictions.argmax(dim=1) == label).to(torch.float) / (config.batch_size)
+
+
 def train(config):
-
-    assert config.model_type in ('RNN', 'LSTM')
-
+    
+    config.model_type = config.model_type.lower()
+    assert config.model_type in ('rnn', 'lstm')
+    
     # Initialize the device which to run the model on
-    device = torch.device(config.device)
-
-    # Initialize the model that we are going to use
-    model = None  # fixme
+    wanted_device = config.device.lower()
+    if wanted_device == 'cuda':
+        #check if cuda is available
+        device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    else:
+        #cpu is the standard option
+        device = torch.device('cpu')
+        
+    
+    # Initialize the model that we are going to use    
+    if config.model_type == 'rnn':
+        model = VanillaRNN(seq_length = config.input_length,
+                           input_dim = config.input_dim,
+                           num_hidden = config.num_hidden,
+                           num_classes = config.num_classes,
+                           batch_size = config.batch_size,
+                           device = device)
+        
 
     # Initialize the dataset and data loader (note the +1)
     dataset = PalindromeDataset(config.input_length+1)
-    data_loader = DataLoader(dataset, config.batch_size, num_workers=1)
+    data_loader = DataLoader(dataset, config.batch_size, num_workers=0)
 
     # Setup the loss and optimizer
-    criterion = None  # fixme
-    optimizer = None  # fixme
+    criterion = torch.nn.CrossEntropyLoss()
+
+    optimizer = torch.optim.RMSprop(model.parameters(), 
+                                        lr=config.learning_rate)
+        
+    train_acc = np.zeros(config.train_steps+1)
 
     for step, (batch_inputs, batch_targets) in enumerate(data_loader):
 
         # Only for time measurement of step through network
         t1 = time.time()
 
-        # Add more code here ...
+        #batches to torch tensors
+        x = torch.tensor(batch_inputs, dtype=torch.float, device=device)
+        y_true = torch.tensor(batch_targets, dtype=torch.long, device=device)
 
+        #Forward pass
+        y_pred = model.forward(x)
+        loss = criterion(y_pred, y_true)
+        
+        #Backward pass
+        optimizer.zero_grad()
+        loss.backward()
+        
         ############################################################################
         # QUESTION: what happens here and why?
+        # clip_grad_norm() is a method to avoid exploding gradients. It clips 
+        # gradients above max_norm to max_norm.
+        #Deprecated, use clip_grad_norm_() instead
         ############################################################################
         torch.nn.utils.clip_grad_norm(model.parameters(), max_norm=config.max_norm)
         ############################################################################
 
-        # Add more code here ...
-
-        loss = np.inf   # fixme
-        accuracy = 0.0  # fixme
+        optimizer.step()
+        
+        train_acc[step] = accuracy(y_pred, y_true, config)
 
         # Just for time measurement
         t2 = time.time()
-        examples_per_second = config.batch_size/float(t2-t1)
+        examples_per_second = config.batch_size/(float(t2-t1) + 1e-6)
 
         if step % 10 == 0:
 
@@ -81,8 +117,9 @@ def train(config):
                   "Accuracy = {:.2f}, Loss = {:.3f}".format(
                     datetime.now().strftime("%Y-%m-%d %H:%M"), step,
                     config.train_steps, config.batch_size, examples_per_second,
-                    accuracy, loss
+                    train_acc[step], loss
             ))
+            print(f"x: {x[0,:]}, y_pred: {y_pred[0,:].argmax()}, y_true: {y_true[0]}")
 
         if step == config.train_steps:
             # If you receive a PyTorch data-loader error, check this bug report:
@@ -90,7 +127,9 @@ def train(config):
             break
 
     print('Done training.')
-
+    #Save the final model
+    torch.save(model, config.model_type + "_model.pt")
+    np.save("train_acc_" + config.model_type + str(config.input_length), train_acc)
 
  ################################################################################
  ################################################################################
@@ -110,7 +149,7 @@ if __name__ == "__main__":
     parser.add_argument('--learning_rate', type=float, default=0.001, help='Learning rate')
     parser.add_argument('--train_steps', type=int, default=10000, help='Number of training steps')
     parser.add_argument('--max_norm', type=float, default=10.0)
-    parser.add_argument('--device', type=str, default="cuda:0", help="Training device 'cpu' or 'cuda:0'")
+    parser.add_argument('--device', type=str, default="cuda:0", help="Training device 'cpu' or 'cuda'")
 
     config = parser.parse_args()
 
