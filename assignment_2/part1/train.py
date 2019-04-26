@@ -90,9 +90,11 @@ def train(config):
 
     optimizer = torch.optim.RMSprop(model.parameters(), 
                                         lr=config.learning_rate)
-        
+    
+    #keep stats
     train_acc = np.zeros(config.train_steps+1)
-
+    first_best_acc = 0
+    acc_MA = 0
     for step, (batch_inputs, batch_targets) in enumerate(data_loader):
 
         # Only for time measurement of step through network
@@ -116,18 +118,18 @@ def train(config):
         # gradients above max_norm to max_norm.
         #Deprecated, use clip_grad_norm_() instead
         ############################################################################
-        torch.nn.utils.clip_grad_norm(model.parameters(), max_norm=config.max_norm)
+        torch.nn.utils.clip_grad_norm_(model.parameters(), max_norm=config.max_norm)
         ############################################################################
 
         optimizer.step()
         
-        train_acc[step] = accuracy(y_pred, y_true, config)
+        train_acc[step] = accuracy(y_pred, y_true, config)        
 
         # Just for time measurement
         t2 = time.time()
         examples_per_second = config.batch_size/(float(t2-t1) + 1e-6)
 
-        if step % 10 == 0:
+        if step % config.print_every == 0:
 
             print("[{}] Train Step {:04d}/{:04d}, Batch Size = {}, Examples/Sec = {:.2f}, "
                   "Accuracy = {:.2f}, Loss = {:.3f}".format(
@@ -136,8 +138,9 @@ def train(config):
                     train_acc[step], loss
             ))
             print(f"x: {x[0,:]}, y_pred: {y_pred[0,:].argmax()}, y_true: {y_true[0]}")
-
-        if step == config.train_steps:
+            
+        acc_MA = train_acc[-5:].sum()/5
+        if step == config.train_steps or acc_MA == 1.0:
             # If you receive a PyTorch data-loader error, check this bug report:
             # https://github.com/pytorch/pytorch/pull/9655
             break
@@ -146,9 +149,39 @@ def train(config):
     #Save the final model
     torch.save(model, config.model_type + "_model.pt")
     np.save("train_acc_" + config.model_type + str(config.input_length), train_acc)
+    
+    if config.experiment:
+        stats = {}
+        stats["last acc"] = train_acc[-1]
+        first_best_acc = np.argmax(train_acc)
+        stats["best acc"] = train_acc[first_best_acc]
+        stats["step best acc"] = first_best_acc
+        stats["num steps"] = len(train_acc)
+        stats["accs"] = train_acc
+        return stats
 
  ################################################################################
  ################################################################################
+
+def experiment(config):
+    
+    start =5
+    end = 100
+    step = 5
+    
+    stats = []
+    for sl in range(start, end+1, step):
+        config.input_length = sl
+        stats.append(train(config))
+        #adds the config parameters to stats
+        for key, value in vars(config).items():
+            stats[-1][key] = value
+        
+    #save results
+    np.save("experiment_stats" + config.model_type + str(end), np.array(stats))
+    
+    
+    
 
 if __name__ == "__main__":
 
@@ -156,18 +189,36 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # Model params
-    parser.add_argument('--model_type', type=str, default="RNN", help="Model type, should be 'RNN' or 'LSTM'")
-    parser.add_argument('--input_length', type=int, default=10, help='Length of an input sequence')
-    parser.add_argument('--input_dim', type=int, default=1, help='Dimensionality of input sequence')
-    parser.add_argument('--num_classes', type=int, default=10, help='Dimensionality of output sequence')
-    parser.add_argument('--num_hidden', type=int, default=128, help='Number of hidden units in the model')
-    parser.add_argument('--batch_size', type=int, default=128, help='Number of examples to process in a batch')
-    parser.add_argument('--learning_rate', type=float, default=0.001, help='Learning rate')
-    parser.add_argument('--train_steps', type=int, default=10000, help='Number of training steps')
+    parser.add_argument('--model_type', type=str, default="LSTM", 
+                        help="Model type, should be 'RNN' or 'LSTM'")
+    parser.add_argument('--input_length', type=int, default=10, 
+                        help='Length of an input sequence')
+    parser.add_argument('--input_dim', type=int, default=1, 
+                        help='Dimensionality of input sequence')
+    parser.add_argument('--num_classes', type=int, default=10, 
+                        help='Dimensionality of output sequence')
+    parser.add_argument('--num_hidden', type=int, default=128, 
+                        help='Number of hidden units in the model')
+    parser.add_argument('--batch_size', type=int, default=128, 
+                        help='Number of examples to process in a batch')
+    parser.add_argument('--learning_rate', type=float, default=0.001, 
+                        help='Learning rate')
+    parser.add_argument('--train_steps', type=int, default=10000, 
+                        help='Number of training steps')
     parser.add_argument('--max_norm', type=float, default=10.0)
-    parser.add_argument('--device', type=str, default="cuda:0", help="Training device 'cpu' or 'cuda'")
+    parser.add_argument('--device', type=str, default="cpu", 
+                        help="Training device 'cpu' or 'cuda'")
+    parser.add_argument('--experiment', type = bool, default = True,
+                        help="Enter experimentation mode")
+    parser.add_argument('--print_every', type = int, default = 25,
+                        help="define how often print preliminary results")
+    
 
     config = parser.parse_args()
 
     # Train the model
-    train(config)
+    
+    if config.experiment:
+        experiment(config)    
+    else:
+        train(config)
