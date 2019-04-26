@@ -39,8 +39,17 @@ def accuracy(predictions, label, config):
     """computes accuracy as the average of the accuracies for all steps."""
     return torch.sum(predictions.argmax(dim=1) == label).to(torch.float) / (config.batch_size)
 
+def print_config(config):
+  """
+  Prints all entries of the config.
+  """
+  for key, value in vars(config).items():
+    print(key + ' : ' + str(value))
 
 def train(config):
+    
+    #print parameters
+    print_config(config)
     
     config.model_type = config.model_type.lower()
     assert config.model_type in ('rnn', 'lstm')
