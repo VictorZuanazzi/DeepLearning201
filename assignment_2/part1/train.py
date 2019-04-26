@@ -139,7 +139,7 @@ def train(config):
             ))
             print(f"x: {x[0,:]}, y_pred: {y_pred[0,:].argmax()}, y_true: {y_true[0]}")
             
-        acc_MA = train_acc[-5:].sum()/5
+        acc_MA = train_acc[step-4:step+1].sum()/5
         if step == config.train_steps or acc_MA == 1.0:
             # If you receive a PyTorch data-loader error, check this bug report:
             # https://github.com/pytorch/pytorch/pull/9655
@@ -189,7 +189,7 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # Model params
-    parser.add_argument('--model_type', type=str, default="LSTM", 
+    parser.add_argument('--model_type', type=str, default="RNN", 
                         help="Model type, should be 'RNN' or 'LSTM'")
     parser.add_argument('--input_length', type=int, default=10, 
                         help='Length of an input sequence')
@@ -210,7 +210,7 @@ if __name__ == "__main__":
                         help="Training device 'cpu' or 'cuda'")
     parser.add_argument('--experiment', type = bool, default = True,
                         help="Enter experimentation mode")
-    parser.add_argument('--print_every', type = int, default = 25,
+    parser.add_argument('--print_every', type = int, default = 100,
                         help="define how often print preliminary results")
     
 
