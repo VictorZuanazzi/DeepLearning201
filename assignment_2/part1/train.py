@@ -63,6 +63,13 @@ def train(config):
                            num_classes = config.num_classes,
                            batch_size = config.batch_size,
                            device = device)
+    elif config.model_type == 'lstm':
+        model = LSTM(seq_length = config.input_length,
+                       input_dim = config.input_dim,
+                       num_hidden = config.num_hidden,
+                       num_classes = config.num_classes,
+                       batch_size = config.batch_size,
+                       device = device)
         
 
     # Initialize the dataset and data loader (note the +1)
