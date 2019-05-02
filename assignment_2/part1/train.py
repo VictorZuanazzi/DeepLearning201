@@ -29,6 +29,7 @@ from torch.utils.data import DataLoader
 from dataset import PalindromeDataset
 from vanilla_rnn import VanillaRNN
 from lstm import LSTM
+from rrn import RRN
 
 # You may want to look into tensorboardX for logging
 # from tensorboardX import SummaryWriter
@@ -52,7 +53,7 @@ def train(config):
     print_config(config)
     
     config.model_type = config.model_type.lower()
-    assert config.model_type in ('rnn', 'lstm')
+    assert config.model_type in ('rnn', 'lstm', 'rrn')
     
     # Initialize the device which to run the model on
     wanted_device = config.device.lower()
@@ -74,6 +75,13 @@ def train(config):
                            device = device)
     elif config.model_type == 'lstm':
         model = LSTM(seq_length = config.input_length,
+                       input_dim = config.input_dim,
+                       num_hidden = config.num_hidden,
+                       num_classes = config.num_classes,
+                       batch_size = config.batch_size,
+                       device = device)
+    elif config.model_type == 'rrn':
+        model = RRN(seq_length = config.input_length,
                        input_dim = config.input_dim,
                        num_hidden = config.num_hidden,
                        num_classes = config.num_classes,
@@ -165,9 +173,9 @@ def train(config):
 
 def experiment(config):
     
-    start =5
-    end = 100
-    step = 5
+    start = 50
+    end = 500
+    step = 50
     
     stats = []
     for sl in range(start, end+1, step):
@@ -177,8 +185,8 @@ def experiment(config):
         for key, value in vars(config).items():
             stats[-1][key] = value
         
-    #save results
-    np.save("experiment_stats" + config.model_type + str(end), np.array(stats))
+        #save results
+        np.save("experiment_stats_500" + config.model_type + str(end), np.array(stats))
     
     
     
@@ -189,17 +197,17 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
 
     # Model params
-    parser.add_argument('--model_type', type=str, default="RNN", 
-                        help="Model type, should be 'RNN' or 'LSTM'")
+    parser.add_argument('--model_type', type=str, default="RRN", 
+                        help="Model type, should be 'RNN', 'LSTM' or 'RRN'")
     parser.add_argument('--input_length', type=int, default=10, 
                         help='Length of an input sequence')
     parser.add_argument('--input_dim', type=int, default=1, 
                         help='Dimensionality of input sequence')
     parser.add_argument('--num_classes', type=int, default=10, 
                         help='Dimensionality of output sequence')
-    parser.add_argument('--num_hidden', type=int, default=128, 
+    parser.add_argument('--num_hidden', type=int, default= 128,
                         help='Number of hidden units in the model')
-    parser.add_argument('--batch_size', type=int, default=128, 
+    parser.add_argument('--batch_size', type=int, default= 128, 
                         help='Number of examples to process in a batch')
     parser.add_argument('--learning_rate', type=float, default=0.001, 
                         help='Learning rate')
