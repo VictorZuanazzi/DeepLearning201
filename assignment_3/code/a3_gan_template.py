@@ -138,7 +138,10 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
     path_images = args.save_images +"/"
     path_model = args.save_model + "/"
     epsilon = 1e-8
+    max_loss = 100
     
+    epoch = 0
+    #Lisa does about 2 epochs per minute
     for epoch in range(args.n_epochs):
         
         #keep stats of each step
@@ -156,7 +159,7 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
             # Train Generator
             z = torch.randn(current_batch, latent_dim, device = device)
             l_G = -torch.log(discriminator(generator(z))).sum()
-            l_G.clamp(epsilon)
+            l_G.clamp(min = epsilon, max = max_loss)
             
             optimizer_G.zero_grad()
             l_G.backward()
@@ -170,7 +173,7 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
             fake = discriminator(generator(z))
             
             l_D = -(torch.log(real) + torch.log(1 - fake)).sum()
-            l_D.clamp(epsilon)
+            l_D.clamp(epsilon, max = max_loss)
             
             if not((acc[-1] > max_acc) & freeze_D):
                 #don't train the discriminator if it's accuracy is too high.
