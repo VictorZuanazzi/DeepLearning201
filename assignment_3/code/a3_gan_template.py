@@ -216,7 +216,7 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
         stats["score"].append(np.array(scr).mean())
         
         #in case the Discriminator is too good, we just restart it!
-        if reset_D & (stats["accuracy"][-1] > max_acc):
+        if (stats["accuracy"][-1] > reset_D):
             print(f"Restarting the discriminator, acc: {stats['accuracy'][-1]:0.5f}")
             discriminator.apply(weight_reset)
             
@@ -340,11 +340,11 @@ if __name__ == "__main__":
                         help='accuracy to apply regularization to the discriminator')
     parser.add_argument('--freeze_D', type = bool, default = True,
                         help='If true does not train the discriminator when it reaches accuracy above args.max_acc')
-    parser.add_argument('--reset_D', type = bool, default = False,
-                        help='If True, the weights of the discriminator are reinitialized when the accuracy is > than args.max_acc')
+    parser.add_argument('--reset_D', type = float, default = 0.95,
+                        help='if accuracy is higher than reset_D, then the discriminator has its weights randomly re-initialized')
     parser.add_argument('--continue_G', type = bool, default = True,
                         help='If True it continues training the previous best generator')
-    parser.add_argument('--continue_D', type = bool, default = True,
+    parser.add_argument('--continue_D', type = bool, default = False,
                         help='If True it continues training the previous best discriminator')
     args = parser.parse_args()
 
