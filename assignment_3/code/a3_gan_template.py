@@ -265,7 +265,7 @@ def create_dir(folder, dataset):
 def load_model(model, folder_name, model_name):
     path = "./" + folder_name + "/"
     try:
-        model.load_state_dict(torch.load(path + model_name))
+        model.load_state_dict(torch.load(path + model_name, strict = False))
     except:
         print(f"{model_name} not found, random initialization will be used.")
     
