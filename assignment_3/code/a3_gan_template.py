@@ -227,6 +227,7 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
         #save current state of the model
         best_G = ""
         if stats["score"][-1] == max(stats["score"]):
+            #check why that is not saving the best model.
             best_G = "_best"
             
         best_D = ""
@@ -249,6 +250,11 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
                     path_images + 'real_{}.png'.format(epoch),
                     nrow=5,
                     normalize=True)
+        
+        if (epoch > 100) & (0.45 <= np.array(stats["accuracy"][-5:]).mean() <= 0.55):
+            #the training has converged when acc ~ .5
+            print("Training has converged. MA Acc: {stats['accuracy'][-5:].mean()}")
+        
     
 def print_args(args):
   """
