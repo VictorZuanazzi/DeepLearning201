@@ -10,7 +10,7 @@ import numpy as np
 
 
 class Generator(nn.Module):
-    def __init__(self):
+    def __init__(self, latent_dim = 100):
         super(Generator, self).__init__()
 
         # Construct generator. You are free to experiment with your model,
@@ -29,10 +29,11 @@ class Generator(nn.Module):
         #   Linear 1024 -> 768
         #   Output non-Linearity
         
+        self.latent_dim = latent_dim
         leak = 0.2
         
         #suggested implementation
-        self.generator = nn.Sequential(nn.Linear(args.latent_dim, 128),
+        self.generator = nn.Sequential(nn.Linear(self.latent_dim, 128),
                                        nn.LeakyReLU(leak),
                                        nn.Linear(128,256),
                                        nn.BatchNorm1d(256),
