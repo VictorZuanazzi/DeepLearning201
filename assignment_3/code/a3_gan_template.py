@@ -253,7 +253,8 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
         
         if (epoch > 100) & (0.45 <= np.array(stats["accuracy"][-5:]).mean() <= 0.55):
             #the training has converged when acc ~ .5
-            print("Training has converged. MA Acc: {stats['accuracy'][-5:].mean()}")
+            print(f"Training has converged. MA Acc: {stats['accuracy'][-5:].mean()}")
+            break
         
     
 def print_args(args):
@@ -295,7 +296,7 @@ def main():
         batch_size=args.batch_size, shuffle=True)
 
     # Initialize models
-    generator = Generator()
+    generator = Generator(latent_dim = args.latent_dim)
     discriminator = Discriminator()
     
     #loads pre-trained models
