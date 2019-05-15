@@ -235,12 +235,17 @@ def epoch_iter(model, data, optimizer):
             #backward pass
             optimizer.zero_grad()
             loss.backward()
+            
+            #things break from time to time, that keeps things from breaking!
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 
+                                           max_norm=5.0)
             optimizer.step()
             
         bpds += loss.item()
     
     #average bpds
-    avg_bpd = bpds/(i+1)
+    #log(2) converts it to log_2(x)
+    avg_bpd = bpds/((i+1)*X.shape[1]*np.log(2))
 
     return avg_bpd
 
@@ -325,11 +330,10 @@ def main(ARGS):
         path = ARGS.save_path + 'images_nfs' + "/"
         save_images(model, epoch, path)
 
-        bpds = run_epoch(model, data, optimizer)
-        train_bpd, val_bpd = bpds
+        train_bpd, val_bpd = run_epoch(model, data, optimizer)
         train_curve.append(train_bpd)
         dev_curve.append(val_bpd)
-        print("[Epoch {epoch}] train bpd: {train_bpd} val_bpd: {val_bpd}".format(
+        print("[Epoch {epoch}] train bpd: {train_bpd:.5f} val_bpd: {val_bpd:.5f}".format(
             epoch=epoch, train_bpd=train_bpd, val_bpd=val_bpd))
         
         #save stats
@@ -354,7 +358,7 @@ if __name__ == "__main__":
                         help='torch device intended, "cpu" or "cuda".')
     parser.add_argument('--lr', default = 1e-3, type = float,
                         help = 'learning rate')
-    parser.add_argument('--save_path', default = './nf/', type = str,
+    parser.add_argument('--save_path', default = './nf2/', type = str,
                         help='define path where to save all subfolders')
     
     ARGS = parser.parse_args()
