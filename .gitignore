@@ -18,3 +18,39 @@ assignment_3/code/images/
 assignment_3/code/first trial \(resets \+ random init\)/
 
 assignment_3/code/data/
+
+assignment_3/code/\.idea/
+
+assignment_3/code/venv/
+
+assignment_3/code/VAE_VAE_20/
+
+assignment_3/code/VAE_test/
+
+assignment_3/code/VAE_KL/
+
+assignment_3/code/VAE_2d/
+
+assignment_3/code/samples_VAE_20/
+
+assignment_3/code/samples_test/
+
+assignment_3/code/samples_KL/
+
+assignment_3/code/samples_2d/
+
+assignment_3/code/samples_20/
+
+assignment_3/code/nf2/
+
+assignment_3/code/nf1/
+
+assignment_3/code/nf/
+
+assignment_3/code/model05/
+
+assignment_3/code/local trial/
+
+assignment_3/code/GAN trials/
+
+assignment_3/code/\.ipynb_checkpoints/
