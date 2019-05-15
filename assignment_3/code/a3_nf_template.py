@@ -15,10 +15,10 @@ def log_prior(x):
     Compute the elementwise log probability of a standard Gaussian, i.e.
     N(x | mu=0, sigma=1).
     """
-    two_pi = torch.tensor(2 * np.pi) #for redability
-    logp = torch.sum( - 0.5 * x.pow(2) - torch.log(torch.sqrt(two_pi)),
+    two_pi = torch.tensor(2 * np.pi)  # for redability
+    logp = torch.sum(- 0.5 * x.pow(2) - torch.log(torch.sqrt(two_pi)),
                      dim=1)
-    
+
     return logp
 
 
@@ -26,12 +26,12 @@ def sample_prior(size, device):
     """
     Sample from a standard Gaussian.
     """
-    
-    #standard Gaussian mean and std
+
+    # standard Gaussian mean and std
     mean = torch.zeros(size)
     std = torch.ones(size)
-    
-    #sample
+
+    # sample
     sample = torch.normal(mean, std).to(device)
 
     return sample
@@ -39,14 +39,14 @@ def sample_prior(size, device):
 
 def get_mask():
     """mask stuff"""
-    
+
     mask = np.zeros((28, 28), dtype='float32')
     for i in range(28):
         for j in range(28):
             if (i + j) % 2 == 0:
                 mask[i, j] = 1
 
-    mask = mask.reshape(1, 28*28)
+    mask = mask.reshape(1, 28 * 28)
     mask = torch.from_numpy(mask)
 
     return mask
@@ -64,14 +64,14 @@ class Coupling(torch.nn.Module):
         # scale variables.
         # Suggestion: Linear ReLU Linear ReLU Linear.
         self.shared_net = torch.nn.Sequential(nn.Linear(c_in, n_hidden),
-                                      nn.ReLU(),
-                                      nn.Linear(n_hidden, n_hidden),
-                                      nn.ReLU())
-        
+                                              nn.ReLU(),
+                                              nn.Linear(n_hidden, n_hidden),
+                                              nn.ReLU())
+
         self.t_net = nn.Linear(n_hidden, c_in)
-        
+
         self.scale_net = torch.nn.Sequential(nn.Linear(n_hidden, c_in),
-                                      nn.Tanh())
+                                             nn.Tanh())
 
         # The nn should be initialized such that the weights of the last layer
         # is zero, so that its initial transform is identity.
@@ -89,35 +89,34 @@ class Coupling(torch.nn.Module):
         # NOTE: For stability, it is advised to model the scale via:
         # log_scale = tanh(h), where h is the scale-output
         # from the NN.
-        
-        #use mask on z
+
+        # use mask on z
         z_mask = self.mask * z
-        
-        #Segue o FLOW
+
+        # Segue o FLOW
         hidden = self.shared_net(z_mask)
         t = self.t_net(hidden)
         scale = self.scale_net(hidden)
-        
 
         if not reverse:
-            #direct direction
+            # direct direction
             z = z_mask + (1 - self.mask) * (z * torch.exp(scale) + t)
-            
-            ldj += torch.sum((1 - self.mask) * scale, 
+
+            ldj += torch.sum((1 - self.mask) * scale,
                              dim=1)
-            
+
         else:
-            #reverse direction
+            # reverse direction
             z = z_mask + (1 - self.mask) * (z - t) * torch.exp(-scale)
-            
-            #set the log determinant to zero for consistent output.
+
+            # set the log determinant to zero for consistent output.
             ldj = torch.zeros_like(ldj)
-            
+
         return z, ldj
 
 
 class Flow(nn.Module):
-    def __init__(self, shape, n_flows=4, device = 'cpu'):
+    def __init__(self, shape, n_flows=4, device='cpu'):
         super().__init__()
         channels, = shape
 
@@ -125,9 +124,9 @@ class Flow(nn.Module):
 
         self.layers = torch.nn.ModuleList()
 
-        for i in range(n_flows):
+        for _ in range(n_flows):
             self.layers.append(Coupling(c_in=channels, mask=mask))
-            self.layers.append(Coupling(c_in=channels, mask=1-mask))
+            self.layers.append(Coupling(c_in=channels, mask=1 - mask))
 
         self.z_shape = (channels,)
 
@@ -143,11 +142,11 @@ class Flow(nn.Module):
 
 
 class Model(nn.Module):
-    def __init__(self, shape, device = 'cpu'):
+    def __init__(self, shape, device='cpu'):
         super().__init__()
-        self.flow = Flow(shape, device = device).to(device)
+        self.flow = Flow(shape, device=device).to(device)
         self.device = device
-        
+
     def dequantize(self, z):
         return z + torch.rand_like(z)
 
@@ -163,13 +162,13 @@ class Model(nn.Module):
             logdet -= np.log(256) * np.prod(z.size()[1:])
 
             # Logit normalize
-            z = z*(1-alpha) + alpha*0.5
-            logdet += torch.sum(-torch.log(z) - torch.log(1-z), dim=1)
-            z = torch.log(z) - torch.log(1-z)
+            z = z * (1 - alpha) + alpha * 0.5
+            logdet += torch.sum(-torch.log(z) - torch.log(1 - z), dim=1)
+            z = torch.log(z) - torch.log(1 - z)
 
         else:
             # Inverse normalize
-            logdet += torch.sum(torch.log(z) + torch.log(1-z), dim=1)
+            logdet += torch.sum(torch.log(z) + torch.log(1 - z), dim=1)
             z = torch.sigmoid(z)
 
             # Multiply by 256.
@@ -201,13 +200,13 @@ class Model(nn.Module):
         Sample n_samples from the model. Sample from prior and create ldj.
         Then invert the flow and invert the logit_normalize.
         """
-        
+
         z = sample_prior((n_samples,) + self.flow.z_shape, self.device)
         ldj = torch.zeros(z.size(0), device=z.device)
 
-        #invert the flow
-        z, ldj = self.flow.forward(z, ldj, reverse = True)
-        z, ldj = self.logit_normalize(z, ldj, reverse = True)
+        # invert the flow
+        z, ldj = self.flow.forward(z, ldj, reverse=True)
+        z, ldj = self.logit_normalize(z, ldj, reverse=True)
 
         return z.to(self.device)
 
@@ -220,32 +219,32 @@ def epoch_iter(model, data, optimizer):
     Returns the average bpd ("bits per dimension" which is the negative
     log_2 likelihood per dimension) averaged over the complete epoch.
     """
-    
+
     bpds = 0.0
-    
+
     for i, (X, _) in enumerate(data):
 
-        #forward pass
+        # forward pass
         log_px = model.forward(X.to(model.device))
-        
-        #calculate the loss
+
+        # calculate the loss
         loss = - log_px.mean()
-        
+
         if model.training:
-            #backward pass
+            # backward pass
             optimizer.zero_grad()
             loss.backward()
-            
-            #things break from time to time, that keeps things from breaking!
-            torch.nn.utils.clip_grad_norm_(model.parameters(), 
+
+            # things break from time to time, that keeps things from breaking!
+            torch.nn.utils.clip_grad_norm_(model.parameters(),
                                            max_norm=5.0)
             optimizer.step()
-            
+
         bpds += loss.item()
-    
-    #average bpds
-    #log(2) converts it to log_2(x)
-    avg_bpd = bpds/((i+1)*X.shape[1]*np.log(2))
+
+    # average bpds
+    # log(2) converts it to log_2(x)
+    avg_bpd = bpds / ((i + 1) * X.shape[1] * np.log(2))
 
     return avg_bpd
 
@@ -275,58 +274,59 @@ def save_bpd_plot(train_curve, dev_curve, filename):
     plt.tight_layout()
     plt.savefig(filename)
 
+
 def get_device(args):
-    #defines the device to be used.
+    # defines the device to be used.
     wanted_device = args.device.lower()
     if wanted_device == 'cuda':
-        #check if cuda is available
+        # check if cuda is available
         device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     else:
-        #cpu is the standard option
+        # cpu is the standard option
         device = torch.device('cpu')
-        
+
     return device
 
+
 def print_args(args):
-  """
-  Prints all entries of the config.
-  """
-  for key, value in vars(args).items():
-    print(key + ' : ' + str(value))
-    
-def save_images(model, epoch, path, num_examples = 25):
+    """
+    Prints all entries of the config.
+    """
+    for key, value in vars(args).items():
+        print(key + ' : ' + str(value))
+
+
+def save_images(model, epoch, path, num_examples=25):
     generated = model.sample(num_examples).detach().reshape(num_examples, 1, 28, 28)
-    grid = make_grid(generated, nrow = 5, normalize=True).permute(1,2,0)
+    grid = make_grid(generated, nrow=5, normalize=True).permute(1, 2, 0)
     name = f"epoch {epoch}.png"
     plt.imsave(path + name, grid)
 
+
 def main(ARGS):
-    
-    #load data:
+    # load data:
     data = mnist()[:2]  # ignore test split
-    
-    #load device
+
+    # load device
     device = get_device(ARGS)
-    
-    #print args:
+
+    # print args:
     print_args(ARGS)
     print(f"Device used: {device}")
-    
-    #load model
+
+    # load model
     model = Model(shape=[784]).to(device)
 
-    #load optimizer
-    optimizer = torch.optim.Adam(model.parameters(), 
+    # load optimizer
+    optimizer = torch.optim.Adam(model.parameters(),
                                  lr=ARGS.lr)
-    
 
-    #make directory to save images
-    os.makedirs(ARGS.save_path + 'images_nfs', 
+    # make directory to save images
+    os.makedirs(ARGS.save_path + 'images_nfs',
                 exist_ok=True)
-    
+
     train_curve, dev_curve = [], []
     for epoch in range(ARGS.epochs):
-        
         path = ARGS.save_path + 'images_nfs' + "/"
         save_images(model, epoch, path)
 
@@ -335,19 +335,18 @@ def main(ARGS):
         dev_curve.append(val_bpd)
         print("[Epoch {epoch}] train bpd: {train_bpd:.5f} val_bpd: {val_bpd:.5f}".format(
             epoch=epoch, train_bpd=train_bpd, val_bpd=val_bpd))
-        
-        #save stats
+
+        # save stats
         stats = {"train loss": train_curve, "dev_loss": dev_curve}
         np.save(ARGS.save_path + "stats.npy", stats)
-        
-        #save model
-        torch.save(model.state_dict(), 
+
+        # save model
+        torch.save(model.state_dict(),
                    ARGS.save_path + model.__class__.__name__ + ".pt")
-        
-        
-    save_bpd_plot(train_curve, 
-                  dev_curve, 
-                  ARGS.save_path +'nfs_bpd.pdf')
+
+    save_bpd_plot(train_curve,
+                  dev_curve,
+                  ARGS.save_path + 'nfs_bpd.pdf')
 
 
 if __name__ == "__main__":
@@ -356,11 +355,11 @@ if __name__ == "__main__":
                         help='max number of epochs')
     parser.add_argument('--device', default='cpu', type = str,
                         help='torch device intended, "cpu" or "cuda".')
-    parser.add_argument('--lr', default = 1e-3, type = float,
-                        help = 'learning rate')
-    parser.add_argument('--save_path', default = './nf2/', type = str,
+    parser.add_argument('--lr', default=1e-3, type=float,
+                        help='learning rate')
+    parser.add_argument('--save_path', default='./nf2/', type=str,
                         help='define path where to save all subfolders')
-    
+
     ARGS = parser.parse_args()
 
     main(ARGS)
