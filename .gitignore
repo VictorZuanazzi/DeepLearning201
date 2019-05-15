@@ -54,3 +54,15 @@ assignment_3/code/local trial/
 assignment_3/code/GAN trials/
 
 assignment_3/code/\.ipynb_checkpoints/
+
+assignment_2/part1/\.ipynb_checkpoints/
+
+*.zip
+
+*.npy
+
+assignment_2/part2/Shakespeare/
+
+assignment_2/part2/Machado/
+
+assignment_2/part2/Dumas/
