@@ -65,10 +65,10 @@ def mnist(root='./data/', batch_size=128, download=True):
     val_dataset = data.dataset.Subset(dataset, np.arange(40000, 50000))
 
     trainloader = data.DataLoader(
-        train_dataset, batch_size=batch_size, shuffle=True, num_workers=4)
+        train_dataset, batch_size=batch_size, shuffle=True, num_workers=0) #num_workers=4
     valloader = data.DataLoader(
-        val_dataset, batch_size=batch_size, shuffle=False, num_workers=4)
+        val_dataset, batch_size=batch_size, shuffle=False, num_workers=0) #num_workers=4
     testloader = data.DataLoader(
-        test_set, batch_size=batch_size, shuffle=False, num_workers=4)
+        test_set, batch_size=batch_size, shuffle=False, num_workers=0)  #num_workers=4
 
     return trainloader, valloader, testloader

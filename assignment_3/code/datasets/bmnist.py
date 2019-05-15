@@ -140,10 +140,10 @@ def bmnist(root='./data/', batch_size=128, download=True):
     test_set = BMNIST(root, 'test', data_transforms, download)
 
     trainloader = torch.utils.data.DataLoader(train_set, batch_size=batch_size,
-                                              shuffle=True, num_workers=4)
+                                              shuffle=True, num_workers=0) #num_workers=4
     valloader = torch.utils.data.DataLoader(val_set, batch_size=batch_size,
-                                            shuffle=False, num_workers=10)
+                                            shuffle=False, num_workers=0)#num_workers=10
     testloader = torch.utils.data.DataLoader(test_set, batch_size=batch_size,
-                                             shuffle=False, num_workers=10)
+                                             shuffle=False, num_workers=0)#num_workers=10
 
     return trainloader, valloader, testloader
