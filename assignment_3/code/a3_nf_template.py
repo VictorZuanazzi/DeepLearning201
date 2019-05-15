@@ -63,16 +63,22 @@ class Coupling(torch.nn.Module):
         # Create shared architecture to generate both the translation and
         # scale variables.
         # Suggestion: Linear ReLU Linear ReLU Linear.
-        self.net = torch.nn.Sequential(nn.Linear(c_in, n_hidden),
+        self.shared_net = torch.nn.Sequential(nn.Linear(c_in, n_hidden),
                                       nn.ReLU(),
                                       nn.Linear(n_hidden, n_hidden),
-                                      nn.ReLU(),
-                                      nn.Linear(n_hidden, c_in))
+                                      nn.ReLU())
+        
+        self.t_net = nn.Linear(n_hidden, c_in)
+        
+        self.scale_net = torch.nn.Sequential(nn.Linear(n_hidden, c_in),
+                                      nn.Tanh())
 
         # The nn should be initialized such that the weights of the last layer
         # is zero, so that its initial transform is identity.
-        self.net[-1].weight.data.zero_()
-        self.net[-1].bias.data.zero_()
+        self.t_net.weight.data.zero_()
+        self.t_net.bias.data.zero_()
+        self.scale_net[0].weight.data.zero_()
+        self.scale_net[0].bias.data.zero_()
 
     def forward(self, z, ldj, reverse=False):
         # Implement the forward and inverse for an affine coupling layer. Split
@@ -88,22 +94,21 @@ class Coupling(torch.nn.Module):
         z_mask = self.mask * z
         
         #Segue o FLOW
-        z_flow = self.net(z_mask) 
-        
-        #scale factor
-        scale = torch.tanh(z_flow)
+        hidden = self.shared_net(z_mask)
+        t = self.t_net(hidden)
+        scale = self.scale_net(hidden)
         
 
         if not reverse:
             #direct direction
-            z = z_mask + (1 - self.mask) * (z * torch.exp(scale) + z_flow)
+            z = z_mask + (1 - self.mask) * (z * torch.exp(scale) + t)
             
             ldj += torch.sum((1 - self.mask) * scale, 
                              dim=1)
             
         else:
             #reverse direction
-            z = z_mask + (1 - self.mask) * (z - z_flow) * torch.exp(-scale)
+            z = z_mask + (1 - self.mask) * (z - t) * torch.exp(-scale)
             
             #set the log determinant to zero for consistent output.
             ldj = torch.zeros_like(ldj)
@@ -112,11 +117,11 @@ class Coupling(torch.nn.Module):
 
 
 class Flow(nn.Module):
-    def __init__(self, shape, n_flows=4):
+    def __init__(self, shape, n_flows=4, device = 'cpu'):
         super().__init__()
         channels, = shape
 
-        mask = get_mask()
+        mask = get_mask().to(device)
 
         self.layers = torch.nn.ModuleList()
 
@@ -140,7 +145,7 @@ class Flow(nn.Module):
 class Model(nn.Module):
     def __init__(self, shape, device = 'cpu'):
         super().__init__()
-        self.flow = Flow(shape)
+        self.flow = Flow(shape, device = device).to(device)
         self.device = device
         
     def dequantize(self, z):
@@ -204,7 +209,7 @@ class Model(nn.Module):
         z, ldj = self.flow.forward(z, ldj, reverse = True)
         z, ldj = self.logit_normalize(z, ldj, reverse = True)
 
-        return z
+        return z.to(self.device)
 
 
 def epoch_iter(model, data, optimizer):
@@ -225,13 +230,14 @@ def epoch_iter(model, data, optimizer):
         
         #calculate the loss
         loss = - log_px.mean()
-        bpds += loss
         
         if model.training:
             #backward pass
             optimizer.zero_grad()
             loss.backward()
             optimizer.step()
+            
+        bpds += loss.item()
     
     #average bpds
     avg_bpd = bpds/(i+1)
