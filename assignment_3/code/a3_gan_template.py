@@ -151,8 +151,14 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
         scr = [0]
         
         for i, (imgs, _) in enumerate(dataloader):
-
+            
+            #flatten images
             x = imgs.view(-1, 784).to(device)
+            
+            #data augmentation
+            if np.random.rand(1) > .5:
+                #invert black and white pixels
+                x = -1*x
             
             current_batch = x.shape[0]
 
@@ -323,9 +329,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
     #define folders
-    parser.add_argument('--save_images', type = str, default = 'images',
+    parser.add_argument('--save_images', type = str, default = 'GAN_BW',
                         help='folder to save generated images.')
-    parser.add_argument('--save_model', type = str, default = 'model',
+    parser.add_argument('--save_model', type = str, default = 'model_BW',
                         help='folder to save the models.')
     parser.add_argument('--dataset', type = str, default = 'MNIST',
                         help='dataset to be used for training.')
