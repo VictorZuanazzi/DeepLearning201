@@ -8,7 +8,9 @@ import numpy as np
 from datasets.mnist import mnist
 import os
 from torchvision.utils import make_grid
+from pdb import set_trace
 
+DTYPE = torch.FloatTensor
 
 def log_prior(x):
     """
@@ -27,12 +29,8 @@ def sample_prior(size, device):
     Sample from a standard Gaussian.
     """
 
-    # standard Gaussian mean and std
-    mean = torch.zeros(size)
-    std = torch.ones(size)
-
     # sample
-    sample = torch.normal(mean, std).to(device)
+    sample = torch.randn(size, device=device)
 
     return sample
 
@@ -53,9 +51,10 @@ def get_mask():
 
 
 class Coupling(torch.nn.Module):
-    def __init__(self, c_in, mask, n_hidden=1024):
+    def __init__(self, c_in, mask, n_hidden=1024, device = 'cpu'):
         super().__init__()
         self.n_hidden = n_hidden
+        self.device = device
 
         # Assigns mask to self.mask and creates reference for pytorch.
         self.register_buffer('mask', mask)
@@ -91,26 +90,26 @@ class Coupling(torch.nn.Module):
         # from the NN.
 
         # use mask on z
-        z_mask = self.mask * z
+        z_mask = z *self.mask
 
         # Segue o FLOW
         hidden = self.shared_net(z_mask)
         t = self.t_net(hidden)
-        scale = self.scale_net(hidden)
+        log_scale = self.scale_net(hidden)
 
         if not reverse:
             # direct direction
-            z = z_mask + (1 - self.mask) * (z * torch.exp(scale) + t)
+            z = z_mask + (1 - self.mask) * (z * torch.exp(log_scale) + t)
 
-            ldj += torch.sum((1 - self.mask) * scale,
+            ldj += torch.sum((1 - self.mask) * log_scale,
                              dim=1)
 
         else:
             # reverse direction
-            z = z_mask + (1 - self.mask) * (z - t) * torch.exp(-scale)
+            z = z_mask + (1 - self.mask) * (z - t) * torch.exp(-log_scale)
 
             # set the log determinant to zero for consistent output.
-            ldj = torch.zeros_like(ldj)
+            ldj = torch.zeros_like(ldj) #correct that (look at logit normalize!)
 
         return z, ldj
 
@@ -119,14 +118,24 @@ class Flow(nn.Module):
     def __init__(self, shape, n_flows=4, device='cpu'):
         super().__init__()
         channels, = shape
-
-        mask = get_mask().to(device)
+        self.device = device
+        mask = get_mask()
 
         self.layers = torch.nn.ModuleList()
 
         for _ in range(n_flows):
-            self.layers.append(Coupling(c_in=channels, mask=mask))
-            self.layers.append(Coupling(c_in=channels, mask=1 - mask))
+            
+            #mask the first half
+            forward_coupling = Coupling(c_in=channels, 
+                                        mask=mask, 
+                                        device = device)
+            self.layers.append(forward_coupling)
+            
+            #mask the second half
+            reverse_coupling = Coupling(c_in=channels, 
+                                        mask=1 - mask, 
+                                        device = device)
+            self.layers.append(reverse_coupling)
 
         self.z_shape = (channels,)
 
@@ -144,7 +153,7 @@ class Flow(nn.Module):
 class Model(nn.Module):
     def __init__(self, shape, device='cpu'):
         super().__init__()
-        self.flow = Flow(shape, device=device).to(device)
+        self.flow = Flow(shape, device=device)
         self.device = device
 
     def dequantize(self, z):
@@ -155,7 +164,7 @@ class Model(nn.Module):
         Inverse sigmoid normalization.
         """
         alpha = 1e-5
-
+        
         if not reverse:
             # Divide by 256 and update ldj.
             z = z / 256.
@@ -163,12 +172,14 @@ class Model(nn.Module):
 
             # Logit normalize
             z = z * (1 - alpha) + alpha * 0.5
-            logdet += torch.sum(-torch.log(z) - torch.log(1 - z), dim=1)
+            logdet += torch.sum(-torch.log(z) - torch.log(1 - z), 
+                                dim=1)
             z = torch.log(z) - torch.log(1 - z)
 
         else:
             # Inverse normalize
-            logdet += torch.sum(torch.log(z) + torch.log(1 - z), dim=1)
+            logdet += torch.sum(torch.log(z) + torch.log(1 - z), 
+                                dim=1)
             z = torch.sigmoid(z)
 
             # Multiply by 256.
@@ -182,7 +193,7 @@ class Model(nn.Module):
         Given input, encode the input to z space. Also keep track of ldj.
         """
         z = input
-        ldj = torch.zeros(z.size(0), device=z.device)
+        ldj = torch.zeros(z.size(0), device = z.device)
 
         z = self.dequantize(z)
         z, ldj = self.logit_normalize(z, ldj)
@@ -201,17 +212,17 @@ class Model(nn.Module):
         Then invert the flow and invert the logit_normalize.
         """
 
-        z = sample_prior((n_samples,) + self.flow.z_shape, self.device)
-        ldj = torch.zeros(z.size(0), device=z.device)
+        z = sample_prior((n_samples,) + self.flow.z_shape, device = self.device)
+        ldj = torch.zeros(z.size(0), device=self.device)
 
         # invert the flow
         z, ldj = self.flow.forward(z, ldj, reverse=True)
-        z, ldj = self.logit_normalize(z, ldj, reverse=True)
+        z, _ = self.logit_normalize(z, ldj, reverse=True)
 
-        return z.to(self.device)
+        return z
 
 
-def epoch_iter(model, data, optimizer):
+def epoch_iter(model, data, optimizer, device):
     """
     Perform a single epoch for either the training or validation.
     use model.training to determine if in 'training mode' or not.
@@ -224,8 +235,14 @@ def epoch_iter(model, data, optimizer):
 
     for i, (X, _) in enumerate(data):
 
+        flip = np.random.rand()
+        
+        if flip > .5:
+            X = 255 - X
+        
         # forward pass
-        log_px = model.forward(X.to(model.device))
+        X = X.to(device)
+        log_px = model.forward(X)
 
         # calculate the loss
         loss = - log_px.mean()
@@ -249,17 +266,17 @@ def epoch_iter(model, data, optimizer):
     return avg_bpd
 
 
-def run_epoch(model, data, optimizer):
+def run_epoch(model, data, optimizer, device):
     """
     Run a train and validation epoch and return average bpd for each.
     """
     traindata, valdata = data
 
     model.train()
-    train_bpd = epoch_iter(model, traindata, optimizer)
+    train_bpd = epoch_iter(model, traindata, optimizer, device)
 
     model.eval()
-    val_bpd = epoch_iter(model, valdata, optimizer)
+    val_bpd = epoch_iter(model, valdata, optimizer, device)
 
     return train_bpd, val_bpd
 
@@ -297,7 +314,7 @@ def print_args(args):
 
 
 def save_images(model, epoch, path, num_examples=25):
-    generated = model.sample(num_examples).detach().reshape(num_examples, 1, 28, 28)
+    generated = model.sample(num_examples).detach().reshape(num_examples, 1, 28, 28).cpu()
     grid = make_grid(generated, nrow=5, normalize=True).permute(1, 2, 0)
     name = f"epoch {epoch}.png"
     plt.imsave(path + name, grid)
@@ -309,13 +326,16 @@ def main(ARGS):
 
     # load device
     device = get_device(ARGS)
+    
+    if device == 'cuda':
+        torch.Tensor = torch.cuda.FloatTensor
 
     # print args:
     print_args(ARGS)
     print(f"Device used: {device}")
 
     # load model
-    model = Model(shape=[784]).to(device)
+    model = Model(shape=[784], device = device).to(device)
 
     # load optimizer
     optimizer = torch.optim.Adam(model.parameters(),
@@ -330,7 +350,7 @@ def main(ARGS):
         path = ARGS.save_path + 'images_nfs' + "/"
         save_images(model, epoch, path)
 
-        train_bpd, val_bpd = run_epoch(model, data, optimizer)
+        train_bpd, val_bpd = run_epoch(model, data, optimizer, device)
         train_curve.append(train_bpd)
         dev_curve.append(val_bpd)
         print("[Epoch {epoch}] train bpd: {train_bpd:.5f} val_bpd: {val_bpd:.5f}".format(
@@ -353,11 +373,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', default=40, type=int,
                         help='max number of epochs')
-    parser.add_argument('--device', default='cpu', type = str,
+    parser.add_argument('--device', default='cpu', type=str,
                         help='torch device intended, "cpu" or "cuda".')
     parser.add_argument('--lr', default=1e-3, type=float,
                         help='learning rate')
-    parser.add_argument('--save_path', default='./nf2/', type=str,
+    parser.add_argument('--save_path', default='./nf_test/', type=str,
                         help='define path where to save all subfolders')
 
     ARGS = parser.parse_args()
