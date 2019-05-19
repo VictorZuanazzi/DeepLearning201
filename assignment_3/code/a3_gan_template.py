@@ -179,7 +179,7 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
             fake = discriminator(generator(z))
             
             l_D = -(torch.log(real) + torch.log(1 - fake)).sum()
-            l_D.clamp(epsilon, max = max_loss)
+            l_D.clamp(min = epsilon, max = max_loss)
             
             if not((acc[-1] > max_acc) & freeze_D):
                 #don't train the discriminator if it's accuracy is too high.
@@ -202,7 +202,14 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
             rec.append(TP / max((TP + FN), epsilon)) #recall
             scr.append(FP / current_batch) #generator's score
       
-        #Do some administration before starting next batch:      
+        #Do some administration before starting next batch:    
+        
+        #get stats for the last epoch
+        stats["accuracy"].append(np.array(acc).mean())
+        stats["precision"].append(np.array(pre).mean())
+        stats["accuracy"].append(np.array(acc).mean())
+        stats["recall"].append(np.array(rec).mean())
+        stats["score"].append(np.array(scr).mean())
                
         #print a status update
         print(f"################### Epoch: {epoch} ###################")
@@ -213,13 +220,6 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
               f"Recall: {stats['recall'][-1]:0.2f},"
               f"Loss: {stats['loss_D'][-1]:0.5f}") 
         print(f"Last batch: TP: {TP}, TN: {TN}, FP: {FP}, FN: {FN}")
-                
-        #get stats for the last epoch
-        stats["accuracy"].append(np.array(acc).mean())
-        stats["precision"].append(np.array(pre).mean())
-        stats["accuracy"].append(np.array(acc).mean())
-        stats["recall"].append(np.array(rec).mean())
-        stats["score"].append(np.array(scr).mean())
         
         #in case the Discriminator is too good, we just restart it!
         if (stats["accuracy"][-1] > reset_D):
@@ -257,9 +257,9 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
                     nrow=5,
                     normalize=True)
         
-        if (epoch > 100) & (0.45 <= np.array(stats["accuracy"][-5:]).mean() <= 0.55):
+        if (epoch > 100) & (0.49 <= np.array(stats["accuracy"][-5:]).mean() <= 0.51):
             #the training has converged when acc ~ .5
-            print(f"Training has converged. MA Acc: {stats['accuracy'][-5:].mean()}")
+            print(f"Training has converged. MA Acc: {(stats['accuracy'][-5:]).mean()}")
             break
         
     
