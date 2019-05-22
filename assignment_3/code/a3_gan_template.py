@@ -9,7 +9,7 @@ from torchvision import datasets
 import numpy as np
 
 
-class Generator(nn.Module):
+class Generator_original(nn.Module):
     def __init__(self, latent_dim = 100):
         super(Generator, self).__init__()
 
@@ -56,6 +56,85 @@ class Generator(nn.Module):
         
         return fake
 
+class Generator(nn.Module):
+    def __init__(self, latent_dim = 100):
+        super(Generator, self).__init__()
+
+        # Construct generator. You are free to experiment with your model,
+        # but the following is a good start:
+        #   Linear args.latent_dim -> 128
+        #   LeakyReLU(0.2)
+        #   Linear 128 -> 256
+        #   Bnorm
+        #   LeakyReLU(0.2)
+        #   Linear 256 -> 512
+        #   Bnorm
+        #   LeakyReLU(0.2)
+        #   Linear 512 -> 1024
+        #   Bnorm
+        #   LeakyReLU(0.2)
+        #   Linear 1024 -> 768
+        #   Output non-Linearity
+        
+        self.latent_dim = latent_dim
+        leak = 0.2
+        
+        self.expand = nn.Linear(latent_dim, 400)
+        
+        self.deconv1 = nn.ConvTranspose2d(in_channels = 1,
+                              out_channels = 64,
+                              kernel_size = 3,
+                              stride = 1,
+                              padding = 0)
+        
+        self.norm1 = nn.BatchNorm2d(64)
+        self.act1 = nn.LeakyReLU(leak)
+        self.drop1 = nn.Dropout(.05)
+        
+        self.deconv2 = nn.ConvTranspose2d(in_channels = 64,
+                              out_channels = 128,
+                              kernel_size = 3,
+                              stride = 1,
+                              padding = 0)
+        
+        self.norm2 = nn.BatchNorm2d(128)
+        self.act2 = nn.LeakyReLU(leak)
+        self.drop2 = nn.Dropout(.05)
+        
+        self.deconv3 = nn.ConvTranspose2d(in_channels = 128,
+                              out_channels = 64,
+                              kernel_size = 3,
+                              stride = 1,
+                              padding = 0)
+        
+        self.norm3 = nn.BatchNorm2d(64)
+        self.act3 = nn.LeakyReLU(leak)
+        self.drop3 = nn.Dropout(.05)
+        
+        self.deconv4 = nn.ConvTranspose2d(in_channels = 64,
+                              out_channels = 1,
+                              kernel_size = 3,
+                              stride = 1,
+                              padding = 0)
+        
+        self.norm4 = nn.BatchNorm2d(1)
+        self.act4 = nn.Tanh()
+        
+        self.seq = nn.Sequential(self.deconv1, self.norm1, self.act1, self.drop1,
+                                 self.deconv2, self.norm2, self.act2, self.drop2,
+                                 self.deconv3, self.norm3, self.act3, self.drop3,
+                                 self.deconv4, self.norm4, self.act4)
+    
+        
+
+    def forward(self, z):
+        
+        # Generate images from z
+        z = self.expand(z)
+        
+        fake = self.seq(z.view(-1,1,20,20))
+        
+        return fake.view(-1, 784)
 
 class Discriminator(nn.Module):
     def __init__(self):
@@ -73,12 +152,16 @@ class Discriminator(nn.Module):
         leak = 0.2
         
         #suggested implementation
-        self.discriminator = nn.Sequential(nn.Linear(784, 512),
-                                           nn.LeakyReLU(leak),
-                                           nn.Linear(512, 256),
-                                           nn.LeakyReLU(leak),
-                                           nn.Linear(256, 1),
-                                           nn.Sigmoid())
+        self.discriminator = nn.Sequential(
+                nn.Dropout(.2),
+                nn.Linear(784, 512),
+                nn.LeakyReLU(leak),
+                nn.Dropout(.2),
+                nn.Linear(512, 256),
+                nn.LeakyReLU(leak),
+                nn.Dropout(.2),
+                nn.Linear(256, 1),
+                nn.Sigmoid())
         
 
     def forward(self, img):
@@ -293,6 +376,7 @@ def main():
     print_args(args)
     
     # load data
+    print("loading data")
     dataloader = torch.utils.data.DataLoader(
         datasets.MNIST('./data/mnist', train=True, download=True,
                        transform=transforms.Compose([
@@ -300,8 +384,10 @@ def main():
                            transforms.Normalize((0.5,),
                                                 (0.5,))])),
         batch_size=args.batch_size, shuffle=True)
+    print("data loaded")
 
     # Initialize models
+    print("initializing models")
     generator = Generator(latent_dim = args.latent_dim)
     discriminator = Discriminator()
     
@@ -313,9 +399,11 @@ def main():
     if args.continue_D:
         d_name = "Discriminator_best.pt"
         discriminator = load_model(discriminator, args.save_model, d_name)
+    print("models initialized")
     
     
     #initialize optimizers
+    print("initializing optimizers")
     optimizer_G = torch.optim.Adam(generator.parameters(), lr=args.lr)
     optimizer_D = torch.optim.Adam(discriminator.parameters(), lr=args.lr)
 
@@ -329,9 +417,9 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     
     #define folders
-    parser.add_argument('--save_images', type = str, default = 'GAN_BW',
+    parser.add_argument('--save_images', type = str, default = 'GAN_conv',
                         help='folder to save generated images.')
-    parser.add_argument('--save_model', type = str, default = 'model_BW',
+    parser.add_argument('--save_model', type = str, default = 'model_conv',
                         help='folder to save the models.')
     parser.add_argument('--dataset', type = str, default = 'MNIST',
                         help='dataset to be used for training.')
@@ -347,13 +435,13 @@ if __name__ == "__main__":
                         help='dimensionality of the latent space')
     parser.add_argument('--save_interval', type=int, default=500,
                         help='save every SAVE_INTERVAL iterations')
-    parser.add_argument('--device', type = str, default = 'cpu', 
+    parser.add_argument('--device', type = str, default = 'cuda',
                         help='torch device, "cpu" or "cuda"')
-    parser.add_argument('--max_acc', type = float, default = 0.75,
+    parser.add_argument('--max_acc', type = float, default = 0.95,
                         help='accuracy to apply regularization to the discriminator')
     parser.add_argument('--freeze_D', type = bool, default = True,
                         help='If true does not train the discriminator when it reaches accuracy above args.max_acc')
-    parser.add_argument('--reset_D', type = float, default = 0.95,
+    parser.add_argument('--reset_D', type = float, default = 0.90,
                         help='if accuracy is higher than reset_D, then the discriminator has its weights randomly re-initialized')
     parser.add_argument('--continue_G', type = bool, default = True,
                         help='If True it continues training the previous best generator')
