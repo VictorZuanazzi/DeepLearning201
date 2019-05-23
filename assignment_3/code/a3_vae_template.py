@@ -130,15 +130,15 @@ class VAE(nn.Module):
         z = torch.randn((n_samples, self.z_dim), device= self.device)
         
         # get sample images from decoder
-        sampled_ims = self.decoder(z)
+        im_means = self.decoder(z)
         
         # average
-        im_means = sampled_ims.mean(dim=0)
+        sampled_ims = torch.bernoulli(im_means)
         
         #dinamically determin the size of the image
         side = int(np.sqrt(self.im_dim))
         
-        return sampled_ims.view(-1, 1, side, side), im_means.view(1, 1, side, side)
+        return sampled_ims.view(-1, 1, side, side), im_means.view(-1, 1, side, side)
 
 
 def epoch_iter(model, data, optimizer):
@@ -197,10 +197,19 @@ def sample_n_save(model, epoch, path_extra = ""):
     with torch.no_grad():
         num_row = 5
         samples, im_means = model.sample(num_row * num_row)
+        
+        #save the samples
         samples = make_grid(samples, nrow = num_row)
         path = "./samples" + path_extra +"/"
         create_dir(path)
         name = f"sample_{epoch}.png"
+        plt.imsave(path + name, samples.cpu().numpy().transpose(1,2,0))
+        
+        #save the means
+        im_means = make_grid(im_means, nrow = num_row)
+        path = "./samples" + path_extra +"/"
+        create_dir(path)
+        name = f"means_{epoch}.png"
         plt.imsave(path + name, samples.cpu().numpy().transpose(1,2,0))
         
 
@@ -282,11 +291,11 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--epochs', default=40, type=int,
                         help='max number of epochs')
-    parser.add_argument('--zdim', default=2, type=int,
+    parser.add_argument('--zdim', default=20, type=int,
                         help='dimensionality of latent space')
     parser.add_argument('--device', type = str, default='cpu',
                         help='torch device, "cpu" or "cuda"')
-    parser.add_argument('--experiment', type = str, default='_2d',
+    parser.add_argument('--experiment', type = str, default='bernoulli',
                         help='experiment name')
 
     ARGS = parser.parse_args()
