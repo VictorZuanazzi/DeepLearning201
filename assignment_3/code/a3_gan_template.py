@@ -269,9 +269,9 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
 
 
             # data augmentation
-            if np.random.rand(1) > flip_prop:
-                # invert black and white pixels
-                x = -1 * x
+            # if np.random.rand(1) > flip_prop:
+            #     # invert black and white pixels
+            #     x = -1 * x
 
             current_batch = x.shape[0]
 
@@ -293,7 +293,7 @@ def train(dataloader, discriminator, generator, optimizer_G, optimizer_D):
             fake = discriminator(fake_im)
 
             # recalculate the flip probability
-            flip_prop = min(max((1/2 + fake_im.mean().item()) / 2, .1), .9)
+            #flip_prop = min(max((1/2 + fake_im.mean().item()) / 2, .1), .9)
 
             l_D = -(torch.log(real) + torch.log(1 - fake)).sum()
             l_D.clamp(min=epsilon, max=max_loss)
